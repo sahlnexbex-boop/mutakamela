@@ -52,7 +52,7 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
 
         <div className="grid grid-cols-1 lg:grid-cols-14 gap-8 items-start">
 
-          {/* Left Column: Heading Stack & Link (Matches Image 1 Model) */}
+          {/* Left Column: Heading Stack & Link */}
           <div className="lg:col-span-3 space-y-6 pt-2" data-gsap="fade-up">
             <div>
               <div className="text-xs font-bold uppercase tracking-wider text-[#3B25B0] mb-2">
@@ -79,7 +79,7 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
             </div>
           </div>
 
-          {/* Right Column: 5 Product Cards (Matches Image 1 Model) */}
+          {/* Right Column: 5 Product Cards */}
           <div className="lg:col-span-11" data-gsap="stagger">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
               {products.map((product) => {
@@ -113,14 +113,14 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
                       </button>
                     </div>
 
-                    {/* Bottom Image Graphic */}
-                    <div className="relative w-full h-32 mt-1 bg-slate-50/40 overflow-hidden flex items-end justify-center">
+                    {/* Bottom Image Graphic - Set object-contain & flexible height for 100% full view on mobile & desktop */}
+                    <div className="relative w-full h-44 sm:h-36 mt-1 bg-slate-50/40 overflow-hidden flex items-end justify-center p-1">
                       <Image
                         src={product.image}
                         alt={product.title}
-                        width={240}
-                        height={150}
-                        className="w-full h-full object-cover object-bottom transition-transform duration-500 group-hover:scale-105"
+                        width={280}
+                        height={180}
+                        className="w-full h-full object-contain object-bottom transition-transform duration-500 group-hover:scale-105"
                       />
                     </div>
                   </div>
