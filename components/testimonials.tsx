@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import Image from "next/image";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 
@@ -32,22 +32,38 @@ export default function Testimonials() {
     },
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeDot, setActiveDot] = useState(0);
 
   const handlePrev = () => {
-    setCurrentIndex((prev) => (prev === 0 ? testimonials.length - 1 : prev - 1));
+    if (scrollContainerRef.current) {
+      const step = scrollContainerRef.current.offsetWidth;
+      scrollContainerRef.current.scrollBy({ left: -step, behavior: "smooth" });
+    }
   };
 
   const handleNext = () => {
-    setCurrentIndex((prev) => (prev === testimonials.length - 1 ? 0 : prev + 1));
+    if (scrollContainerRef.current) {
+      const step = scrollContainerRef.current.offsetWidth;
+      scrollContainerRef.current.scrollBy({ left: step, behavior: "smooth" });
+    }
+  };
+
+  const handleScroll = () => {
+    if (scrollContainerRef.current) {
+      const scrollLeft = scrollContainerRef.current.scrollLeft;
+      const cardWidth = scrollContainerRef.current.offsetWidth || 1;
+      const index = Math.round(scrollLeft / cardWidth);
+      setActiveDot(Math.min(Math.max(index, 0), testimonials.length - 1));
+    }
   };
 
   return (
     <section className="py-16 lg:py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header with Navigation Controls */}
-        <div className="flex items-end justify-between mb-12" data-gsap="fade-up">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12" data-gsap="fade-up">
           <div>
             <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0] mb-2">
               TESTIMONIALS
@@ -61,15 +77,17 @@ export default function Testimonials() {
           </div>
 
           {/* Carousel Arrows */}
-          <div className="hidden sm:flex items-center space-x-3">
+          <div className="hidden sm:flex items-center space-x-3 shrink-0">
             <button
               onClick={handlePrev}
+              aria-label="Previous testimonial"
               className="w-10 h-10 rounded-full border border-slate-200 hover:border-[#3B25B0] hover:bg-indigo-50 text-slate-600 hover:text-[#3B25B0] flex items-center justify-center transition-all"
             >
               <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={handleNext}
+              aria-label="Next testimonial"
               className="w-10 h-10 rounded-full border border-slate-200 hover:border-[#3B25B0] hover:bg-indigo-50 text-slate-600 hover:text-[#3B25B0] flex items-center justify-center transition-all"
             >
               <ChevronRight className="w-5 h-5" />
@@ -77,20 +95,31 @@ export default function Testimonials() {
           </div>
         </div>
 
-        {/* 3 Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6" data-gsap="stagger">
+        {/* 3 Testimonials Side-Scrolling on Mobile (Full View), Grid on Desktop */}
+        <div
+          ref={scrollContainerRef}
+          onScroll={handleScroll}
+          className="flex md:grid overflow-x-auto md:overflow-x-visible snap-x snap-mandatory md:grid-cols-3 gap-6 pb-4 md:pb-0 scrollbar-none"
+          data-gsap="stagger"
+        >
           {testimonials.map((item) => (
             <div
               key={item.id}
               data-gsap-item
-              className="bg-white rounded-3xl p-6 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+              className="shrink-0 w-full md:w-auto snap-center bg-white rounded-3xl p-6 border border-slate-100 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
             >
               <div className="space-y-4">
 
-                {/* Quote Icon & Rating */}
+                {/* Quote Icon Graphic & Rating */}
                 <div className="flex items-center justify-between">
-                  <div className="w-10 h-10 text-[#3B25B0] font-serif text-4xl leading-none">
-                    “
+                  <div className="w-8 h-8 relative shrink-0">
+                    <Image
+                      src="/images/testi_quates.png"
+                      alt="Quote"
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-contain"
+                    />
                   </div>
                   <div className="flex items-center space-x-1">
                     {[...Array(5)].map((_, i) => (
@@ -124,6 +153,28 @@ export default function Testimonials() {
 
               </div>
             </div>
+          ))}
+        </div>
+
+        {/* Mobile Navigation Dots */}
+        <div className="flex md:hidden items-center justify-center space-x-2 mt-4">
+          {testimonials.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => {
+                if (scrollContainerRef.current) {
+                  const width = scrollContainerRef.current.offsetWidth;
+                  scrollContainerRef.current.scrollTo({
+                    left: idx * width,
+                    behavior: "smooth",
+                  });
+                }
+              }}
+              aria-label={`Go to slide ${idx + 1}`}
+              className={`h-2.5 rounded-full transition-all duration-300 ${
+                activeDot === idx ? "w-7 bg-[#3B25B0]" : "w-2.5 bg-slate-200"
+              }`}
+            />
           ))}
         </div>
 

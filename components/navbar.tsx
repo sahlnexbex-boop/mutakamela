@@ -173,26 +173,23 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
 
       {/* Side-Drawer Mobile Sidebar (Smooth 300ms Slide-in from right & Slide-out back to right) */}
       <div
-        className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${
-          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
       >
         {/* Backdrop Click to Close */}
         <div
-          className={`absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${
-            mobileMenuOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100" : "opacity-0"
+            }`}
           onClick={() => setMobileMenuOpen(false)}
         />
 
         {/* Side Drawer Panel */}
         <div
-          className={`relative z-[10000] w-full max-w-xs sm:max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out transform ${
-            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`relative z-[10000] w-full max-w-xs sm:max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className="space-y-6 overflow-y-auto">
-            
+
             {/* Drawer Header: Logo + Close X */}
             <div className="flex items-center justify-between pb-4 border-b border-slate-100">
               <Image
@@ -212,7 +209,7 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
 
             {/* Menu Links List */}
             <div className="space-y-3">
-              
+
               {/* Home Active Highlight Badge */}
               <Link
                 href="/"

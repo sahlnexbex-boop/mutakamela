@@ -32,7 +32,7 @@ export default function HowItWorks() {
 
   return (
     <section className="py-16 lg:py-24 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16" data-gsap="fade-up">
@@ -63,7 +63,7 @@ export default function HowItWorks() {
 
                 {/* Circular Graphic & Number Badge */}
                 <div className="relative">
-                  <div className="w-44 h-44 rounded-full overflow-hidden border-4 border-white shadow-soft group-hover:shadow-soft-lg group-hover:scale-105 transition-all duration-300 bg-slate-50 flex items-center justify-center">
+                  <div className="w-44 h-44 rounded-full overflow-hidden border-4 border-white  group-hover:scale-105 transition-all duration-300 bg-slate-50 flex items-center justify-center">
                     <Image
                       src={item.image}
                       alt={item.title}

@@ -42,7 +42,7 @@ export default function AppExperience() {
 
   return (
     <section id="app" className="py-16 lg:py-24 bg-[#F0EFFD] relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
           {/* Left Column: Heading, 5 Feature Items Row & Download Button (Matches Image 1) */}
@@ -110,32 +110,30 @@ export default function AppExperience() {
                 className="w-full h-auto object-contain"
               />
 
-              {/* Floating Scan Card Overlay at bottom matching Image 1 */}
+              {/* Floating Scan Card Overlay at bottom matching Image 3 */}
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-11/12 sm:w-10/12 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-xl border border-slate-100 text-center space-y-2">
                 <div className="text-xs font-bold text-slate-900">Scan to Download Mutakamela App</div>
                 <div className="text-[10px] text-slate-500 font-medium">Available on</div>
 
-                <div className="flex items-center justify-center space-x-2.5 pt-0.5">
-                  <a
-                    href="#app"
-                    className="flex items-center space-x-2 bg-slate-900 text-white px-3 py-1.5 rounded-xl hover:bg-slate-800 transition-colors"
-                  >
-                    <Apple className="w-4 h-4 shrink-0" />
-                    <div className="text-left leading-tight">
-                      <div className="text-[8px] uppercase text-slate-400">Download on the</div>
-                      <div className="text-[11px] font-bold">App Store</div>
-                    </div>
+                <div className="flex items-center justify-center space-x-3 pt-1">
+                  <a href="#app" className="inline-block transition-transform hover:scale-105">
+                    <Image
+                      src="/images/appstore.png"
+                      alt="Download on the App Store"
+                      width={140}
+                      height={42}
+                      className="h-9 sm:h-10 w-auto object-contain"
+                    />
                   </a>
 
-                  <a
-                    href="#app"
-                    className="flex items-center space-x-2 bg-slate-900 text-white px-3 py-1.5 rounded-xl hover:bg-slate-800 transition-colors"
-                  >
-                    <Play className="w-4 h-4 fill-current shrink-0" />
-                    <div className="text-left leading-tight">
-                      <div className="text-[8px] uppercase text-slate-400">GET IT ON</div>
-                      <div className="text-[11px] font-bold">Google Play</div>
-                    </div>
+                  <a href="#app" className="inline-block transition-transform hover:scale-105">
+                    <Image
+                      src="/images/playstore.png"
+                      alt="Get it on Google Play"
+                      width={140}
+                      height={42}
+                      className="h-9 sm:h-10 w-auto object-contain"
+                    />
                   </a>
                 </div>
               </div>

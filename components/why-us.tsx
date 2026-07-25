@@ -32,8 +32,8 @@ export default function WhyUs() {
   ];
 
   return (
-    <section id="why-us" className="py-8 lg:py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+    <section id="why-us" className="py-8 lg:py-12 bg-white">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
 
         {/* Banner Container matching Image 1 */}
         <div

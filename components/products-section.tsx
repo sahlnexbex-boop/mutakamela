@@ -48,22 +48,22 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
 
   return (
     <section id="products" className="py-12 lg:py-16 bg-white relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
 
         <div className="grid grid-cols-1 lg:grid-cols-14 gap-8 items-start">
 
           {/* Left Column: Heading Stack & Link */}
           <div className="lg:col-span-3 space-y-6 pt-2" data-gsap="fade-up">
             <div>
-              <div className="text-xs font-bold uppercase tracking-wider text-[#3B25B0] mb-2">
+              <div className="text-xs md:text-md font-extrabold uppercase tracking-wider text-[#3B25B0] mb-2">
                 OUR PRODUCTS
               </div>
 
-              <h2 className="text-2xl sm:text-2.5xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
+              <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
                 Comprehensive protection for every need
               </h2>
 
-              <p className="text-slate-500 text-xs sm:text-sm mt-3 font-normal leading-relaxed">
+              <p className="text-slate-600 text-sm sm:text-sm mt-3 font-normal leading-relaxed">
                 Flexible protection across every life stage and need
               </p>
             </div>
@@ -71,10 +71,10 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
             <div>
               <a
                 href="#products"
-                className="inline-flex items-center space-x-1 text-xs font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
+                className="inline-flex items-center space-x-1 text-sm sm:text-xs font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
               >
                 <span>View all products</span>
-                <ChevronRight className="w-3.5 h-3.5" />
+                <ChevronRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
               </a>
             </div>
           </div>
@@ -88,39 +88,39 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
                   <div
                     key={product.id}
                     data-gsap-item
-                    className="group bg-white rounded-3xl border border-slate-100/90 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden"
+                    className="group bg-white rounded-3xl border border-slate-100/90 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden relative min-h-[220px] sm:min-h-0"
                   >
-                    {/* Top Card Info */}
-                    <div className="p-4 space-y-2.5">
-                      <div className="w-9 h-9 rounded-xl bg-[#3B25B0] text-white flex items-center justify-center shadow-md">
-                        <Icon className="w-4 h-4" />
+                    {/* Card Content Info - Layered in FRONT on Z-axis (z-10) */}
+                    <div className="p-5 sm:p-4 space-y-3.5 sm:space-y-2.5 relative z-10">
+                      <div className="w-11 h-11 sm:w-9 sm:h-9 rounded-xl bg-[#3B25B0] text-white flex items-center justify-center shadow-md">
+                        <Icon className="w-5.5 h-5.5 sm:w-4 sm:h-4" />
                       </div>
 
-                      <h3 className="text-xs font-bold text-slate-900 group-hover:text-[#3B25B0] transition-colors leading-tight">
+                      <h3 className="text-base sm:text-xs font-bold text-slate-900 group-hover:text-[#3B25B0] transition-colors leading-snug">
                         {product.title}
                       </h3>
 
-                      <p className="text-[11px] text-slate-400 leading-normal font-normal line-clamp-3">
+                      <p className="text-sm sm:text-[11px] text-slate-600 leading-relaxed font-normal line-clamp-3 max-w-[80%] sm:max-w-none">
                         {product.description}
                       </p>
 
                       <button
                         onClick={() => onOpenQuoteModal?.(product.title)}
-                        className="inline-flex items-center space-x-1 text-[11px] font-bold text-[#3B25B0] hover:underline pt-0.5"
+                        className="inline-flex items-center space-x-1 text-sm sm:text-[11px] font-bold text-[#3B25B0] hover:underline pt-0.5"
                       >
                         <span>Get a Quote</span>
-                        <ChevronRight className="w-3 h-3" />
+                        <ChevronRight className="w-4 h-4 sm:w-3 sm:h-3" />
                       </button>
                     </div>
 
-                    {/* Bottom Image Graphic - Set object-contain & flexible height for 100% full view on mobile & desktop */}
-                    <div className="relative w-full h-44 sm:h-36 mt-1 bg-slate-50/40 overflow-hidden flex items-end justify-center p-1">
+                    {/* Image Graphic - Card background model on Z-axis for mobile screens (z-0) */}
+                    <div className="absolute bottom-0 right-0 sm:relative sm:bottom-auto sm:right-auto z-0 w-48 sm:w-full h-36 sm:h-32 lg:h-36 bg-transparent sm:bg-slate-50/40 overflow-hidden flex items-end justify-end sm:justify-center p-2 sm:p-1.5 pointer-events-none sm:pointer-events-auto">
                       <Image
                         src={product.image}
                         alt={product.title}
                         width={280}
                         height={180}
-                        className="w-full h-full object-contain object-bottom transition-transform duration-500 group-hover:scale-105"
+                        className="w-full h-full object-contain object-bottom transition-transform duration-500 group-hover:scale-105 opacity-80 sm:opacity-100"
                       />
                     </div>
                   </div>

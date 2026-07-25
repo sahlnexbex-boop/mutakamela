@@ -38,8 +38,8 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
   ];
 
   return (
-    <section className="relative z-20 -mt-16 sm:-mt-20 lg:-mt-24 mb-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+    <section className="relative -mt-6 sm:-mt-8 lg:-mt-10 mb-12">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 md:mt-10 mt-5">
 
         {/* Quick Action Box */}
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft-lg border border-slate-100" data-gsap="fade-up">
@@ -90,22 +90,50 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
           href="https://wa.me/966118213000"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white flex items-center justify-center shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-110"
+          className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white flex items-center justify-center shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-110"
           title="Chat on WhatsApp"
         >
-          <MessageCircle className="w-6 h-6 fill-current" />
+          <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-white" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-0.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+          </svg>
         </a>
 
-        {/* AI Assistant Floating Trigger */}
+        {/* AI Assistant Floating Trigger - Same size as WhatsApp button (w-12 h-12 sm:w-13 sm:h-13) */}
         <button
           onClick={() => setShowAiChat(!showAiChat)}
-          className="w-12 h-12 rounded-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white flex items-center justify-center shadow-lg hover:shadow-indigo-500/40 transition-all duration-300 transform hover:scale-110 relative"
+          className="w-12 h-12 sm:w-13 sm:h-13 rounded-full relative group shadow-lg hover:shadow-indigo-500/40 transition-all duration-300 transform hover:scale-110 flex items-center justify-center bg-white"
           title="Mutakamela AI Assistant"
         >
-          <Bot className="w-6 h-6" />
-          <span className="absolute -top-1 -right-1 bg-sky-400 text-slate-950 font-black text-[9px] px-1.5 py-0.5 rounded-full border-2 border-white">
-            AI
-          </span>
+          {/* Rotating 75% Gradient Arc Ring */}
+          <svg className="absolute -inset-[3px] w-[calc(100%+6px)] h-[calc(100%+6px)] animate-[spin_3.5s_linear_infinite] pointer-events-none" viewBox="0 0 100 100">
+            <defs>
+              <linearGradient id="aiRingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#38bdf8" />
+                <stop offset="50%" stopColor="#a855f7" />
+                <stop offset="100%" stopColor="#ec4899" />
+              </linearGradient>
+            </defs>
+            <circle
+              cx="50"
+              cy="50"
+              r="45"
+              fill="none"
+              stroke="url(#aiRingGradient)"
+              strokeWidth="4.5"
+              strokeDasharray="212 71"
+              strokeLinecap="round"
+            />
+          </svg>
+
+          {/* Inner White Button */}
+          <div className="relative w-full h-full bg-white rounded-full flex items-center justify-center z-10">
+            {/* AI Sparkle Icon matching 2nd image */}
+            <svg className="w-7 h-7 sm:w-8 sm:h-8 text-[#1E65FF]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="3.5" y="3.5" width="13" height="13" rx="3.5" />
+              <text x="5.5" y="13" fontSize="8" fontWeight="800" fill="currentColor" stroke="none">AI</text>
+              <path d="M18 14.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8z" fill="currentColor" stroke="none" />
+            </svg>
+          </div>
         </button>
 
       </div>
