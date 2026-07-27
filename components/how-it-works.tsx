@@ -1,31 +1,34 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 
 export default function HowItWorks() {
+  const { t } = useTranslation();
+
   const steps = [
     {
       step: 1,
-      title: "Choose Your Insurance",
-      description: "Select the insurance type that suits your needs – Motor, Travel, Life or Visit Visa Insurance.",
+      title: t("step1Title"),
+      description: t("step1Desc"),
       image: "/images/works_01.png",
     },
     {
       step: 2,
-      title: "Fill in Your Details",
-      description: "Provide a few basic details about yourself and your requirements.",
+      title: t("step2Title"),
+      description: t("step2Desc"),
       image: "/images/works_02.png",
     },
     {
       step: 3,
-      title: "Get Instant Quote",
-      description: "We'll instantly show you the best plan options and price that match your needs.",
+      title: t("step3Title"),
+      description: t("step3Desc"),
       image: "/images/works_03.png",
     },
     {
       step: 4,
-      title: "Buy & Get Protected",
-      description: "Choose your plan, make payment securely and get your policy instantly.",
+      title: t("step4Title"),
+      description: t("step4Desc"),
       image: "/images/works_04.png",
     },
   ];
@@ -37,14 +40,11 @@ export default function HowItWorks() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16" data-gsap="fade-up">
           <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0] mb-2">
-            HOW IT WORKS
+            {t("simpleProcess")}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            Simple steps to get protected
+            {t("howItWorksHeading")}
           </h2>
-          <p className="text-slate-600 text-sm sm:text-base mt-2 font-normal">
-            Insurance made simple, fast and reliable.
-          </p>
         </div>
 
         {/* 4 Steps Timeline */}

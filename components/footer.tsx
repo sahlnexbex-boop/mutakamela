@@ -3,8 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Phone, Mail, Clock } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Footer() {
+  const { t } = useTranslation();
+
   return (
     <footer className="bg-[#12162B] text-slate-300 pt-16 pb-8 border-t border-slate-800">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
@@ -25,11 +28,11 @@ export default function Footer() {
             </Link>
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed font-normal max-w-sm">
-              Comprehensive insurance solutions for you, your family and your business. Protection for today, peace of mind for tomorrow.
+              {t("footerDesc")}
             </p>
 
             {/* Social Links */}
-            <div className="flex items-center space-x-3 pt-2">
+            <div className="flex items-center gap-3 pt-2">
               {/* LinkedIn */}
               <a
                 href="https://linkedin.com"
@@ -88,48 +91,48 @@ export default function Footer() {
 
           {/* Products Column */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Products</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">{t("products")}</h3>
             <ul className="space-y-2 text-xs font-normal text-slate-400">
-              <li><a href="#products" className="hover:text-white transition-colors">Motor Insurance</a></li>
-              <li><a href="#products" className="hover:text-white transition-colors">Travel Insurance</a></li>
-              <li><a href="#products" className="hover:text-white transition-colors">Life Insurance</a></li>
-              <li><a href="#products" className="hover:text-white transition-colors">Visit Visa Insurance</a></li>
+              <li><a href="#products" className="hover:text-white transition-colors">{t("motorInsurance")}</a></li>
+              <li><a href="#products" className="hover:text-white transition-colors">{t("travelInsurance")}</a></li>
+              <li><a href="#products" className="hover:text-white transition-colors">{t("lifeInsurance")}</a></li>
+              <li><a href="#products" className="hover:text-white transition-colors">{t("visitVisaInsurance")}</a></li>
             </ul>
           </div>
 
           {/* Support Column */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Support</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">{t("support")}</h3>
             <ul className="space-y-2 text-xs font-normal text-slate-400">
-              <li><a href="#claims" className="hover:text-white transition-colors">Claims</a></li>
-              <li><a href="#faq" className="hover:text-white transition-colors">Customer Support</a></li>
+              <li><a href="#claims" className="hover:text-white transition-colors">{t("claims")}</a></li>
+              <li><a href="#faq" className="hover:text-white transition-colors">{t("customerService")}</a></li>
             </ul>
           </div>
 
           {/* Legal Column */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Legal</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">{t("legal")}</h3>
             <ul className="space-y-2 text-xs font-normal text-slate-400">
-              <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Terms & Conditions</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("privacyPolicy")}</a></li>
+              <li><a href="#" className="hover:text-white transition-colors">{t("termsConditions")}</a></li>
             </ul>
           </div>
 
           {/* Contact Column */}
           <div className="lg:col-span-2 space-y-3">
-            <h3 className="text-sm font-bold text-white uppercase tracking-wider">Contact</h3>
+            <h3 className="text-sm font-bold text-white uppercase tracking-wider">{t("contact")}</h3>
             <ul className="space-y-2.5 text-xs font-normal text-slate-400">
-              <li className="flex items-center space-x-2">
+              <li className="flex items-center gap-2">
                 <Phone className="w-4 h-4 text-indigo-400 shrink-0" />
                 <span>+966 11 8213000</span>
               </li>
-              <li className="flex items-center space-x-2">
+              <li className="flex items-center gap-2">
                 <Mail className="w-4 h-4 text-indigo-400 shrink-0" />
                 <span>customerservice@mutakamela.sa</span>
               </li>
-              <li className="flex items-start space-x-2">
+              <li className="flex items-start gap-2">
                 <Clock className="w-4 h-4 text-indigo-400 shrink-0 mt-0.5" />
-                <span>Sun - Thu, 8:00 AM - 8:00 PM</span>
+                <span>{t("sunThu")}</span>
               </li>
             </ul>
           </div>
@@ -139,10 +142,10 @@ export default function Footer() {
         {/* Bottom Copyright */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-400 gap-4">
           <div>
-            © 2026 Mutakamela Insurance. All rights reserved.
+            {t("rights")}
           </div>
-          <div className="flex items-center space-x-1">
-            <span>Designed and developed by</span>
+          <div className="flex items-center gap-1">
+            <span>{t("designedBy")}</span>
             <span className="text-white font-bold tracking-tight">nexbex</span>
           </div>
         </div>

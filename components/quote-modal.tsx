@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, CheckCircle, Shield, Car, Plane, Heart, Building, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface QuoteModalProps {
   isOpen: boolean;
@@ -11,6 +12,7 @@ interface QuoteModalProps {
 }
 
 export default function QuoteModal({ isOpen, onClose, initialProduct = "Motor Insurance", initialData }: QuoteModalProps) {
+  const { t } = useTranslation();
   const [step, setStep] = useState<"form" | "plans" | "success">("form");
   const [selectedProduct, setSelectedProduct] = useState(initialProduct);
   const [formData, setFormData] = useState({
@@ -45,7 +47,7 @@ export default function QuoteModal({ isOpen, onClose, initialProduct = "Motor In
         {/* Close Button */}
         <button
           onClick={resetModal}
-          className="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
+          className="absolute top-5 ltr:right-5 rtl:left-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>
@@ -53,12 +55,12 @@ export default function QuoteModal({ isOpen, onClose, initialProduct = "Motor In
         {step === "form" && (
           <div className="space-y-6">
             <div>
-              <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 text-[#3B25B0] text-xs font-bold uppercase tracking-wider mb-2">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 text-[#3B25B0] text-xs font-bold uppercase tracking-wider mb-2">
                 <Shield className="w-3.5 h-3.5" />
-                <span>Instant Online Quote</span>
+                <span>{t("instantQuoteForm")}</span>
               </div>
               <h3 className="text-2xl font-bold text-slate-900">
-                Get Your {selectedProduct} Quote
+                {t("getQuoteFor")} {selectedProduct}
               </h3>
               <p className="text-xs sm:text-sm text-slate-500 mt-1">
                 Enter your details below to receive competitive insurance plans instantly.

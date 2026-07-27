@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { X, FileText, Search, CheckCircle, Upload, ArrowRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ClaimModalProps {
   isOpen: boolean;
@@ -10,6 +11,7 @@ interface ClaimModalProps {
 }
 
 export default function ClaimModal({ isOpen, onClose, defaultMode = "submit" }: ClaimModalProps) {
+  const { t } = useTranslation();
   const [mode, setMode] = useState<"submit" | "track">(defaultMode);
   const [claimId, setClaimId] = useState("");
   const [policyId, setPolicyId] = useState("");
@@ -47,7 +49,7 @@ export default function ClaimModal({ isOpen, onClose, defaultMode = "submit" }: 
         {/* Close Button */}
         <button
           onClick={resetModal}
-          className="absolute top-5 right-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
+          className="absolute top-5 ltr:right-5 rtl:left-5 text-slate-400 hover:text-slate-700 p-1.5 rounded-full hover:bg-slate-100 transition-colors"
         >
           <X className="w-5 h-5" />
         </button>

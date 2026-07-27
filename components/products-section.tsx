@@ -2,45 +2,48 @@
 
 import Image from "next/image";
 import { Car, Plane, HeartHandshake, FileCheck, Building2, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ProductsSectionProps {
   onOpenQuoteModal?: (productTitle: string) => void;
 }
 
 export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionProps) {
+  const { t } = useTranslation();
+
   const products = [
     {
       id: "motor",
-      title: "Motor Insurance",
-      description: "Protect your family's future with flexible vehicle coverage.",
+      title: t("motorInsurance"),
+      description: t("motorBody"),
       image: "/images/products_01.png",
       icon: Car,
     },
     {
       id: "travel",
-      title: "Travel Insurance",
-      description: "Mandatory medical coverage for visitors entering Saudi Arabia.",
+      title: t("travelInsurance"),
+      description: t("travelBody"),
       image: "/images/products_02.png",
       icon: Plane,
     },
     {
       id: "life",
-      title: "Life Insurance",
-      description: "Secure your family's future today. Give your loved ones lasting protection.",
+      title: t("lifeInsurance"),
+      description: t("lifeBody"),
       image: "/images/products_03.png",
       icon: HeartHandshake,
     },
     {
       id: "visa",
-      title: "Visit Visa Insurance",
-      description: "Mandatory cover for Saudi visit visa. Simple, fast and trusted protection.",
+      title: t("visitVisaInsurance"),
+      description: t("visitVisaBody"),
       image: "/images/products_04.png",
       icon: FileCheck,
     },
     {
       id: "general",
-      title: "General Insurance",
-      description: "Property and business protection. Simple coverage for every need.",
+      title: t("generalProperty"),
+      description: t("tailoredForNeeds"),
       image: "/images/products_05.png",
       icon: Building2,
     },
@@ -56,25 +59,25 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
           <div className="lg:col-span-3 space-y-6 pt-2" data-gsap="fade-up">
             <div>
               <div className="text-xs md:text-md font-extrabold uppercase tracking-wider text-[#3B25B0] mb-2">
-                OUR PRODUCTS
+                {t("ourInsuranceProducts")}
               </div>
 
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
-                Comprehensive protection for every need
+                {t("ourInsuranceProducts")}
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-sm mt-3 font-normal leading-relaxed">
-                Flexible protection across every life stage and need
+                {t("tailoredForNeeds")}
               </p>
             </div>
 
             <div>
               <a
                 href="#products"
-                className="inline-flex items-center space-x-1 text-sm sm:text-xs font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
+                className="inline-flex items-center gap-1 text-sm sm:text-xs font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
               >
-                <span>View all products</span>
-                <ChevronRight className="w-4 h-4 sm:w-3.5 sm:h-3.5" />
+                <span>{t("ourInsuranceProducts")}</span>
+                <ChevronRight className="w-4 h-4 sm:w-3.5 sm:h-3.5 rtl:rotate-180" />
               </a>
             </div>
           </div>
@@ -106,10 +109,10 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
 
                       <button
                         onClick={() => onOpenQuoteModal?.(product.title)}
-                        className="inline-flex items-center space-x-1 text-sm sm:text-[11px] font-bold text-[#3B25B0] hover:underline pt-0.5"
+                        className="inline-flex items-center gap-1 text-sm sm:text-[11px] font-bold text-[#3B25B0] hover:underline pt-0.5"
                       >
-                        <span>Get a Quote</span>
-                        <ChevronRight className="w-4 h-4 sm:w-3 sm:h-3" />
+                        <span>{t("getQuoteNow")}</span>
+                        <ChevronRight className="w-4 h-4 sm:w-3 sm:h-3 rtl:rotate-180" />
                       </button>
                     </div>
 

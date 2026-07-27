@@ -1,32 +1,35 @@
 "use client";
 
 import { Zap, Globe2, ShieldCheck, HeartHandshake, Users } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function WhyUs() {
+  const { t } = useTranslation();
+
   const pillars = [
     {
-      title: "Fast Claims",
-      desc: "Quick and hassle-free claim settlement",
+      title: t("fastClaims"),
+      desc: t("fastClaimsDesc"),
       icon: Zap,
     },
     {
-      title: "Wide Network",
-      desc: "Access to 1,200+ hospitals across Saudi Arabia",
+      title: t("shariaCompliant"),
+      desc: t("shariaDesc"),
       icon: Globe2,
     },
     {
-      title: "Digital First",
-      desc: "Simple and secure digital experience",
+      title: t("instantPolicy"),
+      desc: t("instantDesc"),
       icon: ShieldCheck,
     },
     {
-      title: "Trusted Insurer",
-      desc: "Backed by strong financial strength",
+      title: t("trustedProtection"),
+      desc: t("whySubtitle"),
       icon: HeartHandshake,
     },
     {
-      title: "Customer First",
-      desc: "24/7 support and dedicated care",
+      title: t("supportAlways"),
+      desc: t("supportAlwaysDesc"),
       icon: Users,
     },
   ];
@@ -44,16 +47,16 @@ export default function WhyUs() {
           <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
 
           {/* Section Header */}
-          <div className="mb-10 text-left">
+          <div className="mb-10 text-left rtl:text-right">
             <div className="text-xs font-bold uppercase tracking-widest text-indigo-200/90 mb-2">
-              WHY MUTAKAMELA
+              {t("whyMutakamela")}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              Insurance you can <span className="text-sky-300">trust</span>
+              {t("whyChooseMutakamela")}
             </h2>
           </div>
 
-          {/* 5 Pillars Row (Clean Circular Blue Icon Badges matching Image 1) */}
+          {/* 5 Pillars Row */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 sm:gap-8" data-gsap="stagger">
             {pillars.map((pillar, idx) => {
               const Icon = pillar.icon;
@@ -61,7 +64,7 @@ export default function WhyUs() {
                 <div
                   key={idx}
                   data-gsap-item
-                  className="flex items-start space-x-3.5 group"
+                  className="flex items-start gap-3.5 group"
                 >
                   {/* Circular Blue Icon Badge */}
                   <div className="w-12 h-12 rounded-full bg-[#1A82FF] text-white flex items-center justify-center shrink-0 shadow-md group-hover:scale-105 transition-transform duration-300">

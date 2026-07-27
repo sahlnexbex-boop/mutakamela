@@ -1,7 +1,6 @@
-"use client";
-
 import { useState } from "react";
 import Image from "next/image";
+import { useTranslation } from "react-i18next";
 import {
   Car,
   Plane,
@@ -21,6 +20,7 @@ interface HeroProps {
 }
 
 export default function Hero({ onOpenQuoteModal }: HeroProps) {
+  const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<"motor" | "travel" | "life" | "visa">("motor");
 
   // State for all tab forms
@@ -100,10 +100,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
 
                 <div className="flex-1 min-w-0">
                   <div className="text-xs sm:text-sm font-extrabold text-slate-900 truncate leading-tight">
-                    Get the mutakamela App
+                    {t("getMutakamelaApp")}
                   </div>
                   <div className="text-[10px] sm:text-[11px] text-slate-500 line-clamp-2 leading-tight mt-0.5">
-                    manage your policy, claims and more on the go.
+                    {t("appDesc")}
                   </div>
                 </div>
 
@@ -126,72 +126,72 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
           <div className="w-full lg:col-span-6 space-y-5 order-2 lg:order-1" data-gsap="fade-up">
 
             {/* Trusted Protection Tag */}
-            <div className="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100/80 text-indigo-700 text-xs font-semibold uppercase tracking-wider">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100/80 text-indigo-700 text-xs font-semibold uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
-              <span>TRUSTED PROTECTION</span>
+              <span>{t("trustedProtection")}</span>
             </div>
 
             {/* Hero Main Heading */}
             <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 leading-[1.2] tracking-tight">
-              Protection for today, peace of mind for <span className="text-[#3B25B0]">tomorrow</span>
+              {t("heroTitlePrefix")}<span className="text-[#3B25B0]">{t("tomorrow")}</span>
             </h1>
 
             <p className="text-sm sm:text-base text-slate-500 max-w-lg font-normal leading-relaxed">
-              Comprehensive insurance solutions for you, your family and your business.
+              {t("heroSubtitle")}
             </p>
 
             {/* Interactive Tabbed Form Card - z-30 for popover overlay */}
             <div className="bg-white rounded-2xl p-4 sm:p-5 shadow-soft-lg border border-slate-100/80 transition-all duration-300 relative z-30">
 
               {/* Product Tabs Navigation - Tab radius removed */}
-              <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-1.5 border-b border-slate-100 pb-3 scrollbar-none">
+              <div className="flex overflow-x-auto sm:grid sm:grid-cols-4 gap-1 border-b border-slate-100 pb-3 scrollbar-none">
 
                 <button
                   type="button"
                   onClick={() => setActiveTab("motor")}
-                  className={`flex items-center justify-center space-x-1.5 px-2 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "motor"
+                  className={`flex items-center justify-center gap-1 px-1 sm:px-1.5 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "motor"
                     ? "text-[#3B25B0] border-[#3B25B0]"
                     : "text-slate-500 hover:text-slate-900 border-transparent"
                     }`}
                 >
                   <Car className={`w-4 h-4 shrink-0 ${activeTab === "motor" ? "text-[#3B25B0]" : "text-slate-400"}`} />
-                  <span className="truncate">Motor insurance</span>
+                  <span className="whitespace-nowrap">{t("motorInsurance")}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveTab("travel")}
-                  className={`flex items-center justify-center space-x-1.5 px-2 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "travel"
+                  className={`flex items-center justify-center gap-1 px-1 sm:px-1.5 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "travel"
                     ? "text-[#3B25B0] border-[#3B25B0]"
                     : "text-slate-500 hover:text-slate-900 border-transparent"
                     }`}
                 >
                   <Plane className={`w-4 h-4 shrink-0 ${activeTab === "travel" ? "text-[#3B25B0]" : "text-slate-400"}`} />
-                  <span className="truncate">Travel Insurance</span>
+                  <span className="whitespace-nowrap">{t("travelInsurance")}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveTab("life")}
-                  className={`flex items-center justify-center space-x-1.5 px-2 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "life"
+                  className={`flex items-center justify-center gap-1 px-1 sm:px-1.5 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "life"
                     ? "text-[#3B25B0] border-[#3B25B0]"
                     : "text-slate-500 hover:text-slate-900 border-transparent"
                     }`}
                 >
                   <HeartHandshake className={`w-4 h-4 shrink-0 ${activeTab === "life" ? "text-[#3B25B0]" : "text-slate-400"}`} />
-                  <span className="truncate">Life Insurance</span>
+                  <span className="whitespace-nowrap">{t("lifeInsurance")}</span>
                 </button>
 
                 <button
                   type="button"
                   onClick={() => setActiveTab("visa")}
-                  className={`flex items-center justify-center space-x-1.5 px-2 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "visa"
+                  className={`flex items-center justify-center gap-1 px-1 sm:px-1.5 py-2 font-bold text-xs transition-all shrink-0 sm:shrink border-b-2 -mb-[13px] ${activeTab === "visa"
                     ? "text-[#3B25B0] border-[#3B25B0]"
                     : "text-slate-500 hover:text-slate-900 border-transparent"
                     }`}
                 >
                   <FileCheck className={`w-4 h-4 shrink-0 ${activeTab === "visa" ? "text-[#3B25B0]" : "text-slate-400"}`} />
-                  <span className="truncate">Visit Visa Insurance</span>
+                  <span className="whitespace-nowrap">{t("visitVisaInsurance")}</span>
                 </button>
               </div>
 
@@ -202,10 +202,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                 {activeTab === "motor" && (
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
                     <div className="sm:col-span-5 space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Registration Number</label>
+                      <label className="text-[11px] font-bold text-slate-700">{t("registrationNumber")}</label>
                       <input
                         type="text"
-                        placeholder="E.G SAD8337"
+                        placeholder={t("regPlaceholder")}
                         value={regNumber}
                         onChange={(e) => setRegNumber(e.target.value)}
                         className="w-full bg-slate-50/60 border border-slate-200/90 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3B25B0]/30 focus:border-[#3B25B0] transition-all"
@@ -213,14 +213,14 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     </div>
 
                     <div className="sm:col-span-4 space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Mobile Number</label>
+                      <label className="text-[11px] font-bold text-slate-700">{t("mobileNumber")}</label>
                       <div className="flex items-center bg-slate-50/60 border border-slate-200/90 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#3B25B0]/30 focus-within:border-[#3B25B0] transition-all">
-                        <span className="px-2.5 text-[11px] font-bold text-slate-700 bg-slate-100/70 border-r border-slate-200 py-2 flex items-center shrink-0">
+                        <span className="px-2.5 text-[11px] font-bold text-slate-700 bg-slate-100/70 ltr:border-r rtl:border-l border-slate-200 py-2 flex items-center shrink-0">
                           +966
                         </span>
                         <input
                           type="tel"
-                          placeholder="Enter Mobile Number"
+                          placeholder={t("mobilePlaceholder")}
                           value={mobileNumber}
                           onChange={(e) => setMobileNumber(e.target.value)}
                           className="w-full bg-transparent px-2.5 py-2 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none"
@@ -231,10 +231,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
-                        <span>Get Quote</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <span>{t("getQuote")}</span>
+                        <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
                       </button>
                     </div>
                   </div>
@@ -278,10 +278,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                 {activeTab === "life" && (
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
                     <div className="sm:col-span-5 space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">ID / Iqama Number</label>
+                      <label className="text-[11px] font-bold text-slate-700">{t("iqamaNumber")}</label>
                       <input
                         type="text"
-                        placeholder="Enter ID / Iqama Number"
+                        placeholder={t("enterIqama")}
                         value={iqamaNumber}
                         onChange={(e) => setIqamaNumber(e.target.value)}
                         className="w-full bg-slate-50/60 border border-slate-200/90 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3B25B0]/30 focus:border-[#3B25B0] transition-all"
@@ -289,14 +289,14 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     </div>
 
                     <div className="sm:col-span-4 space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Mobile Number</label>
+                      <label className="text-[11px] font-bold text-slate-700">{t("mobileNumber")}</label>
                       <div className="flex items-center bg-slate-50/60 border border-slate-200/90 rounded-xl overflow-hidden focus-within:ring-2 focus-within:ring-[#3B25B0]/30 focus-within:border-[#3B25B0] transition-all">
-                        <span className="px-2.5 text-[11px] font-bold text-slate-700 bg-slate-100/70 border-r border-slate-200 py-2 flex items-center shrink-0">
+                        <span className="px-2.5 text-[11px] font-bold text-slate-700 bg-slate-100/70 ltr:border-r rtl:border-l border-slate-200 py-2 flex items-center shrink-0">
                           +966
                         </span>
                         <input
                           type="tel"
-                          placeholder="Enter Mobile Number"
+                          placeholder={t("mobilePlaceholder")}
                           value={mobileNumber}
                           onChange={(e) => setMobileNumber(e.target.value)}
                           className="w-full bg-transparent px-2.5 py-2 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none"
@@ -307,10 +307,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
-                        <span>Get Quote</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <span>{t("getQuote")}</span>
+                        <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
                       </button>
                     </div>
                   </div>
@@ -320,10 +320,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                 {activeTab === "visa" && (
                   <div className="grid grid-cols-1 sm:grid-cols-12 gap-3 items-end">
                     <div className="sm:col-span-5 space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Passport Number</label>
+                      <label className="text-[11px] font-bold text-slate-700">{t("passportNumber")}</label>
                       <input
                         type="text"
-                        placeholder="Enter Passport Number"
+                        placeholder={t("enterPassport")}
                         value={passportNumber}
                         onChange={(e) => setPassportNumber(e.target.value)}
                         className="w-full bg-slate-50/60 border border-slate-200/90 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3B25B0]/30 focus:border-[#3B25B0] transition-all"
@@ -331,10 +331,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     </div>
 
                     <div className="sm:col-span-4 space-y-1">
-                      <label className="text-[11px] font-bold text-slate-700">Visa Number</label>
+                      <label className="text-[11px] font-bold text-slate-700">{t("visaNumber")}</label>
                       <input
                         type="text"
-                        placeholder="Enter Visa Number"
+                        placeholder={t("enterVisa")}
                         value={visaNumber}
                         onChange={(e) => setVisaNumber(e.target.value)}
                         className="w-full bg-slate-50/60 border border-slate-200/90 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-[#3B25B0]/30 focus:border-[#3B25B0] transition-all"
@@ -344,10 +344,10 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
-                        <span>Get Quote</span>
-                        <ChevronRight className="w-3.5 h-3.5" />
+                        <span>{t("getQuote")}</span>
+                        <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
                       </button>
                     </div>
                   </div>
@@ -360,43 +360,43 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
             {/* Feature Badges Bar */}
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 border border-slate-100 shadow-soft grid grid-cols-2 md:grid-cols-4 gap-2.5">
 
-              <div className="flex items-center space-x-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5">
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <Clock className="w-4 h-4 text-[#3B25B0]" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold text-slate-900 leading-tight">Fast & Easy</div>
-                  <div className="text-[10px] text-slate-500 font-medium">100% Online</div>
+                  <div className="text-[11px] font-bold text-slate-900 leading-tight">{t("fastEasy")}</div>
+                  <div className="text-[10px] text-slate-500 font-medium">{t("online100")}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5">
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-4 h-4 text-[#3B25B0]" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold text-slate-900 leading-tight">Secure & Reliable</div>
-                  <div className="text-[10px] text-slate-500 font-medium">Your data is protected</div>
+                  <div className="text-[11px] font-bold text-slate-900 leading-tight">{t("secureReliable")}</div>
+                  <div className="text-[10px] text-slate-500 font-medium">{t("dataProtected")}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5">
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <Users className="w-4 h-4 text-[#3B25B0]" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold text-slate-900 leading-tight">Trusted by Thousands</div>
-                  <div className="text-[10px] text-slate-500 font-medium">Across Saudi Arabia</div>
+                  <div className="text-[11px] font-bold text-slate-900 leading-tight">{t("trustedThousands")}</div>
+                  <div className="text-[10px] text-slate-500 font-medium">{t("acrossSaudi")}</div>
                 </div>
               </div>
 
-              <div className="flex items-center space-x-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5">
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <Headphones className="w-4 h-4 text-[#3B25B0]" />
                 </div>
                 <div>
-                  <div className="text-[11px] font-bold text-slate-900 leading-tight">24/7 Support</div>
-                  <div className="text-[10px] text-slate-500 font-medium">We're here to help</div>
+                  <div className="text-[11px] font-bold text-slate-900 leading-tight">{t("support247")}</div>
+                  <div className="text-[10px] text-slate-500 font-medium">{t("hereToHelp")}</div>
                 </div>
               </div>
 

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface ClaimServicesProps {
   onOpenClaimModal?: () => void;
@@ -9,12 +10,14 @@ interface ClaimServicesProps {
 }
 
 export default function ClaimServices({ onOpenClaimModal, onOpenTrackModal }: ClaimServicesProps) {
+  const { t } = useTranslation();
+
   return (
     <section id="claims" className="py-8 lg:py-12 bg-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
 
         <div
-          className="bg-purple-card-gradient rounded-3xl p-8 sm:p-12 border border-indigo-100  grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden"
+          className="bg-purple-card-gradient rounded-3xl p-8 sm:p-12 border border-indigo-100 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative overflow-hidden"
           data-gsap="fade-up"
         >
 
@@ -22,32 +25,32 @@ export default function ClaimServices({ onOpenClaimModal, onOpenTrackModal }: Cl
           <div className="lg:col-span-6 space-y-6">
 
             <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0]">
-              CLAIM SERVICES
+              {t("hassleFreeClaims")}
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              We’re here when you need us most.
+              {t("claimHeading")}
             </h2>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg font-normal">
-              Transparent, fast, and fair claims support — so you can focus on what matters while we take care of the rest.
+              {t("claimSub")}
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <button
                 onClick={onOpenClaimModal}
-                className="bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-indigo-300/40 transition-all flex items-center space-x-2 transform active:scale-95"
+                className="bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-indigo-300/40 transition-all flex items-center gap-2 transform active:scale-95"
               >
-                <span>Submit a claim</span>
-                <ChevronRight className="w-4 h-4" />
+                <span>{t("submitNewClaim")}</span>
+                <ChevronRight className="w-4 h-4 rtl:rotate-180" />
               </button>
 
               <button
                 onClick={onOpenTrackModal}
-                className="bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-200 shadow-sm transition-all flex items-center space-x-2"
+                className="bg-white hover:bg-slate-50 text-slate-800 font-bold text-sm px-6 py-3.5 rounded-xl border border-slate-200 shadow-sm transition-all flex items-center gap-2"
               >
-                <span>Track a claim</span>
-                <ChevronRight className="w-4 h-4 text-slate-400" />
+                <span>{t("trackExistingClaim")}</span>
+                <ChevronRight className="w-4 h-4 text-slate-400 rtl:rotate-180" />
               </button>
             </div>
 

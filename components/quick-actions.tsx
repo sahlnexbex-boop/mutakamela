@@ -1,38 +1,40 @@
 "use client";
 
 import { useState } from "react";
-import { RefreshCw, FileSearch, CreditCard, Stethoscope, ChevronRight, MessageCircle, Bot, X } from "lucide-react";
+import { RefreshCw, FileSearch, CreditCard, Stethoscope, ChevronRight, Bot, X } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 interface QuickActionsProps {
   onSelectAction?: (action: string) => void;
 }
 
 export default function QuickActions({ onSelectAction }: QuickActionsProps) {
+  const { t } = useTranslation();
   const [showAiChat, setShowAiChat] = useState(false);
 
   const actions = [
     {
       id: "renew",
-      title: "Renew Policy",
-      subtitle: "Renew your policy",
+      title: t("renewPolicy"),
+      subtitle: t("renewSub"),
       icon: RefreshCw,
     },
     {
       id: "track",
-      title: "Track a Claim",
-      subtitle: "Check claim status",
+      title: t("trackClaims"),
+      subtitle: t("trackSub"),
       icon: FileSearch,
     },
     {
       id: "payment",
-      title: "Make a Payment",
-      subtitle: "Pay your premium",
+      title: t("payBills"),
+      subtitle: t("paySub"),
       icon: CreditCard,
     },
     {
       id: "medical",
-      title: "Find Medical Provider",
-      subtitle: "Search hospitals & clinics",
+      title: t("medicalApproval"),
+      subtitle: t("medicalSub"),
       icon: Stethoscope,
     },
   ];
@@ -45,7 +47,7 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft-lg border border-slate-100" data-gsap="fade-up">
 
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">
-            What would you like to do today?
+            {t("whatWouldYouLikeToDo")}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-gsap="stagger">
@@ -56,9 +58,9 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
                   key={action.id}
                   data-gsap-item
                   onClick={() => onSelectAction?.(action.id)}
-                  className="group flex items-center justify-between p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 bg-slate-50/50 hover:bg-indigo-50/40 transition-all duration-300 text-left hover:shadow-md"
+                  className="group flex items-center justify-between p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 bg-slate-50/50 hover:bg-indigo-50/40 transition-all duration-300 text-left rtl:text-right hover:shadow-md"
                 >
-                  <div className="flex items-center space-x-3.5">
+                  <div className="flex items-center gap-3.5">
                     <div className="w-12 h-12 rounded-xl bg-indigo-50 text-[#3B25B0] group-hover:bg-[#3B25B0] group-hover:text-white flex items-center justify-center transition-colors duration-300 shrink-0">
                       <Icon className="w-6 h-6" />
                     </div>
@@ -72,7 +74,7 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
                     </div>
                   </div>
 
-                  <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#3B25B0] group-hover:translate-x-1 transition-all" />
+                  <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-[#3B25B0] group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180 transition-all" />
                 </button>
               );
             })}

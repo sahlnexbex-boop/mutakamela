@@ -3,30 +3,28 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function FaqSection() {
+  const { t } = useTranslation();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   const faqs = [
     {
-      question: "How can I get a quote?",
-      answer: "You can get a quote by choosing your insurance type, filling in your details, and receiving an instant quote online. It only takes a few minutes.",
+      question: t("q1"),
+      answer: t("a1"),
     },
     {
-      question: "How do I renew my policy?",
-      answer: "You can easily renew your policy through our website or mobile app. Simply enter your policy number or Civil ID, review your details, and complete payment in minutes.",
+      question: t("q2"),
+      answer: t("a2"),
     },
     {
-      question: "How can I submit a claim?",
-      answer: "Submit claims seamlessly online or via our mobile app by uploading supporting documents and incident photos. Our team reviews and settles claims quickly.",
+      question: t("q3"),
+      answer: t("a3"),
     },
     {
-      question: "Can I track my claim online?",
-      answer: "Yes! Use our real-time claim tracker on the website or app using your claim reference number to check every step of the approval and payout process.",
-    },
-    {
-      question: "Is visit visa insurance mandatory?",
-      answer: "Yes, medical insurance is mandatory for all visitors entering the Kingdom of Saudi Arabia. It covers emergency medical care and hospital stays.",
+      question: t("q4"),
+      answer: t("a4"),
     },
   ];
 
@@ -43,15 +41,15 @@ export default function FaqSection() {
           {/* Left Column: Text & 3D Illustration */}
           <div className="lg:col-span-5 space-y-6" data-gsap="fade-up">
             <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0]">
-              FAQ
+              {t("faqs")}
             </div>
 
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Frequently asked questions
+              {t("faqTitle")}
             </h2>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed font-normal">
-              Find quick answers to the most common questions about our insurance services.
+              {t("faqSubtitle")}
             </p>
 
             <div className="relative pt-4 flex justify-center lg:justify-start" data-gsap="scale">

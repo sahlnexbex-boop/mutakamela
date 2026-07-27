@@ -7,35 +7,36 @@ import {
   FileCheck,
   CreditCard,
   Download,
-  Apple,
-  Play
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function AppExperience() {
+  const { t } = useTranslation();
+
   const features = [
     {
-      title: "View policies",
-      desc: "Access all your policies in one place",
+      title: t("policyManagement"),
+      desc: t("instantPolicy"),
       icon: ShieldCheck,
     },
     {
-      title: "Renew insurance",
-      desc: "Renew your policies quickly and easily",
+      title: t("renewPolicy"),
+      desc: t("renewSub"),
       icon: RefreshCw,
     },
     {
-      title: "Track claims",
-      desc: "Track your claims in real time",
+      title: t("trackClaims"),
+      desc: t("trackSub"),
       icon: FileCheck,
     },
     {
-      title: "Make payments",
-      desc: "Pay securely using multiple methods",
+      title: t("payBills"),
+      desc: t("paySub"),
       icon: CreditCard,
     },
     {
-      title: "Download documents",
-      desc: "Download policy documents anytime you need",
+      title: t("digitalCard"),
+      desc: t("instantPolicy"),
       icon: Download,
     },
   ];
@@ -45,20 +46,20 @@ export default function AppExperience() {
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
-          {/* Left Column: Heading, 5 Feature Items Row & Download Button (Matches Image 1) */}
+          {/* Left Column: Heading, 5 Feature Items Row & Download Button */}
           <div className="lg:col-span-7 space-y-6" data-gsap="fade-up">
 
             <div className="space-y-3">
               <div className="text-xs font-bold uppercase tracking-widest text-[#3B25B0]">
-                APP EXPERIENCE
+                {t("mobileApp")}
               </div>
 
               <h2 className="text-3xl sm:text-4xl lg:text-[46px] font-extrabold text-slate-900 leading-[1.18] tracking-tight">
-                Manage your insurance anytime, anywhere
+                {t("appHeading")}
               </h2>
 
               <p className="text-slate-500 text-xs sm:text-sm leading-relaxed font-normal max-w-xl">
-                The Mutakamela Insurance app puts complete control of your policies in your hands. Simple, secure and designed for you.
+                {t("appExperienceDesc")}
               </p>
             </div>
 
@@ -88,10 +89,10 @@ export default function AppExperience() {
             <div className="pt-2">
               <a
                 href="#app"
-                className="inline-flex items-center space-x-2 bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-indigo-300/40 transition-all transform active:scale-95"
+                className="inline-flex items-center gap-2 bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-indigo-300/40 transition-all transform active:scale-95"
               >
                 <Download className="w-4 h-4" />
-                <span>Download App</span>
+                <span>{t("downloadApp")}</span>
               </a>
             </div>
 
@@ -112,8 +113,8 @@ export default function AppExperience() {
 
               {/* Floating Scan Card Overlay at bottom matching Image 3 */}
               <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-11/12 sm:w-10/12 bg-white/95 backdrop-blur-md rounded-2xl p-3 sm:p-4 shadow-xl border border-slate-100 text-center space-y-2">
-                <div className="text-xs font-bold text-slate-900">Scan to Download Mutakamela App</div>
-                <div className="text-[10px] text-slate-500 font-medium">Available on</div>
+                <div className="text-xs font-bold text-slate-900">{t("scanToDownload")}</div>
+                <div className="text-[10px] text-slate-500 font-medium">{t("availableOn")}</div>
 
                 <div className="flex items-center justify-center space-x-3 pt-1">
                   <a href="#app" className="inline-block transition-transform hover:scale-105">

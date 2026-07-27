@@ -16,6 +16,7 @@ import QuoteModal from "@/components/quote-modal";
 import AuthModal from "@/components/auth-modal";
 import ClaimModal from "@/components/claim-modal";
 import { useGsapAnimations } from "@/lib/gsap";
+import I18nProvider from "@/components/i18n-provider";
 
 export default function Home() {
   // Activate GSAP scroll-triggered animations
@@ -52,7 +53,8 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen flex flex-col bg-[#F8F9FE] text-slate-900 selection:bg-[#3B25B0] selection:text-white">
+    <I18nProvider>
+      <main className="min-h-screen flex flex-col bg-[#F8F9FE] text-slate-900 selection:bg-[#3B25B0] selection:text-white">
       
       {/* Header / Navbar */}
       <Navbar
@@ -113,5 +115,6 @@ export default function Home() {
       />
 
     </main>
+    </I18nProvider>
   );
 }

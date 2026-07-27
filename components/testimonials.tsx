@@ -3,32 +3,35 @@
 import { useState, useRef } from "react";
 import Image from "next/image";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function Testimonials() {
+  const { t } = useTranslation();
+
   const testimonials = [
     {
       id: 1,
-      name: "Faisal Al-Qtaibi",
-      location: "Riyadh",
+      name: t("test1Name"),
+      location: t("test1Role"),
       rating: 5.0,
       avatar: "/images/user_01.png",
-      quote: `"The claims process was incredibly fast and hassle-free. I received full support from start to finish. Highly recommended!"`,
+      quote: t("test1Text"),
     },
     {
       id: 2,
-      name: "Noura Al-Harbi",
-      location: "Jeddah",
+      name: t("test2Name"),
+      location: t("test2Role"),
       rating: 5.0,
       avatar: "/images/user_02.png",
-      quote: `"Renewing my policy took less than 5 minutes. The app is so easy to use and makes everything simple."`,
+      quote: t("test2Text"),
     },
     {
       id: 3,
-      name: "Khalid Al-Shammari",
-      location: "Dammam",
+      name: t("test3Name"),
+      location: t("test3Role"),
       rating: 5.0,
       avatar: "/images/user_03.png",
-      quote: `"Excellent customer service and clear communication. I always feel secure with Mutakamela by my side."`,
+      quote: t("test3Text"),
     },
   ];
 
@@ -66,14 +69,11 @@ export default function Testimonials() {
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8 sm:mb-12" data-gsap="fade-up">
           <div>
             <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0] mb-2">
-              TESTIMONIALS
+              {t("customerStories")}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Trusted by families and businesses across Saudi Arabia
+              {t("whatClientsSay")}
             </h2>
-            <p className="text-slate-600 text-sm sm:text-base mt-2 font-normal">
-              Real stories from real customers who trust Mutakamela.
-            </p>
           </div>
 
           {/* Carousel Arrows */}
