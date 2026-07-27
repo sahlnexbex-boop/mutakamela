@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Globe, Menu, X, ArrowRight, Check } from "lucide-react";
@@ -18,8 +18,22 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
   const [mobileCorporateOpen, setMobileCorporateOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const currentLang = i18n.language || "en";
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 10) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const changeLang = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -28,9 +42,15 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
 
   return (
     <>
-      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
+      <header
+        className={`sticky top-0 z-40 transition-all duration-300 ${
+          isScrolled
+            ? "bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
+            : "bg-transparent border-b border-transparent shadow-none"
+        }`}
+      >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-20">
+          <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20 transition-all duration-300">
 
             {/* Brand Logo & Spacing */}
             <div className="flex items-center gap-3 lg:gap-4 xl:gap-8 shrink-0">
@@ -41,7 +61,7 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
                   width={190}
                   height={48}
                   priority
-                  className="h-7 sm:h-8 lg:h-9 xl:h-10 w-auto object-contain"
+                  className="h-6 sm:h-7 lg:h-9 xl:h-10 w-auto object-contain"
                 />
               </Link>
 
@@ -200,9 +220,9 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
             <div className="lg:hidden flex items-center space-x-2">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none"
+                className="p-1.5 rounded-xl text-slate-700 hover:bg-slate-100/80 focus:outline-none transition-colors"
               >
-                <Menu className="w-6 h-6" />
+                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
               </button>
             </div>
 
@@ -210,22 +230,25 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
         </div>
       </header>
 
-      {/* Side-Drawer Mobile Sidebar (Smooth 300ms Slide-in from right & Slide-out back to right) */}
+      {/* Side-Drawer Mobile Sidebar */}
       <div
-        className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-          }`}
+        className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${
+          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+        }`}
       >
         {/* Backdrop Click to Close */}
         <div
-          className={`absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100" : "opacity-0"
-            }`}
+          className={`absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${
+            mobileMenuOpen ? "opacity-100" : "opacity-0"
+          }`}
           onClick={() => setMobileMenuOpen(false)}
         />
 
         {/* Side Drawer Panel */}
         <div
-          className={`relative z-[10000] w-full max-w-xs sm:max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-            }`}
+          className={`relative z-[10000] w-full max-w-xs sm:max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out transform ${
+            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         >
           <div className="space-y-6 overflow-y-auto">
 
