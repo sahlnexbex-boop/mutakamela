@@ -6,7 +6,7 @@ import Link from "next/link";
 import { ChevronDown, ChevronUp, Globe, Menu, X, ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth-context";
+import { useAuth } from "../lib/auth-context";
 
 interface NavbarProps {
   onOpenAuthModal?: () => void;

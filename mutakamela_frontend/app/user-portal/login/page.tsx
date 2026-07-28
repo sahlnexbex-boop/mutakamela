@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth-context";
-import I18nProvider from "@/components/i18n-provider";
+import { useAuth } from "../../../lib/auth-context";
+import I18nProvider from "../../../components/i18n-provider";
 import { useTranslation } from "react-i18next";
 import { ShieldCheck, Lock, CheckCircle2, Globe, ArrowLeft } from "lucide-react";
 

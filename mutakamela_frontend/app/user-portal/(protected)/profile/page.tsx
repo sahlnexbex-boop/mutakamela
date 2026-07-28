@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useState } from "react";
-import { useAuth } from "@/lib/auth-context";
+import { useAuth } from "../../../../lib/auth-context";
 import {
   UserCheck,
   Lock,

@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "@/lib/auth-context";
-import I18nProvider from "@/components/i18n-provider";
+import { useAuth } from "../../../lib/auth-context";
+import I18nProvider from "../../../components/i18n-provider";
 import {
   LayoutDashboard,
   FileText,
