@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChevronDown, ChevronUp, Globe, Menu, X, ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useRouter } from "next/navigation";
+import { useAuth } from "../lib/auth-context";
 
 interface NavbarProps {
   onOpenAuthModal?: () => void;
@@ -13,6 +15,8 @@ interface NavbarProps {
 
 export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProps) {
   const { t, i18n } = useTranslation();
+  const router = useRouter();
+  const { isLoggedIn } = useAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
   const [mobileCorporateOpen, setMobileCorporateOpen] = useState(false);
@@ -43,11 +47,10 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
   return (
     <>
       <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${
-          isScrolled
-            ? "bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
-            : "bg-transparent border-b border-transparent shadow-none"
-        }`}
+        className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
+          : "bg-transparent border-b border-transparent shadow-none"
+          }`}
       >
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20 transition-all duration-300">
@@ -188,18 +191,16 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
                   <div className="absolute top-full ltr:right-0 rtl:left-0 mt-1 w-36 bg-white rounded-xl shadow-xl border border-slate-100 p-1.5 z-50 animate-in fade-in duration-150">
                     <button
                       onClick={() => changeLang("en")}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${
-                        currentLang === "en" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
-                      }`}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${currentLang === "en" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
+                        }`}
                     >
                       <span>EN - English</span>
                       {currentLang === "en" && <Check className="w-3.5 h-3.5 text-[#3B25B0]" />}
                     </button>
                     <button
                       onClick={() => changeLang("ar")}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${
-                        currentLang === "ar" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
-                      }`}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${currentLang === "ar" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
+                        }`}
                     >
                       <span>AR - العربية</span>
                       {currentLang === "ar" && <Check className="w-3.5 h-3.5 text-[#3B25B0]" />}
@@ -209,10 +210,16 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
               </div>
 
               <button
-                onClick={onOpenAuthModal}
+                onClick={() => {
+                  if (isLoggedIn) {
+                    router.push("/user-portal/dashboard");
+                  } else {
+                    router.push("/user-portal/login");
+                  }
+                }}
                 className="bg-[#3B25B0] hover:bg-[#2F1F99] text-white px-4 xl:px-5 py-2.5 rounded-xl font-semibold text-xs xl:text-sm shadow-md hover:shadow-indigo-300/40 transition-all duration-200 transform active:scale-95 whitespace-nowrap"
               >
-                {t("login")}
+                {isLoggedIn ? "My Account" : t("login")}
               </button>
             </div>
 
@@ -232,23 +239,20 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
 
       {/* Side-Drawer Mobile Sidebar */}
       <div
-        className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${
-          mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
-        }`}
+        className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+          }`}
       >
         {/* Backdrop Click to Close */}
         <div
-          className={`absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${
-            mobileMenuOpen ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 bg-slate-900/60 backdrop-blur-xs transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100" : "opacity-0"
+            }`}
           onClick={() => setMobileMenuOpen(false)}
         />
 
         {/* Side Drawer Panel */}
         <div
-          className={`relative z-[10000] w-full max-w-xs sm:max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out transform ${
-            mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-          }`}
+          className={`relative z-[10000] w-full max-w-xs sm:max-w-sm bg-white h-full shadow-2xl flex flex-col justify-between p-5 transition-transform duration-300 ease-in-out transform ${mobileMenuOpen ? "translate-x-0" : "translate-x-full"
+            }`}
         >
           <div className="space-y-6 overflow-y-auto">
 
@@ -391,10 +395,17 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
             </button>
 
             <button
-              onClick={() => { setMobileMenuOpen(false); onOpenAuthModal?.(); }}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (isLoggedIn) {
+                  router.push("/dashboard");
+                } else {
+                  router.push("/user-portal/login");
+                }
+              }}
               className="bg-[#3B25B0] text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md hover:bg-[#2F1F99] transition-colors whitespace-nowrap"
             >
-              {t("login")}
+              {isLoggedIn ? "My Account" : t("login")}
             </button>
           </div>
 
