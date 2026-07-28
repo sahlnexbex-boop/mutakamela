@@ -155,17 +155,17 @@ function LoginContent() {
   return (
     <div
       dir={currentLang === "ar" ? "rtl" : "ltr"}
-      className="min-h-screen grid grid-cols-1 lg:grid-cols-12 bg-[#F8F9FE] text-slate-900 font-sans selection:bg-[#3B25B0] selection:text-white"
+      className="min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden grid grid-cols-1 lg:grid-cols-12 bg-[#F8F9FE] text-slate-900 font-sans selection:bg-[#3B25B0] selection:text-white"
     >
 
       {/* Left Column - Deep Blue Gradient Branding Banner */}
-      <div className="lg:col-span-5 xl:col-span-5 bg-gradient-to-br from-[#20107A] via-[#2A179E] to-[#3B25B0] text-white p-8 sm:p-12 lg:p-16 flex flex-col justify-between relative overflow-hidden min-h-[400px] lg:min-h-screen">
+      <div className="lg:col-span-5 xl:col-span-5 bg-gradient-to-br from-[#20107A] via-[#2A179E] to-[#3B25B0] text-white p-5 lg:p-5 xl:p-12 flex flex-col justify-between relative overflow-hidden min-h-80 lg:min-h-0 lg:h-full">
         {/* Subtle Background Glows */}
         <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />
 
-        {/* Top Logo - Using /images/logo_footer.png */}
-        <div className="relative z-10">
+        {/* Top Logo */}
+        <div className="relative z-10 shrink-0">
           <Link href="/" className="flex items-center shrink-0 transition-transform hover:scale-[1.02]">
             <Image
               src="/images/logo_footer.png"
@@ -173,14 +173,14 @@ function LoginContent() {
               width={190}
               height={48}
               priority
-              className="h-6 sm:h-7 lg:h-9 xl:h-10 w-auto object-contain"
+              className="h-6 lg:h-6 xl:h-10 w-auto object-contain"
             />
           </Link>
         </div>
 
         {/* Center Main Text */}
-        <div className="relative z-10 my-auto py-10 max-w-md">
-          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-[1.15] text-white mb-6">
+        <div className="relative z-10 my-auto py-3 lg:py-3 xl:py-10 max-w-md">
+          <h1 className="text-xl lg:text-2xl xl:text-4xl font-extrabold tracking-tight leading-[1.18] text-white mb-2 xl:mb-6">
             {currentLang === "ar" ? (
               <>
                 تأمينك، على بُعد <span className="text-cyan-400">تسجيل دخول آمن</span> واحد.
@@ -191,87 +191,87 @@ function LoginContent() {
               </>
             )}
           </h1>
-          <p className="text-sm sm:text-base text-indigo-100/90 leading-relaxed font-normal">
+          <p className="text-xs xl:text-base text-indigo-100/90 leading-relaxed font-normal">
             {t("heroSub")}
           </p>
         </div>
 
         {/* Bottom Feature Badges */}
-        <div className="relative z-10 flex flex-wrap gap-2.5 sm:gap-3 text-xs font-medium text-white/90 pt-4">
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 shadow-sm">
-            <ShieldCheck className="w-4 h-4 text-cyan-300 shrink-0" />
+        <div className="relative z-10 flex flex-wrap gap-1.5 xl:gap-2.5 text-xs font-medium text-white/90 pt-1.5 shrink-0">
+          <div className="flex items-center gap-1.5 xl:gap-2 bg-white/10 backdrop-blur-md px-2.5 xl:px-4 py-1 xl:py-2 rounded-full border border-white/15 shadow-sm text-[10px] xl:text-xs">
+            <ShieldCheck className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-cyan-300 shrink-0" />
             <span>{t("iaRegulated")}</span>
           </div>
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 shadow-sm">
-            <Lock className="w-4 h-4 text-cyan-300 shrink-0" />
+          <div className="flex items-center gap-1.5 xl:gap-2 bg-white/10 backdrop-blur-md px-2.5 xl:px-4 py-1 xl:py-2 rounded-full border border-white/15 shadow-sm text-[10px] xl:text-xs">
+            <Lock className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-cyan-300 shrink-0" />
             <span>{t("encryption")}</span>
           </div>
-          <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/15 shadow-sm">
-            <CheckCircle2 className="w-4 h-4 text-cyan-300 shrink-0" />
+          <div className="flex items-center gap-1.5 xl:gap-2 bg-white/10 backdrop-blur-md px-2.5 xl:px-4 py-1 xl:py-2 rounded-full border border-white/15 shadow-sm text-[10px] xl:text-xs">
+            <CheckCircle2 className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-cyan-300 shrink-0" />
             <span>{t("nafathVerifiedBadge")}</span>
           </div>
         </div>
       </div>
 
-      {/* Right Column - Form Container Area (Increased Width max-w-xl) */}
-      <div className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between p-4 sm:p-8 lg:p-12 relative bg-[#F8F9FE]">
+      {/* Right Column - Form Container Area */}
+      <div className="lg:col-span-7 xl:col-span-7 flex flex-col justify-between p-4 lg:py-2.5 lg:px-6 xl:p-10 relative bg-[#F8F9FE] lg:h-full lg:overflow-y-auto">
 
-        {/* Top Header Row (Back Link & Language Model Switcher) */}
-        <div className="flex items-center justify-between w-full max-w-xl mx-auto mb-6 sm:mb-8">
+        {/* Top Header Row (Back Link & Language Switcher) */}
+        <div className="flex items-center justify-between w-full max-w-xl mx-auto mb-2 lg:mb-2 xl:mb-6 shrink-0">
           <Link
             href="/"
             className="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-500 hover:text-[#3B25B0] transition-colors"
           >
-            <ArrowLeft className="w-4 h-4 rtl:rotate-180" />
+            <ArrowLeft className="w-3.5 h-3.5 xl:w-4 xl:h-4 rtl:rotate-180" />
             <span>{t("backToWebsite")}</span>
           </Link>
 
           {/* AR & EN Language Model Switcher */}
           <button
             onClick={toggleLanguage}
-            className="inline-flex items-center gap-2 bg-white border border-slate-200 shadow-xs hover:border-indigo-300 text-slate-700 hover:text-[#3B25B0] text-xs font-bold px-3.5 py-2 rounded-xl transition-all"
+            className="inline-flex items-center gap-1.5 xl:gap-2 bg-white border border-slate-200 shadow-xs hover:border-indigo-300 text-slate-700 hover:text-[#3B25B0] text-xs font-bold px-2.5 py-1 xl:px-3.5 xl:py-2 rounded-xl transition-all"
           >
-            <Globe className="w-4 h-4 text-slate-500" />
+            <Globe className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-slate-500" />
             <span className="font-extrabold">{currentLang === "en" ? "العربية (AR)" : "English (EN)"}</span>
           </button>
         </div>
 
-        {/* Main Sign In Form Card (Increased max-w-xl / ~540px width) */}
-        <div className="w-full max-w-xl mx-auto bg-white rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100 my-auto relative">
+        {/* Main Sign In Form Card */}
+        <div className="w-full max-w-xl mx-auto bg-white rounded-2xl xl:rounded-3xl p-4 lg:p-4 xl:p-8 shadow-xl border border-slate-100 my-auto relative shrink-0">
 
-          {/* SECTION 1: NAFATH LOGIN (Image 1) */}
+          {/* SECTION 1: NAFATH LOGIN */}
           {step === "nafath" && (
             <div className="animate-in fade-in duration-300">
-              {/* Card Header (Removed right badge inside card header) */}
-              <div className="mb-6">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              {/* Card Header */}
+              <div className="mb-2.5 lg:mb-2.5 xl:mb-6">
+                <h2 className="text-lg lg:text-xl xl:text-3xl font-extrabold text-slate-900 tracking-tight">
                   {t("signIn")}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                <p className="text-[11px] lg:text-xs xl:text-sm text-slate-500 mt-0.5">
                   {t("signInSubtitle")}
                 </p>
               </div>
 
               {/* Segmented Tabs */}
-              <div className="bg-slate-100/80 p-1 rounded-2xl grid grid-cols-2 text-xs sm:text-sm font-semibold mb-6">
+              <div className="bg-slate-100/80 p-1 rounded-xl xl:rounded-2xl grid grid-cols-2 text-xs xl:text-sm font-semibold mb-2.5 lg:mb-2.5 xl:mb-6">
                 <button
                   type="button"
-                  className="py-2.5 rounded-xl bg-white text-[#3B25B0] shadow-sm text-center transition-all"
+                  className="py-1 lg:py-1.5 xl:py-2.5 rounded-lg xl:rounded-xl bg-white text-[#3B25B0] shadow-sm text-center transition-all"
                 >
                   {t("nafathTab")}
                 </button>
                 <button
                   type="button"
                   onClick={() => setStep("email")}
-                  className="py-2.5 rounded-xl text-slate-500 hover:text-slate-900 text-center transition-all"
+                  className="py-1 lg:py-1.5 xl:py-2.5 rounded-lg xl:rounded-xl text-slate-500 hover:text-slate-900 text-center transition-all"
                 >
                   {t("emailTab")}
                 </button>
               </div>
 
-              <form onSubmit={handleNafathSubmit} className="space-y-5">
+              <form onSubmit={handleNafathSubmit} className="space-y-2.5 lg:space-y-2.5 xl:space-y-5">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-2">
+                  <label className="block text-[10px] lg:text-[11px] xl:text-xs font-bold text-slate-700 uppercase tracking-wider mb-1 xl:mb-2">
                     {t("nationalIdLabel")}
                   </label>
                   <input
@@ -280,35 +280,35 @@ function LoginContent() {
                     value={nationalId}
                     onChange={(e) => setNationalId(e.target.value)}
                     placeholder={t("nationalIdPlaceholder")}
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3B25B0] focus:border-transparent transition-all placeholder:text-slate-400"
+                    className="w-full px-3 xl:px-4 py-1.5 lg:py-2 xl:py-3.5 rounded-lg xl:rounded-xl border border-slate-200 text-xs xl:text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3B25B0] focus:border-transparent transition-all placeholder:text-slate-400"
                   />
-                  <p className="text-[11px] text-slate-400 mt-1.5">{t("nationalIdHelper")}</p>
+                  <p className="text-[10px] xl:text-[11px] text-slate-400 mt-0.5 xl:mt-1">{t("nationalIdHelper")}</p>
                 </div>
 
                 <button
                   type="submit"
-                  className="w-full bg-[#0D9488] hover:bg-[#0B8479] text-white py-3.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-emerald-200/50 transition-all flex items-center justify-center gap-2 transform active:scale-[0.99]"
+                  className="w-full bg-[#0D9488] hover:bg-[#0B8479] text-white py-2 lg:py-2.5 xl:py-3.5 rounded-lg xl:rounded-xl font-semibold text-xs xl:text-sm shadow-md hover:shadow-emerald-200/50 transition-all flex items-center justify-center gap-2 transform active:scale-[0.99]"
                 >
                   {/* Nafath Arabic Icon Box */}
-                  <span className="w-5 h-5 rounded-md bg-white/20 text-white flex items-center justify-center font-bold text-xs">
+                  <span className="w-4 h-4 xl:w-5 xl:h-5 rounded-md bg-white/20 text-white flex items-center justify-center font-bold text-[10px] xl:text-xs">
                     ن
                   </span>
                   <span>{t("continueNafath")}</span>
                 </button>
               </form>
 
-              <div className="relative my-6 text-center">
+              <div className="relative my-2 lg:my-2 xl:my-5 text-center">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-slate-100" />
                 </div>
-                <span className="relative bg-white px-3 text-xs text-slate-400 font-medium">{t("orText")}</span>
+                <span className="relative bg-white px-3 text-[11px] lg:text-xs text-slate-400 font-medium">{t("orText")}</span>
               </div>
 
               <div className="text-center">
                 <button
                   type="button"
                   onClick={() => setStep("email")}
-                  className="text-xs sm:text-sm font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
+                  className="text-xs xl:text-sm font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
                 >
                   {t("useEmailInstead")}
                 </button>
@@ -316,39 +316,39 @@ function LoginContent() {
             </div>
           )}
 
-          {/* SECTION 2: EMAIL & PASSWORD LOGIN (Image 2) */}
+          {/* SECTION 2: EMAIL & PASSWORD LOGIN */}
           {step === "email" && (
             <div className="animate-in fade-in duration-300">
-              {/* Card Header (Removed right badge inside card header) */}
-              <div className="mb-6">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+              {/* Card Header */}
+              <div className="mb-2.5 lg:mb-2.5 xl:mb-6">
+                <h2 className="text-lg lg:text-xl xl:text-3xl font-extrabold text-slate-900 tracking-tight">
                   {t("signIn")}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                <p className="text-[11px] lg:text-xs xl:text-sm text-slate-500 mt-0.5">
                   {t("signInSubtitle")}
                 </p>
               </div>
 
               {/* Segmented Tabs */}
-              <div className="bg-slate-100/80 p-1 rounded-2xl grid grid-cols-2 text-xs sm:text-sm font-semibold mb-6">
+              <div className="bg-slate-100/80 p-1 rounded-xl xl:rounded-2xl grid grid-cols-2 text-xs xl:text-sm font-semibold mb-2.5 lg:mb-2.5 xl:mb-6">
                 <button
                   type="button"
                   onClick={() => setStep("nafath")}
-                  className="py-2.5 rounded-xl text-slate-500 hover:text-slate-900 text-center transition-all"
+                  className="py-1 lg:py-1.5 xl:py-2.5 rounded-lg xl:rounded-xl text-slate-500 hover:text-slate-900 text-center transition-all"
                 >
                   {t("nafathTab")}
                 </button>
                 <button
                   type="button"
-                  className="py-2.5 rounded-xl bg-white text-[#3B25B0] shadow-sm text-center transition-all"
+                  className="py-1 lg:py-1.5 xl:py-2.5 rounded-lg xl:rounded-xl bg-white text-[#3B25B0] shadow-sm text-center transition-all"
                 >
                   {t("emailTab")}
                 </button>
               </div>
 
-              <form onSubmit={handleEmailSubmit} className="space-y-4">
+              <form onSubmit={handleEmailSubmit} className="space-y-2 lg:space-y-2.5 xl:space-y-4">
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] lg:text-[11px] xl:text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     {t("emailLabel")}
                   </label>
                   <input
@@ -357,12 +357,12 @@ function LoginContent() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder={t("emailPlaceholder")}
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3B25B0] focus:border-transparent transition-all placeholder:text-slate-400"
+                    className="w-full px-3 xl:px-4 py-1.5 lg:py-2 xl:py-3.5 rounded-lg xl:rounded-xl border border-slate-200 text-xs xl:text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3B25B0] focus:border-transparent transition-all placeholder:text-slate-400"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5">
+                  <label className="block text-[10px] lg:text-[11px] xl:text-xs font-bold text-slate-700 uppercase tracking-wider mb-1">
                     {t("passwordLabel")}
                   </label>
                   <input
@@ -371,12 +371,12 @@ function LoginContent() {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="••••••••"
-                    className="w-full px-4 py-3.5 rounded-xl border border-slate-200 text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3B25B0] focus:border-transparent transition-all placeholder:text-slate-400"
+                    className="w-full px-3 xl:px-4 py-1.5 lg:py-2 xl:py-3.5 rounded-lg xl:rounded-xl border border-slate-200 text-xs xl:text-sm font-medium text-slate-900 focus:outline-none focus:ring-2 focus:ring-[#3B25B0] focus:border-transparent transition-all placeholder:text-slate-400"
                   />
                 </div>
 
-                <div className="flex items-center justify-between text-xs pt-1">
-                  <label className="flex items-center gap-2 cursor-pointer font-medium text-slate-600">
+                <div className="flex items-center justify-between text-[11px] lg:text-xs pt-0.5">
+                  <label className="flex items-center gap-1.5 cursor-pointer font-medium text-slate-600">
                     <input
                       type="checkbox"
                       checked={rememberMe}
@@ -392,7 +392,7 @@ function LoginContent() {
 
                 <button
                   type="submit"
-                  className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white py-3.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-indigo-300/50 transition-all text-center mt-2 transform active:scale-[0.99]"
+                  className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white py-2 lg:py-2.5 xl:py-3.5 rounded-lg xl:rounded-xl font-semibold text-xs xl:text-sm shadow-md hover:shadow-indigo-300/50 transition-all text-center mt-1 transform active:scale-[0.99]"
                 >
                   {t("signIn")}
                 </button>
@@ -400,87 +400,87 @@ function LoginContent() {
             </div>
           )}
 
-          {/* SECTION 3: WAITING FOR NAFATH APPROVAL (Image 3) */}
+          {/* SECTION 3: WAITING FOR NAFATH APPROVAL */}
           {step === "nafath_pending" && (
-            <div className="text-center py-4 animate-in fade-in duration-300">
-              <div className="text-center mb-6">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <div className="text-center py-1 xl:py-4 animate-in fade-in duration-300">
+              <div className="text-center mb-2 lg:mb-2 xl:mb-6">
+                <h2 className="text-lg lg:text-xl xl:text-3xl font-extrabold text-slate-900 tracking-tight">
                   {t("signIn")}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                <p className="text-[11px] lg:text-xs xl:text-sm text-slate-500 mt-0.5">
                   {t("signInSubtitle")}
                 </p>
               </div>
 
               {/* Status Pill Badge */}
-              <div className="inline-flex items-center gap-2 bg-emerald-100/80 text-emerald-800 border border-emerald-200/80 text-xs font-bold px-3.5 py-1.5 rounded-full mb-6">
+              <div className="inline-flex items-center gap-1.5 bg-emerald-100/80 text-emerald-800 border border-emerald-200/80 text-[11px] lg:text-xs font-bold px-3 py-1 rounded-full mb-2 lg:mb-2 xl:mb-6">
                 <span className="w-2 h-2 rounded-full bg-emerald-500 animate-ping" />
                 <span>{t("waitingNafath")}</span>
               </div>
 
               {/* Big Verification Code Number */}
-              <div className="my-6">
-                <span className="text-6xl sm:text-7xl font-extrabold tracking-tight text-[#3B25B0] inline-block font-mono">
+              <div className="my-2 lg:my-2 xl:my-6">
+                <span className="text-3xl lg:text-4xl xl:text-7xl font-extrabold tracking-tight text-[#3B25B0] inline-block font-mono">
                   32
                 </span>
               </div>
 
               {/* Subtext */}
-              <p className="text-xs sm:text-sm text-slate-600 max-w-sm mx-auto leading-relaxed mb-6">
+              <p className="text-xs xl:text-sm text-slate-600 max-w-sm mx-auto leading-relaxed mb-2 lg:mb-2 xl:mb-6">
                 {t("nafathInstruction")}
               </p>
 
               {/* Countdown Timer */}
-              <p className="text-xs text-slate-500 font-medium mb-6">
+              <p className="text-xs text-slate-500 font-medium mb-2 lg:mb-2 xl:mb-6">
                 {t("requestExpires")} <span className="font-bold text-slate-900">{timer}s</span>
               </p>
 
               <button
                 type="button"
                 onClick={() => setStep("nafath")}
-                className="text-xs sm:text-sm font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
+                className="text-xs xl:text-sm font-bold text-[#3B25B0] hover:text-[#2F1F99] transition-colors"
               >
                 {t("cancelGoBack")}
               </button>
             </div>
           )}
 
-          {/* SECTION 4: IDENTITY VERIFIED (Image 4 - Uses /images/success.png) */}
+          {/* SECTION 4: IDENTITY VERIFIED */}
           {step === "nafath_verified" && (
-            <div className="text-center py-4 animate-in fade-in duration-300">
-              <div className="text-center mb-4">
-                <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            <div className="text-center py-1 xl:py-4 animate-in fade-in duration-300">
+              <div className="text-center mb-2 lg:mb-2 xl:mb-4">
+                <h2 className="text-lg lg:text-xl xl:text-3xl font-extrabold text-slate-900 tracking-tight">
                   {t("signIn")}
                 </h2>
-                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                <p className="text-[11px] lg:text-xs xl:text-sm text-slate-500 mt-0.5">
                   {t("signInSubtitle")}
                 </p>
               </div>
 
-              {/* Success Image (/images/success.png) replaced as requested */}
-              <div className="my-6 flex justify-center">
+              {/* Success Image */}
+              <div className="my-2 lg:my-2 xl:my-6 flex justify-center">
                 <Image
                   src="/images/success.png"
                   alt="Success Verified"
                   width={96}
                   height={96}
-                  className="w-24 h-24 sm:w-28 sm:h-28 object-contain mx-auto"
+                  className="w-12 h-12 lg:w-14 lg:h-14 xl:w-28 xl:h-28 object-contain mx-auto"
                   priority
                 />
               </div>
 
               {/* Title & Description */}
-              <h3 className="text-xl font-extrabold text-slate-900 mb-2">
+              <h3 className="text-sm lg:text-base xl:text-xl font-extrabold text-slate-900 mb-1 xl:mb-2">
                 {t("identityVerified")}
               </h3>
-              <p className="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto leading-relaxed mb-6">
+              <p className="text-xs xl:text-sm text-slate-500 max-w-sm mx-auto leading-relaxed mb-2 lg:mb-2 xl:mb-6">
                 {t("identityVerifiedDesc")}
               </p>
 
               <button
                 type="button"
                 onClick={handleManualGoToDashboard}
-                className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white py-3.5 rounded-xl font-semibold text-sm shadow-md hover:shadow-indigo-300/50 transition-all text-center"
+                className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white py-2 lg:py-2.5 xl:py-3.5 rounded-lg xl:rounded-xl font-semibold text-xs xl:text-sm shadow-md hover:shadow-indigo-300/50 transition-all text-center"
               >
                 {t("goToDashboard")}
               </button>
@@ -488,11 +488,11 @@ function LoginContent() {
           )}
 
           {/* Card Footer (Shared terms & acronyms) */}
-          <div className="mt-8 pt-6 border-t border-slate-100 text-center">
-            <p className="text-[11px] text-slate-400 leading-relaxed mb-3">
+          <div className="mt-3 lg:mt-3 xl:mt-8 pt-2.5 lg:pt-3 xl:pt-5 border-t border-slate-100 text-center">
+            <p className="text-[10px] xl:text-[11px] text-slate-400 leading-tight mb-1.5 xl:mb-2.5">
               {t("termsNotice")}
             </p>
-            <div className="flex items-center justify-center gap-4 text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
+            <div className="flex items-center justify-center gap-3 xl:gap-4 text-[9px] xl:text-[10px] font-extrabold text-slate-400 uppercase tracking-widest">
               <span>IA</span>
               <span>NCA ECC</span>
               <span>PDPL</span>
@@ -501,8 +501,8 @@ function LoginContent() {
 
         </div>
 
-        {/* Blank Bottom Spacer */}
-        <div className="h-4" />
+        {/* Bottom Spacer */}
+        <div className="hidden xl:block shrink-0 h-2" />
       </div>
 
     </div>
