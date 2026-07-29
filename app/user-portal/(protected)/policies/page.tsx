@@ -4,25 +4,30 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Plus } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export default function MyPoliciesRoutePage() {
   const [selectedCategory, setSelectedCategory] = useState<"all" | "motor" | "travel" | "life" | "visa" | "general">("all");
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
 
   return (
     <div className="space-y-6 relative">
       {/* Page Header (Same Top Row on Mobile Screens) */}
       <div className="flex flex-row items-center justify-between gap-2 pt-1">
         <div>
-          <h1 className="text-xl sm:text-3xl font-semibold text-[#1C2541]">My Policies</h1>
-          <p className="text-[11px] sm:text-sm text-[#8C94A6] font-normal mt-0.5">4 active policies across all lines</p>
+          <h1 className="text-xl sm:text-3xl font-semibold text-[#1C2541]">{t("myPolicies")}</h1>
+          <p className="text-[11px] sm:text-sm text-[#8C94A6] font-normal mt-0.5">
+            {isAr ? "4 وثائق نشطة عبر جميع القطاعات" : "4 active policies across all lines"}
+          </p>
         </div>
         <Link
           href="/user-portal/buy"
           className="inline-flex items-center justify-center gap-1.5 bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-all cursor-pointer shrink-0"
         >
           <Plus className="w-3.5 h-3.5 sm:w-4 sm:h-4 stroke-3" />
-          <span className="sm:hidden">New</span>
-          <span className="hidden sm:inline">Buy New Policy</span>
+          <span className="sm:hidden">{isAr ? "جديد" : "New"}</span>
+          <span className="hidden sm:inline">{t("buyNewPolicy")}</span>
         </Link>
       </div>
 
@@ -36,7 +41,7 @@ export default function MyPoliciesRoutePage() {
               : "text-slate-500 hover:text-slate-900"
               }`}
           >
-            All (4)
+            {t("allFilter")}
           </button>
           <button
             onClick={() => setSelectedCategory("motor")}
@@ -45,7 +50,7 @@ export default function MyPoliciesRoutePage() {
               : "text-slate-500 hover:text-slate-900"
               }`}
           >
-            Motor (1)
+            {t("motorFilter")}
           </button>
           <button
             onClick={() => setSelectedCategory("travel")}
@@ -54,7 +59,7 @@ export default function MyPoliciesRoutePage() {
               : "text-slate-500 hover:text-slate-900"
               }`}
           >
-            Travel (1)
+            {t("travelFilter")}
           </button>
           <button
             onClick={() => setSelectedCategory("life")}
@@ -63,7 +68,7 @@ export default function MyPoliciesRoutePage() {
               : "text-slate-500 hover:text-slate-900"
               }`}
           >
-            Life (1)
+            {t("lifeFilter")}
           </button>
           <button
             onClick={() => setSelectedCategory("visa")}
@@ -72,7 +77,7 @@ export default function MyPoliciesRoutePage() {
               : "text-slate-500 hover:text-slate-900"
               }`}
           >
-            Visit Visa (1)
+            {t("visaFilter")}
           </button>
           <button
             onClick={() => setSelectedCategory("general")}
@@ -81,7 +86,7 @@ export default function MyPoliciesRoutePage() {
               : "text-slate-500 hover:text-slate-900"
               }`}
           >
-            General (0)
+            {t("generalFilter")}
           </button>
         </div>
       </div>
@@ -95,13 +100,13 @@ export default function MyPoliciesRoutePage() {
               {/* Header & Product Image Row */}
               <div className="flex flex-row justify-between items-start gap-3">
                 <div className="space-y-1 max-w-xl">
-                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">Motor Insurance – Comprehensive</h2>
+                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">{t("motorCompCardTitle")}</h2>
                   <p className="text-xs sm:text-sm text-[#8C94A6] font-normal">
-                    POL-MTR-2024-00881 · Toyota Camry 2022 · Plate: 1234 ABC
+                    {isAr ? "POL-MTR-2024-00881 · تويوتا كامري 2022 · لوحة: 1234 أ ب ج" : "POL-MTR-2024-00881 · Toyota Camry 2022 · Plate: 1234 ABC"}
                   </p>
                   <div className="pt-1">
                     <span className="bg-[#DDF5E6] text-[#16A34A] text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md inline-block">
-                      Active
+                      {t("activeStatus")}
                     </span>
                   </div>
                 </div>
@@ -122,21 +127,21 @@ export default function MyPoliciesRoutePage() {
               <div className="pt-3 border-t border-[#D0E1F9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-[#64748B]">
                 <div className="grid grid-cols-3 gap-2 w-full sm:w-auto">
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Premium</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">SAR 4,200/yr</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("premium")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "4,200 ر.س/سنوياً" : "SAR 4,200/yr"}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Expires</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">24 Jun 2026</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{isAr ? "الانتهاء" : "Expires"}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "24 يونيو 2026" : "24 Jun 2026"}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Claims</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">1 Open</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("navClaims")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{t("openClaimsOne")}</p>
                   </div>
                 </div>
 
                 <button className="w-full sm:w-auto border border-[#1C2541] bg-transparent hover:bg-[#DAE8FB]/60 text-[#1C2541] font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer shadow-2xs text-center shrink-0">
-                  View Details
+                  {t("viewDetails")}
                 </button>
               </div>
             </div>
@@ -149,13 +154,13 @@ export default function MyPoliciesRoutePage() {
             <div className="flex flex-col gap-4 relative z-10">
               <div className="flex flex-row justify-between items-start gap-3">
                 <div className="space-y-1 max-w-xl">
-                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">Travel Insurance – Multi-trip</h2>
+                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">{t("travelMultiCardTitle")}</h2>
                   <p className="text-xs sm:text-sm text-[#8C94A6] font-normal">
-                    POL-TRV-2025-00234 · GCC + International · 10 trips left
+                    POL-TRV-2025-00234 · {t("gccInternational")} · {t("tripsLeft10")}
                   </p>
                   <div className="pt-1">
                     <span className="bg-[#DDF5E6] text-[#16A34A] text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md inline-block">
-                      Active
+                      {t("activeStatus")}
                     </span>
                   </div>
                 </div>
@@ -175,21 +180,21 @@ export default function MyPoliciesRoutePage() {
               <div className="pt-3 border-t border-[#D0E1F9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-[#64748B]">
                 <div className="grid grid-cols-3 gap-2 w-full sm:w-auto">
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Coverage</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">Worldwide</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("coverage")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{t("worldwide")}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Premium</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">SAR 450</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("premium")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "450 ر.س" : "SAR 450"}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Expires</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">3 Jul 2026</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{isAr ? "الانتهاء" : "Expires"}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "3 يوليو 2026" : "3 Jul 2026"}</p>
                   </div>
                 </div>
 
                 <button className="w-full sm:w-auto border border-[#1C2541] bg-transparent hover:bg-[#DAE8FB]/60 text-[#1C2541] font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer shadow-2xs text-center shrink-0">
-                  View Details
+                  {t("viewDetails")}
                 </button>
               </div>
             </div>
@@ -202,11 +207,11 @@ export default function MyPoliciesRoutePage() {
             <div className="flex flex-col gap-4 relative z-10">
               <div className="flex flex-row justify-between items-start gap-3">
                 <div className="space-y-1 max-w-xl">
-                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">Life Insurance</h2>
+                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">{t("lifeFamilyCardTitle")}</h2>
                   <p className="text-xs sm:text-sm text-[#8C94A6] font-normal">POL-LFE-2025-00201</p>
                   <div className="pt-1">
                     <span className="bg-[#DDF5E6] text-[#16A34A] text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md inline-block">
-                      Active
+                      {t("activeStatus")}
                     </span>
                   </div>
                 </div>
@@ -226,21 +231,21 @@ export default function MyPoliciesRoutePage() {
               <div className="pt-3 border-t border-[#D0E1F9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-[#64748B]">
                 <div className="grid grid-cols-3 gap-2 w-full sm:w-auto">
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Coverage</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">SAR 500k</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("coverage")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "500,000 ر.س" : "SAR 500k"}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Premium</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">SAR 780</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("premium")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "780 ر.س" : "SAR 780"}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Expires</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">18 Jul 2026</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{isAr ? "الانتهاء" : "Expires"}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "18 يوليو 2026" : "18 Jul 2026"}</p>
                   </div>
                 </div>
 
                 <button className="w-full sm:w-auto border border-[#1C2541] bg-transparent hover:bg-[#DAE8FB]/60 text-[#1C2541] font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer shadow-2xs text-center shrink-0">
-                  View Details
+                  {t("viewDetails")}
                 </button>
               </div>
             </div>
@@ -253,11 +258,11 @@ export default function MyPoliciesRoutePage() {
             <div className="flex flex-col gap-4 relative z-10">
               <div className="flex flex-row justify-between items-start gap-3">
                 <div className="space-y-1 max-w-xl">
-                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">Visit Visa Insurance</h2>
+                  <h2 className="text-base sm:text-xl font-semibold text-[#1C2541]">{t("visitVisaCardTitle")}</h2>
                   <p className="text-xs sm:text-sm text-[#8C94A6] font-normal">POL-VIS-2025-00109</p>
                   <div className="pt-1">
                     <span className="bg-[#DDF5E6] text-[#16A34A] text-[11px] sm:text-xs font-semibold px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-md inline-block">
-                      Active
+                      {t("activeStatus")}
                     </span>
                   </div>
                 </div>
@@ -277,21 +282,21 @@ export default function MyPoliciesRoutePage() {
               <div className="pt-3 border-t border-[#D0E1F9] flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm text-[#64748B]">
                 <div className="grid grid-cols-3 gap-2 w-full sm:w-auto">
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Coverage</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">Mandatory</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("coverage")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{t("mandatoryTag")}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Premium</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">SAR 99</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{t("premium")}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "99 ر.س" : "SAR 99"}</p>
                   </div>
                   <div>
-                    <span className="text-[#8C94A6] text-[11px] block">Expires</span>
-                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">30 Aug 2026</p>
+                    <span className="text-[#8C94A6] text-[11px] block">{isAr ? "الانتهاء" : "Expires"}</span>
+                    <p className="font-semibold text-[#1C2541] mt-0.5 text-xs sm:text-sm">{isAr ? "30 أغسطس 2026" : "30 Aug 2026"}</p>
                   </div>
                 </div>
 
                 <button className="w-full sm:w-auto border border-[#1C2541] bg-transparent hover:bg-[#DAE8FB]/60 text-[#1C2541] font-semibold px-4 py-2 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer shadow-2xs text-center shrink-0">
-                  View Details
+                  {t("viewDetails")}
                 </button>
               </div>
             </div>

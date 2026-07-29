@@ -3,11 +3,14 @@
 import { useState } from "react";
 import Image from "next/image";
 import { ChevronDown, Check } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 type ProductType = "motor" | "travel" | "visa" | "life" | "general";
 
 export default function BuyInsuranceRoutePage() {
   const [selectedProduct, setSelectedProduct] = useState<ProductType>("motor");
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
 
   // Motor Form State
   const [vehicleMake, setVehicleMake] = useState("Toyota");
@@ -52,8 +55,8 @@ export default function BuyInsuranceRoutePage() {
       {/* 1. TOP HEADER & 4-STEP STEPPER ON THE SAME ROW (Middle/Center Aligned) */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#1C2541]">Get a quote</h1>
-          <p className="text-xs sm:text-sm text-[#8C94A6] font-normal mt-0.5">Select a product to begin</p>
+          <h1 className="text-2xl sm:text-3xl font-semibold text-[#1C2541]">{t("getAQuoteTitle")}</h1>
+          <p className="text-xs sm:text-sm text-[#8C94A6] font-normal mt-0.5">{t("selectProductToBegin")}</p>
         </div>
 
         {/* 4-Step Stepper Bar on the SAME ROW (Middle/Center Aligned) */}
@@ -66,7 +69,7 @@ export default function BuyInsuranceRoutePage() {
             <div className="w-8 h-8 rounded-full bg-[#2563EB] text-white font-semibold text-xs flex items-center justify-center shadow-md">
               1
             </div>
-            <span className="text-[11px] font-semibold text-[#1C2541] whitespace-nowrap">Select product</span>
+            <span className="text-[11px] font-semibold text-[#1C2541] whitespace-nowrap">{t("selectProduct")}</span>
           </div>
 
           {/* Step 2 */}
@@ -74,7 +77,7 @@ export default function BuyInsuranceRoutePage() {
             <div className="w-8 h-8 rounded-full bg-white border-2 border-slate-300 text-slate-500 font-semibold text-xs flex items-center justify-center">
               2
             </div>
-            <span className="text-[11px] font-normal text-slate-500 whitespace-nowrap">Your details</span>
+            <span className="text-[11px] font-normal text-slate-500 whitespace-nowrap">{t("yourDetails")}</span>
           </div>
 
           {/* Step 3 */}
@@ -82,7 +85,7 @@ export default function BuyInsuranceRoutePage() {
             <div className="w-8 h-8 rounded-full bg-white border-2 border-slate-300 text-slate-500 font-semibold text-xs flex items-center justify-center">
               3
             </div>
-            <span className="text-[11px] font-normal text-slate-500 whitespace-nowrap">Review quote</span>
+            <span className="text-[11px] font-normal text-slate-500 whitespace-nowrap">{t("reviewQuote")}</span>
           </div>
 
           {/* Step 4 */}
@@ -90,7 +93,7 @@ export default function BuyInsuranceRoutePage() {
             <div className="w-8 h-8 rounded-full bg-white border-2 border-slate-300 text-slate-500 font-semibold text-xs flex items-center justify-center">
               4
             </div>
-            <span className="text-[11px] font-normal text-slate-500 whitespace-nowrap">Payment</span>
+            <span className="text-[11px] font-normal text-slate-500 whitespace-nowrap">{t("paymentStep")}</span>
           </div>
         </div>
       </div>
@@ -110,11 +113,11 @@ export default function BuyInsuranceRoutePage() {
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">Motor Insurance</h3>
+              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("motorInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
-                Comprehensive, third-party, and collision coverage for your vehicle
+                {t("motorInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">From SAR 1,200/yr</p>
+              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromMotorPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_01.png" alt="Motor Insurance" fill className="object-contain" />
@@ -130,11 +133,11 @@ export default function BuyInsuranceRoutePage() {
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">Travel Insurance</h3>
+              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("travelInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
-                Single trip and annual multi-trip plans, GCC and international
+                {t("travelInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">From SAR 99/trip</p>
+              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromTravelPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_02.png" alt="Travel Insurance" fill className="object-contain" />
@@ -150,11 +153,11 @@ export default function BuyInsuranceRoutePage() {
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">Visit Visa Insurance</h3>
+              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("visitVisaInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
-                Mandatory coverage for visitors entering the Kingdom
+                {t("visitVisaInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">From SAR 99/trip</p>
+              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromVisaPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_04.png" alt="Visit Visa Insurance" fill className="object-contain rounded-md" />
@@ -170,11 +173,11 @@ export default function BuyInsuranceRoutePage() {
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">Life Insurance</h3>
+              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("lifeInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
-                Single trip and annual multi-trip plans, GCC and international
+                {t("lifeInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">From SAR 99/trip</p>
+              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromLifePrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_03.png" alt="Life Insurance" fill className="object-contain rounded-md" />
@@ -190,11 +193,11 @@ export default function BuyInsuranceRoutePage() {
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">General Insurance</h3>
+              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("generalInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
-                Home, property, medical, and business insurance solutions
+                {t("generalInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">From SAR 500/yr</p>
+              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromGeneralPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_05.png" alt="General Insurance" fill className="object-contain" />
@@ -209,12 +212,12 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 1: MOTOR INSURANCE */}
           {selectedProduct === "motor" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">Motor insurance — vehicle details</h2>
+              <h2 className="text-lg font-semibold text-[#1C2541]">{t("motorVehicleDetailsHeader")}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Vehicle Make */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Vehicle make</label>
+                  <label className="text-xs font-semibold text-slate-700">{t("vehicleMakeLabel")}</label>
                   <ShadcnSelect
                     value={vehicleMake}
                     onChange={setVehicleMake}
@@ -224,7 +227,7 @@ export default function BuyInsuranceRoutePage() {
 
                 {/* Vehicle Model */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Vehicle model</label>
+                  <label className="text-xs font-semibold text-slate-700">{t("vehicleModelLabel")}</label>
                   <ShadcnSelect
                     value={vehicleModel}
                     onChange={setVehicleModel}
@@ -234,7 +237,7 @@ export default function BuyInsuranceRoutePage() {
 
                 {/* Year of Manufacture */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Year of manufacture</label>
+                  <label className="text-xs font-semibold text-slate-700">{t("yearOfManufactureLabel")}</label>
                   <ShadcnSelect
                     value={manufactureYear}
                     onChange={setManufactureYear}
@@ -244,42 +247,42 @@ export default function BuyInsuranceRoutePage() {
 
                 {/* Plate Number */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Plate number</label>
+                  <label className="text-xs font-semibold text-slate-700">{t("plateNumberLabel")}</label>
                   <input
                     type="text"
                     value={plateNumber}
                     onChange={(e) => setPlateNumber(e.target.value)}
-                    placeholder="e.g 1234 ABC"
+                    placeholder={isAr ? "مثال: 1234 أ ب ج" : "e.g 1234 ABC"}
                     className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
                 {/* Chassis Number (VIN) */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Chassis number (VIN)</label>
+                  <label className="text-xs font-semibold text-slate-700">{t("chassisNumberVinLabel")}</label>
                   <input
                     type="text"
                     value={vinNumber}
                     onChange={(e) => setVinNumber(e.target.value)}
-                    placeholder="17 Character VIN"
+                    placeholder={isAr ? "رقم الهيكل من 17 حرفاً" : "17 Character VIN"}
                     className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
                 {/* City of Registration */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">City of registration</label>
+                  <label className="text-xs font-semibold text-slate-700">{t("cityOfRegistrationLabel")}</label>
                   <ShadcnSelect
                     value={registrationCity}
                     onChange={setRegistrationCity}
-                    options={["Riyadh", "Jeddah", "Dammam", "Khobar", "Makkah", "Madinah"]}
+                    options={isAr ? ["الرياض", "جدة", "الدمام", "الخبر", "مكة المكرمة", "المدينة المنورة"] : ["Riyadh", "Jeddah", "Dammam", "Khobar", "Makkah", "Madinah"]}
                   />
                 </div>
               </div>
 
               {/* Select Coverage Type Cards */}
               <div className="space-y-2 pt-2 border-t border-slate-100">
-                <label className="text-xs font-semibold text-slate-700 block">Select coverage type</label>
+                <label className="text-xs font-semibold text-slate-700 block">{t("selectCoverageTypeLabel")}</label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                   <div
                     onClick={() => setCoverageType("comprehensive")}
@@ -288,8 +291,8 @@ export default function BuyInsuranceRoutePage() {
                         : "border-slate-200 bg-white hover:bg-slate-50"
                       }`}
                   >
-                    <div className="font-semibold text-xs text-[#1C2541]">Comprehensive</div>
-                    <div className="text-[11px] text-slate-500">From SAR 1,200/yr</div>
+                    <div className="font-semibold text-xs text-[#1C2541]">{t("comprehensiveCoverage")}</div>
+                    <div className="text-[11px] text-slate-500">{isAr ? "من 1,200 ر.س/سنوياً" : "From SAR 1,200/yr"}</div>
                   </div>
 
                   <div
@@ -299,8 +302,8 @@ export default function BuyInsuranceRoutePage() {
                         : "border-slate-200 bg-white hover:bg-slate-50"
                       }`}
                   >
-                    <div className="font-semibold text-xs text-[#1C2541]">Third-party</div>
-                    <div className="text-[11px] text-slate-500">From SAR 600/yr</div>
+                    <div className="font-semibold text-xs text-[#1C2541]">{t("thirdPartyCoverage")}</div>
+                    <div className="text-[11px] text-slate-500">{isAr ? "من 600 ر.س/سنوياً" : "From SAR 600/yr"}</div>
                   </div>
 
                   <div
@@ -310,8 +313,8 @@ export default function BuyInsuranceRoutePage() {
                         : "border-slate-200 bg-white hover:bg-slate-50"
                       }`}
                   >
-                    <div className="font-semibold text-xs text-[#1C2541]">Collision only</div>
-                    <div className="text-[11px] text-slate-500">From SAR 900/yr</div>
+                    <div className="font-semibold text-xs text-[#1C2541]">{t("collisionOnlyCoverage")}</div>
+                    <div className="text-[11px] text-slate-500">{isAr ? "من 900 ر.س/سنوياً" : "From SAR 900/yr"}</div>
                   </div>
                 </div>
               </div>
@@ -319,10 +322,10 @@ export default function BuyInsuranceRoutePage() {
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
                 <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
-                  Get instant quote
+                  {t("getInstantQuoteBtn")}
                 </button>
                 <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
-                  Save & continue later
+                  {t("saveContinueLaterBtn")}
                 </button>
               </div>
             </div>
@@ -331,29 +334,29 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 2: TRAVEL INSURANCE */}
           {selectedProduct === "travel" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">Travel insurance — trip details</h2>
+              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "تأمين السفر — تفاصيل الرحلة" : "Travel insurance — trip details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Destination</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "الوجهة" : "Destination"}</label>
                   <ShadcnSelect
                     value={destination}
                     onChange={setDestination}
-                    options={["GCC countries", "Worldwide", "Europe & Schengen", "USA & Canada"]}
+                    options={isAr ? ["دول الخليج", "عالمي", "أوروبا والشنغن", "أمريكا وكندا"] : ["GCC countries", "Worldwide", "Europe & Schengen", "USA & Canada"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Trip type</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "نوع الرحلة" : "Trip type"}</label>
                   <ShadcnSelect
                     value={tripType}
                     onChange={setTripType}
-                    options={["Annual multi-trip", "Single trip"]}
+                    options={isAr ? ["رحلات متعددة سنوية", "رحلة واحدة"] : ["Annual multi-trip", "Single trip"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Departure date</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ المغادرة" : "Departure date"}</label>
                   <input
                     type="text"
                     value={departureDate}
@@ -364,7 +367,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Return date</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ العودة" : "Return date"}</label>
                   <input
                     type="text"
                     value={returnDate}
@@ -375,7 +378,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Travellers</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "عدد المسافرين" : "Travellers"}</label>
                   <ShadcnSelect
                     value={travellers}
                     onChange={setTravellers}
@@ -384,21 +387,21 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Nationality</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "الجنسية" : "Nationality"}</label>
                   <ShadcnSelect
                     value={travelNationality}
                     onChange={setTravelNationality}
-                    options={["Saudi", "GCC Citizen", "Resident", "Other"]}
+                    options={isAr ? ["سعودي", "مواطن خليجي", "مقيم", "أخرى"] : ["Saudi", "GCC Citizen", "Resident", "Other"]}
                   />
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
                 <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
-                  Get instant quote
+                  {t("getInstantQuoteBtn")}
                 </button>
                 <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
-                  Save & continue later
+                  {t("saveContinueLaterBtn")}
                 </button>
               </div>
             </div>
@@ -407,31 +410,31 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 3: VISIT VISA INSURANCE */}
           {selectedProduct === "visa" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">Visit visa insurance — visitor details</h2>
+              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "تأمين تأشيرة الزيارة — تفاصيل الزائر" : "Visit visa insurance — visitor details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Visitor nationality</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "جنسية الزائر" : "Visitor nationality"}</label>
                   <input
                     type="text"
                     value={visitorNationality}
                     onChange={(e) => setVisitorNationality(e.target.value)}
-                    placeholder="e.g. Egyptian"
+                    placeholder={isAr ? "مثال: مصري" : "e.g. Egyptian"}
                     className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Visa type</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "نوع التأشيرة" : "Visa type"}</label>
                   <ShadcnSelect
                     value={visaType}
                     onChange={setVisaType}
-                    options={["Tourist", "Business", "Family Visit", "Personal Visit"]}
+                    options={isAr ? ["سياحية", "أعمال", "زيارة عائلية", "زيارة شخصية"] : ["Tourist", "Business", "Family Visit", "Personal Visit"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Arrival date</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ الوصول" : "Arrival date"}</label>
                   <input
                     type="text"
                     value={arrivalDate}
@@ -442,21 +445,21 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Duration</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "المدة" : "Duration"}</label>
                   <ShadcnSelect
                     value={visaDuration}
                     onChange={setVisaDuration}
-                    options={["30 days", "60 days", "90 days", "180 days"]}
+                    options={isAr ? ["30 يوماً", "60 يوماً", "90 يوماً", "180 يوماً"] : ["30 days", "60 days", "90 days", "180 days"]}
                   />
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
                 <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
-                  Get instant quote
+                  {t("getInstantQuoteBtn")}
                 </button>
                 <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
-                  Save & continue later
+                  {t("saveContinueLaterBtn")}
                 </button>
               </div>
             </div>
@@ -465,31 +468,31 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 4: LIFE INSURANCE */}
           {selectedProduct === "life" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">Life insurance — personal details</h2>
+              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "تأمين الحياة — البيانات الشخصية" : "Life insurance — personal details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Date of birth</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ الميلاد" : "Date of birth"}</label>
                   <input
                     type="text"
                     value={dob}
                     onChange={(e) => setDob(e.target.value)}
-                    placeholder="e.g. 15/05/1990"
+                    placeholder="15/05/1990"
                     className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Gender</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "الجنس" : "Gender"}</label>
                   <ShadcnSelect
                     value={gender}
                     onChange={setGender}
-                    options={["Male", "Female"]}
+                    options={isAr ? ["ذكر", "أنثى"] : ["Male", "Female"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Coverage amount (SAR)</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "مبلغ التغطية (ر.س)" : "Coverage amount (SAR)"}</label>
                   <ShadcnSelect
                     value={lifeCoverage}
                     onChange={setLifeCoverage}
@@ -498,39 +501,39 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Policy term</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "مدة الوثيقة" : "Policy term"}</label>
                   <ShadcnSelect
                     value={policyTerm}
                     onChange={setPolicyTerm}
-                    options={["10 years", "15 years", "20 years", "25 years"]}
+                    options={isAr ? ["10 سنوات", "15 سنة", "20 سنة", "25 سنة"] : ["10 years", "15 years", "20 years", "25 years"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Smoker status</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "حالة التدخين" : "Smoker status"}</label>
                   <ShadcnSelect
                     value={smokerStatus}
                     onChange={setSmokerStatus}
-                    options={["Non-smoker", "Smoker"]}
+                    options={isAr ? ["غير مدخن", "مدخن"] : ["Non-smoker", "Smoker"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Occupation</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "المهنة" : "Occupation"}</label>
                   <ShadcnSelect
                     value={occupation}
                     onChange={setOccupation}
-                    options={["Engineer", "Doctor", "Manager", "Teacher", "Business Owner", "Other"]}
+                    options={isAr ? ["مهندس", "طبيب", "مدير", "معلم", "صاحب عمل", "أخرى"] : ["Engineer", "Doctor", "Manager", "Teacher", "Business Owner", "Other"]}
                   />
                 </div>
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
                 <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
-                  Get instant quote
+                  {t("getInstantQuoteBtn")}
                 </button>
                 <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
-                  Save & continue later
+                  {t("saveContinueLaterBtn")}
                 </button>
               </div>
             </div>
@@ -539,42 +542,42 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 5: GENERAL INSURANCE */}
           {selectedProduct === "general" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">General insurance — property details</h2>
+              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "التأمين العام — تفاصيل العقار" : "General insurance — property details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Insurance category</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "فئة التأمين" : "Insurance category"}</label>
                   <ShadcnSelect
                     value={generalCategory}
                     onChange={setGeneralCategory}
-                    options={["Home & property", "Commercial building", "Business liability", "Marine & cargo"]}
+                    options={isAr ? ["المنازل والممتلكات", "المباني التجارية", "المسؤولية التجارية", "البحري والشحن"] : ["Home & property", "Commercial building", "Business liability", "Marine & cargo"]}
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Property value (SAR)</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "قيمة العقار (ر.س)" : "Property value (SAR)"}</label>
                   <input
                     type="text"
                     value={propertyValue}
                     onChange={(e) => setPropertyValue(e.target.value)}
-                    placeholder="e.g. 500,000"
+                    placeholder="500,000"
                     className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Property address</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "عنوان العقار" : "Property address"}</label>
                   <input
                     type="text"
                     value={propertyAddress}
                     onChange={(e) => setPropertyAddress(e.target.value)}
-                    placeholder="City, district, street"
+                    placeholder={isAr ? "المدينة، الحي، الشارع" : "City, district, street"}
                     className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">Build year</label>
+                  <label className="text-xs font-semibold text-slate-700">{isAr ? "سنة البناء" : "Build year"}</label>
                   <ShadcnSelect
                     value={buildYear}
                     onChange={setBuildYear}
@@ -585,10 +588,10 @@ export default function BuyInsuranceRoutePage() {
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
                 <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
-                  Get instant quote
+                  {t("getInstantQuoteBtn")}
                 </button>
                 <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
-                  Save & continue later
+                  {t("saveContinueLaterBtn")}
                 </button>
               </div>
             </div>

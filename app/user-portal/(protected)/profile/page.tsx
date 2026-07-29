@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useAuth } from "../../../../lib/auth-context";
+import { useTranslation } from "react-i18next";
 import {
   UserCheck,
   Lock,
@@ -16,6 +17,8 @@ import {
 
 export default function ProfileAndKYCRoutePage() {
   const { user } = useAuth();
+  const { t, i18n } = useTranslation();
+  const isAr = i18n.language === "ar";
 
   const [otpToggle, setOtpToggle] = useState(true);
   const [pushToggle, setPushToggle] = useState(true);
@@ -28,14 +31,14 @@ export default function ProfileAndKYCRoutePage() {
       {/* Page Header (Same Top Row on Mobile Screens) */}
       <div className="flex flex-row items-center justify-between gap-2">
         <div>
-          <h1 className="text-xl sm:text-3xl font-semibold text-[#1C2541]">Profile & KYC</h1>
+          <h1 className="text-xl sm:text-3xl font-semibold text-[#1C2541]">{t("profileHeading")}</h1>
           <p className="text-[11px] sm:text-sm text-[#8C94A6] font-normal mt-0.5">
-            Manage your identity, security, and preferences
+            {t("manageIdentitySec")}
           </p>
         </div>
         <button className="border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-3 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm shadow-2xs transition-colors cursor-pointer shrink-0 flex items-center gap-1.5">
           <Pencil className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
-          <span className="hidden sm:inline">Edit Profile</span>
+          <span className="hidden sm:inline">{t("editProfile")}</span>
         </button>
       </div>
 
@@ -47,21 +50,21 @@ export default function ProfileAndKYCRoutePage() {
             <div className="w-16 h-16 rounded-full overflow-hidden relative border border-slate-200 shrink-0 bg-slate-100 shadow-sm">
               <Image
                 src="/images/user_02.png"
-                alt={user?.name || "Ahmed"}
+                alt={user?.name || (isAr ? "أحمد" : "Ahmed")}
                 fill
                 className="object-cover"
               />
             </div>
             <div className="space-y-1">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{user?.name || "Ahmed"}</h2>
-              <p className="text-xs text-[#8C94A6] font-normal">National ID: 1098****12</p>
+              <h2 className="text-lg font-semibold text-[#1C2541]">{user?.name || (isAr ? "أحمد" : "Ahmed")}</h2>
+              <p className="text-xs text-[#8C94A6] font-normal">{isAr ? "الهوية الوطنية: 1098****12" : "National ID: 1098****12"}</p>
 
               <div className="flex flex-wrap gap-1.5 pt-1">
                 <span className="bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-semibold px-2.5 py-0.5 rounded-md">
-                  eKYC Verified
+                  {t("ekycVerified")}
                 </span>
                 <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold px-2.5 py-0.5 rounded-md">
-                  Nafath Connected
+                  {t("nafathConnected")}
                 </span>
               </div>
             </div>
@@ -69,11 +72,11 @@ export default function ProfileAndKYCRoutePage() {
 
           <div className="pt-4 border-t border-slate-100 space-y-2 text-xs sm:text-sm">
             <div className="flex justify-between">
-              <span className="text-[#8C94A6] font-normal">Registered:</span>
-              <span className="font-semibold text-[#1C2541]">15 Jan 2024</span>
+              <span className="text-[#8C94A6] font-normal">{t("registeredDate")}:</span>
+              <span className="font-semibold text-[#1C2541]">{isAr ? "15 يناير 2024" : "15 Jan 2024"}</span>
             </div>
             <div className="flex justify-between">
-              <span className="text-[#8C94A6] font-normal">Customer ID:</span>
+              <span className="text-[#8C94A6] font-normal">{t("customerId")}:</span>
               <span className="font-semibold text-[#1C2541]">MIC-CUST-00418</span>
             </div>
           </div>
@@ -81,28 +84,28 @@ export default function ProfileAndKYCRoutePage() {
 
         {/* Personal Information Grid (Right) */}
         <div className="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-100 shadow-xs space-y-4">
-          <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">Personal information</h2>
+          <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">{t("personalInfo")}</h2>
 
           <div className="divide-y divide-slate-100 text-xs sm:text-sm">
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">Full name</span>
-              <span className="font-semibold text-[#1C2541]">{user?.name || "Ahmed"}</span>
+              <span className="text-[#8C94A6] font-normal">{t("fullName")}</span>
+              <span className="font-semibold text-[#1C2541]">{user?.name || (isAr ? "أحمد" : "Ahmed")}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">Mobile</span>
-              <span className="font-semibold text-[#1C2541]">+966 5****1001</span>
+              <span className="text-[#8C94A6] font-normal">{t("mobile")}</span>
+              <span className="font-semibold text-[#1C2541]">{isAr ? "9665****1001+" : "+966 5****1001"}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">Email</span>
-              <span className="font-semibold text-[#1C2541]">{user?.email || "ahmed@****.com"}</span>
+              <span className="text-[#8C94A6] font-normal">{t("email")}</span>
+              <span className="font-semibold text-[#1C2541]">{user?.email || "ahmed@mutakamela.sa"}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">Nationality</span>
-              <span className="font-semibold text-[#1C2541]">Saudi Arabia</span>
+              <span className="text-[#8C94A6] font-normal">{t("nationality")}</span>
+              <span className="font-semibold text-[#1C2541]">{t("saudiArabia")}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">Preferred language</span>
-              <span className="font-semibold text-[#1C2541]">English</span>
+              <span className="text-[#8C94A6] font-normal">{t("preferredLanguage")}</span>
+              <span className="font-semibold text-[#1C2541]">{isAr ? t("arabicLang") : t("englishLang")}</span>
             </div>
           </div>
         </div>
@@ -110,7 +113,7 @@ export default function ProfileAndKYCRoutePage() {
 
       {/* Security & Authentication Section */}
       <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs space-y-4">
-        <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">Security & authentication</h2>
+        <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">{t("securityAuthentication")}</h2>
 
         <div className="divide-y divide-slate-100 space-y-2">
           <div className="pt-2 pb-3 flex items-center justify-between">
@@ -119,8 +122,8 @@ export default function ProfileAndKYCRoutePage() {
                 <Lock className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-sm text-[#1C2541]">OTP for transactions</h3>
-                <p className="text-xs text-[#8C94A6] font-normal mt-0.5">Required for all payments</p>
+                <h3 className="font-semibold text-xs sm:text-sm text-[#1C2541]">{t("otpForTransactions")}</h3>
+                <p className="text-xs text-[#8C94A6] font-normal mt-0.5">{t("requiredForAllPayments")}</p>
               </div>
             </div>
 
@@ -144,13 +147,13 @@ export default function ProfileAndKYCRoutePage() {
                 <Key className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-sm text-[#1C2541]">App PIN</h3>
-                <p className="text-xs text-[#8C94A6] font-normal mt-0.5">6-digit fallback access</p>
+                <h3 className="font-semibold text-xs sm:text-sm text-[#1C2541]">{t("appPin")}</h3>
+                <p className="text-xs text-[#8C94A6] font-normal mt-0.5">{t("digitFallbackAccess")}</p>
               </div>
             </div>
 
             <button className="border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-4 py-2 rounded-xl text-xs shadow-2xs transition-colors cursor-pointer">
-              Change PIN
+              {t("changePin")}
             </button>
           </div>
         </div>
@@ -158,7 +161,7 @@ export default function ProfileAndKYCRoutePage() {
 
       {/* Notification Preferences Section */}
       <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs space-y-4">
-        <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">Notification preferences</h2>
+        <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">{isAr ? "تفضيلات الإشعارات" : "Notification preferences"}</h2>
 
         <div className="divide-y divide-slate-100 space-y-2">
           {/* Push Notifications */}
@@ -167,7 +170,7 @@ export default function ProfileAndKYCRoutePage() {
               <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <Bell className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">Push notifications</span>
+              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "الإشعارات المنبثقة" : "Push notifications"}</span>
             </div>
             <button
               onClick={() => setPushToggle(!pushToggle)}
@@ -189,7 +192,7 @@ export default function ProfileAndKYCRoutePage() {
               <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <MessageSquare className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">SMS notifications</span>
+              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات SMS" : "SMS notifications"}</span>
             </div>
             <button
               onClick={() => setSmsToggle(!smsToggle)}
@@ -211,7 +214,7 @@ export default function ProfileAndKYCRoutePage() {
               <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <MessageSquare className="w-5 h-5 text-emerald-600" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">WhatsApp notifications</span>
+              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات الواتساب" : "WhatsApp notifications"}</span>
             </div>
             <button
               onClick={() => setWhatsappToggle(!whatsappToggle)}
@@ -233,7 +236,7 @@ export default function ProfileAndKYCRoutePage() {
               <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <Mail className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">Email notifications</span>
+              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات البريد الإلكتروني" : "Email notifications"}</span>
             </div>
             <button
               onClick={() => setEmailToggle(!emailToggle)}
