@@ -1,12 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { ChevronDown, ChevronUp, Globe, Menu, X, ArrowRight, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
-import { useRouter } from "next/navigation";
-import { useAuth } from "../lib/auth-context";
+import { pagesApi } from "@/lib/api/pages.api";
+import { getLocalized, toBuilderLocale } from "@/lib/builder/i18n";
+import type { HeaderMenuItem } from "@/lib/builder/types";
+import { useCustomerAuth } from "@/lib/customer-auth-context";
 
 interface NavbarProps {
   onOpenAuthModal?: () => void;
@@ -16,28 +19,43 @@ interface NavbarProps {
 export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProps) {
   const { t, i18n } = useTranslation();
   const router = useRouter();
-  const { isLoggedIn } = useAuth();
+  const { isLoggedIn } = useCustomerAuth();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(true);
   const [mobileCorporateOpen, setMobileCorporateOpen] = useState(false);
   const [mobileServiceOpen, setMobileServiceOpen] = useState(false);
   const [langDropdownOpen, setLangDropdownOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [cmsMenuItems, setCmsMenuItems] = useState<HeaderMenuItem[]>([]);
 
   const currentLang = i18n.language || "en";
+  const locale = toBuilderLocale(currentLang);
+
+  const handleAccountClick = () => {
+    if (isLoggedIn) {
+      router.push("/user-portal/dashboard");
+    } else {
+      router.push("/user-portal/login");
+    }
+  };
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
+    let cancelled = false;
+    ;(async () => {
+      try {
+        const items = await pagesApi.listHeaderMenu();
+        if (!cancelled) setCmsMenuItems(items);
+      } catch {
+        // Navbar still works with static links if the menu API is unavailable
+        if (!cancelled) setCmsMenuItems([]);
       }
+    })();
+    return () => {
+      cancelled = true;
     };
-    handleScroll();
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const cmsMenuLabel = (item: HeaderMenuItem) =>
+    getLocalized(item.label, locale, "").trim() || item.title;
 
   const changeLang = (lang: string) => {
     i18n.changeLanguage(lang);
@@ -46,14 +64,9 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
 
   return (
     <>
-      <header
-        className={`sticky top-0 z-40 transition-all duration-300 ${isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm"
-          : "bg-transparent border-b border-transparent shadow-none"
-          }`}
-      >
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
-          <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20 transition-all duration-300">
+          <div className="flex items-center justify-between h-20">
 
             {/* Brand Logo & Spacing */}
             <div className="flex items-center gap-3 lg:gap-4 xl:gap-8 shrink-0">
@@ -64,7 +77,7 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
                   width={190}
                   height={48}
                   priority
-                  className="h-6 sm:h-7 lg:h-9 xl:h-10 w-auto object-contain"
+                  className="h-7 sm:h-8 lg:h-9 xl:h-10 w-auto object-contain"
                 />
               </Link>
 
@@ -171,6 +184,17 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
                     <ChevronDown className="w-3.5 h-3.5 xl:w-4 xl:h-4 text-slate-400 group-hover:text-indigo-600 transition-transform duration-200 group-hover:rotate-180 shrink-0" />
                   </button>
                 </div>
+
+                {/* CMS pages opted into the header menu */}
+                {cmsMenuItems.map((item) => (
+                  <Link
+                    key={item.id}
+                    href={`/p/${item.slug}`}
+                    className="px-2.5 xl:px-3 py-2 rounded-lg hover:bg-slate-50 hover:text-indigo-600 transition-colors whitespace-nowrap"
+                  >
+                    {cmsMenuLabel(item)}
+                  </Link>
+                ))}
               </nav>
             </div>
 
@@ -191,16 +215,18 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
                   <div className="absolute top-full ltr:right-0 rtl:left-0 mt-1 w-36 bg-white rounded-xl shadow-xl border border-slate-100 p-1.5 z-50 animate-in fade-in duration-150">
                     <button
                       onClick={() => changeLang("en")}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${currentLang === "en" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
-                        }`}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${
+                        currentLang === "en" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
+                      }`}
                     >
                       <span>EN - English</span>
                       {currentLang === "en" && <Check className="w-3.5 h-3.5 text-[#3B25B0]" />}
                     </button>
                     <button
                       onClick={() => changeLang("ar")}
-                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${currentLang === "ar" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
-                        }`}
+                      className={`w-full flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold transition-colors ${
+                        currentLang === "ar" ? "bg-indigo-50 text-[#3B25B0]" : "text-slate-700 hover:bg-slate-50"
+                      }`}
                     >
                       <span>AR - العربية</span>
                       {currentLang === "ar" && <Check className="w-3.5 h-3.5 text-[#3B25B0]" />}
@@ -210,16 +236,10 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
               </div>
 
               <button
-                onClick={() => {
-                  if (isLoggedIn) {
-                    router.push("/user-portal/dashboard");
-                  } else {
-                    router.push("/user-portal/login");
-                  }
-                }}
+                onClick={handleAccountClick}
                 className="bg-[#3B25B0] hover:bg-[#2F1F99] text-white px-4 xl:px-5 py-2.5 rounded-xl font-semibold text-xs xl:text-sm shadow-md hover:shadow-indigo-300/40 transition-all duration-200 transform active:scale-95 whitespace-nowrap"
               >
-                {isLoggedIn ? "My Account" : t("login")}
+                {isLoggedIn ? t("myAccount") : t("login")}
               </button>
             </div>
 
@@ -227,9 +247,9 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
             <div className="lg:hidden flex items-center space-x-2">
               <button
                 onClick={() => setMobileMenuOpen(true)}
-                className="p-1.5 rounded-xl text-slate-700 hover:bg-slate-100/80 focus:outline-none transition-colors"
+                className="p-2 rounded-xl text-slate-700 hover:bg-slate-100 focus:outline-none"
               >
-                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+                <Menu className="w-6 h-6" />
               </button>
             </div>
 
@@ -237,7 +257,7 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
         </div>
       </header>
 
-      {/* Side-Drawer Mobile Sidebar */}
+      {/* Side-Drawer Mobile Sidebar (Smooth 300ms Slide-in from right & Slide-out back to right) */}
       <div
         className={`fixed inset-0 z-[9999] flex justify-end transition-all duration-300 ${mobileMenuOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
           }`}
@@ -380,6 +400,22 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
                 )}
               </div>
 
+              {/* CMS pages opted into the header menu */}
+              {cmsMenuItems.length > 0 && (
+                <div className="border-t border-slate-100/80 pt-3 space-y-1">
+                  {cmsMenuItems.map((item) => (
+                    <Link
+                      key={item.id}
+                      href={`/p/${item.slug}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block w-full px-4 py-3 rounded-xl text-sm font-medium text-slate-700 hover:text-[#3B25B0] hover:bg-slate-50 transition-colors"
+                    >
+                      {cmsMenuLabel(item)}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
             </div>
 
           </div>
@@ -397,15 +433,11 @@ export default function Navbar({ onOpenAuthModal, onOpenQuoteModal }: NavbarProp
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
-                if (isLoggedIn) {
-                  router.push("/dashboard");
-                } else {
-                  router.push("/user-portal/login");
-                }
+                handleAccountClick();
               }}
               className="bg-[#3B25B0] text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md hover:bg-[#2F1F99] transition-colors whitespace-nowrap"
             >
-              {isLoggedIn ? "My Account" : t("login")}
+              {isLoggedIn ? t("myAccount") : t("login")}
             </button>
           </div>
 

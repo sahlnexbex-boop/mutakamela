@@ -2,8 +2,9 @@
 
 import { Zap, Globe2, ShieldCheck, HeartHandshake, Users } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import type { SectionDisplayCopy } from "@/lib/home/utils";
 
-export default function WhyUs() {
+export default function WhyUs({ copy }: { copy?: SectionDisplayCopy }) {
   const { t } = useTranslation();
 
   const pillars = [
@@ -44,16 +45,21 @@ export default function WhyUs() {
           data-gsap="fade-up"
         >
           {/* Subtle Ambient Background Gradient */}
-          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none" />
+          <div className="absolute top-0 right-0 w-96 h-96 bg-sky-400/10 rounded-full blur-3xl pointer-events-none home-orb-a" data-gsap-parallax="0.1" />
 
           {/* Section Header */}
           <div className="mb-10 text-left rtl:text-right">
             <div className="text-xs font-bold uppercase tracking-widest text-indigo-200/90 mb-2">
-              {t("whyMutakamela")}
+              {copy?.badge || t("whyMutakamela")}
             </div>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight">
-              {t("whyChooseMutakamela")}
+              {copy?.title || t("whyChooseMutakamela")}
             </h2>
+            {copy?.subtitle ? (
+              <p className="mt-2 max-w-2xl text-sm text-indigo-100/90 font-normal">
+                {copy.subtitle}
+              </p>
+            ) : null}
           </div>
 
           {/* 5 Pillars Row */}

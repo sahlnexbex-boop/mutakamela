@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useAuth } from "../../../lib/auth-context";
-import I18nProvider from "../../../components/i18n-provider";
+import { useCustomerAuth } from "@/lib/customer-auth-context";
+import I18nProvider from "@/components/i18n-provider";
 import { useTranslation } from "react-i18next";
 import {
   LayoutDashboard,
@@ -45,10 +45,16 @@ export default function ProtectedUserPortalLayout({
 function UserPortalShell({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user, logout, isLoggedIn, isReady } = useCustomerAuth();
   const { t, i18n } = useTranslation();
 
   const currentLang = i18n.language || "en";
+
+  useEffect(() => {
+    if (isReady && !isLoggedIn) {
+      router.replace("/user-portal/login");
+    }
+  }, [isReady, isLoggedIn, router]);
 
   const toggleLanguage = () => {
     const nextLang = currentLang === "en" ? "ar" : "en";
@@ -64,6 +70,14 @@ function UserPortalShell({ children }: { children: React.ReactNode }) {
     logout();
     router.push("/user-portal/login");
   };
+
+  if (!isReady || !isLoggedIn) {
+    return (
+      <div className="min-h-screen bg-[#F8F9FE] flex items-center justify-center text-slate-500 text-sm font-medium">
+        Loading portal…
+      </div>
+    );
+  }
 
   const navItems = [
     { href: "/user-portal/dashboard", label: t("dashboard"), icon: LayoutDashboard },
@@ -226,7 +240,7 @@ function UserPortalShell({ children }: { children: React.ReactNode }) {
                   href={item.href}
                   title={isCollapsed ? item.label : undefined}
                   className={`w-full flex items-center gap-3.5 px-3.5 py-3 rounded-2xl font-semibold text-xs sm:text-sm transition-all duration-200 cursor-pointer ${isActive
-                      ? "bg-[#2563EB] text-white shadow-md shadow-blue-500/20"
+                      ? "bg-gradient-to-r from-[#1a1071] to-[#3429a8] text-white shadow-md shadow-indigo-900/20"
                       : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"
                     } ${isCollapsed ? "justify-center px-0" : ""}`}
                 >
@@ -292,7 +306,7 @@ function UserPortalShell({ children }: { children: React.ReactNode }) {
                       key={item.href}
                       href={item.href}
                       onClick={() => setMobileSidebarOpen(false)}
-                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-semibold text-sm transition-all cursor-pointer ${isActive ? "bg-[#2563EB] text-white shadow-md" : "text-slate-700 hover:bg-slate-50"
+                      className={`w-full flex items-center gap-3 px-4 py-3 rounded-2xl font-semibold text-sm transition-all cursor-pointer ${isActive ? "bg-gradient-to-r from-[#1a1071] to-[#3429a8] text-white shadow-md" : "text-slate-700 hover:bg-slate-50"
                         }`}
                     >
                       <Icon className="w-5 h-5" />

@@ -4,12 +4,19 @@ import Image from "next/image";
 import { ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import type { SectionDisplayCopy } from "@/lib/home/utils";
+
 interface ClaimServicesProps {
   onOpenClaimModal?: () => void;
   onOpenTrackModal?: () => void;
+  copy?: SectionDisplayCopy;
 }
 
-export default function ClaimServices({ onOpenClaimModal, onOpenTrackModal }: ClaimServicesProps) {
+export default function ClaimServices({
+  onOpenClaimModal,
+  onOpenTrackModal,
+  copy,
+}: ClaimServicesProps) {
   const { t } = useTranslation();
 
   return (
@@ -25,21 +32,21 @@ export default function ClaimServices({ onOpenClaimModal, onOpenTrackModal }: Cl
           <div className="lg:col-span-6 space-y-6">
 
             <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0]">
-              {t("hassleFreeClaims")}
+              {copy?.badge || t("hassleFreeClaims")}
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight leading-[1.15]">
-              {t("claimHeading")}
+              {copy?.title || t("claimHeading")}
             </h2>
 
             <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-lg font-normal">
-              {t("claimSub")}
+              {copy?.subtitle || t("claimSub")}
             </p>
 
             <div className="flex flex-wrap gap-4 pt-2">
               <button
                 onClick={onOpenClaimModal}
-                className="bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-indigo-300/40 transition-all flex items-center gap-2 transform active:scale-95"
+                className="home-btn-shine bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md hover:shadow-indigo-300/40 transition-all flex items-center gap-2 transform active:scale-95"
               >
                 <span>{t("submitNewClaim")}</span>
                 <ChevronRight className="w-4 h-4 rtl:rotate-180" />
@@ -58,7 +65,7 @@ export default function ClaimServices({ onOpenClaimModal, onOpenTrackModal }: Cl
 
           {/* Right Column: 3D Graphic */}
           <div className="lg:col-span-6 flex justify-center items-center" data-gsap="scale">
-            <div className="relative w-full max-w-md lg:max-w-none">
+            <div className="relative w-full max-w-md lg:max-w-none home-float-soft">
               <Image
                 src="/images/claim_services.png"
                 alt="Mutakamela Claim Services Support"

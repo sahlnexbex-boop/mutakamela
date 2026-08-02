@@ -15,11 +15,15 @@ import {
 import { ShadcnSelect } from "@/components/ui/select";
 import { ShadcnDatePicker } from "@/components/ui/date-picker";
 
+import type { SectionDisplayCopy } from "@/lib/home/utils";
+
 interface HeroProps {
   onOpenQuoteModal?: (productType?: string, data?: any) => void;
+  /** CMS overrides for hero marketing copy */
+  copy?: SectionDisplayCopy;
 }
 
-export default function Hero({ onOpenQuoteModal }: HeroProps) {
+export default function Hero({ onOpenQuoteModal, copy }: HeroProps) {
   const { t } = useTranslation();
   const [activeTab, setActiveTab] = useState<"motor" | "travel" | "life" | "visa">("motor");
 
@@ -66,8 +70,8 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
     <section className="relative overflow-x-clip bg-hero-gradient pt-6 pb-10 sm:pb-12 lg:pt-10 lg:pb-16">
 
       {/* Background Subtle Shapes */}
-      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-indigo-100/50 blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-blue-100/40 blur-3xl pointer-events-none" />
+      <div className="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 rounded-full bg-indigo-100/50 blur-3xl pointer-events-none home-orb-a" data-gsap-parallax="0.08" />
+      <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-blue-100/40 blur-3xl pointer-events-none home-orb-b" data-gsap-parallax="0.14" />
 
       <div className="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
         <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-10 items-center">
@@ -76,18 +80,19 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
           <div className="w-full lg:col-span-6 relative flex justify-center items-center order-1 lg:order-2 mb-6 sm:mb-8 lg:mb-0" data-gsap="scale">
 
             {/* Main Hero Image */}
-            <div className="relative w-[88%] sm:w-[80%] lg:w-[84%] max-w-md lg:max-w-lg mx-auto pb-4">
+            <div className="relative w-[88%] sm:w-[80%] lg:w-[84%] max-w-md lg:max-w-lg mx-auto pb-4" data-gsap="float">
               <Image
-                src="/images/home.png"
+                src={copy?.imageUrl || "/images/home.png"}
                 alt="Mutakamela Family & Vehicle Protection"
                 width={560}
                 height={500}
                 priority
+                unoptimized={Boolean(copy?.imageUrl && !copy.imageUrl.startsWith("/images/"))}
                 className="w-full h-auto max-h-[460px] object-contain mx-auto"
               />
 
               {/* Floating App Badge Overlay - Centered on X-axis & positioned at bottom outer model */}
-              <div className="absolute -bottom-5 sm:-bottom-6 lg:-bottom-7 left-1/2 -translate-x-1/2 w-[92%] sm:w-[88%] max-w-[340px] sm:max-w-sm bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 shadow-soft-xl border border-slate-100/90 flex items-center justify-between space-x-2.5 sm:space-x-3 transition-transform hover:scale-[1.02] duration-300 z-20">
+              <div className="absolute -bottom-5 sm:-bottom-6 lg:-bottom-7 left-1/2 -translate-x-1/2 w-[92%] sm:w-[88%] max-w-[340px] sm:max-w-sm bg-white/95 backdrop-blur-md rounded-2xl sm:rounded-3xl p-2.5 sm:p-3.5 shadow-soft-xl border border-slate-100/90 flex items-center justify-between space-x-2.5 sm:space-x-3 transition-transform hover:scale-[1.02] duration-300 z-20 home-pulse-glow">
                 <div className="w-10 h-10 sm:w-11 sm:h-11 relative shrink-0">
                   <Image
                     src="/images/small_mobile.png"
@@ -123,21 +128,24 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
           </div>
 
           {/* Heading Text & Form Column (order-2 on mobile screen = COMES SECOND) */}
-          <div className="w-full lg:col-span-6 space-y-5 order-2 lg:order-1" data-gsap="fade-up">
+          <div className="w-full lg:col-span-6 space-y-5 order-2 lg:order-1" data-gsap="hero-stagger">
 
             {/* Trusted Protection Tag */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100/80 text-indigo-700 text-xs font-semibold uppercase tracking-wider">
               <ShieldCheck className="w-3.5 h-3.5 text-indigo-600" />
-              <span>{t("trustedProtection")}</span>
+              <span>{copy?.badge || t("trustedProtection")}</span>
             </div>
 
             {/* Hero Main Heading */}
             <h1 className="text-3xl sm:text-4xl lg:text-[44px] font-extrabold text-slate-900 leading-[1.2] tracking-tight">
-              {t("heroTitlePrefix")}<span className="text-[#3B25B0]">{t("tomorrow")}</span>
+              {copy?.title || t("heroTitlePrefix")}
+              <span className="text-[#3B25B0]">
+                {copy?.titleHighlight || t("tomorrow")}
+              </span>
             </h1>
 
             <p className="text-sm sm:text-base text-slate-500 max-w-lg font-normal leading-relaxed">
-              {t("heroSubtitle")}
+              {copy?.subtitle || t("heroSubtitle")}
             </p>
 
             {/* Interactive Tabbed Form Card - z-30 for popover overlay */}
@@ -231,7 +239,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="home-btn-shine w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
                         <span>{t("getQuote")}</span>
                         <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
@@ -265,7 +273,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="home-btn-shine w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center space-x-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
                         <span>Get Quote</span>
                         <ChevronRight className="w-3.5 h-3.5" />
@@ -307,7 +315,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="home-btn-shine w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
                         <span>{t("getQuote")}</span>
                         <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
@@ -344,7 +352,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                     <div className="sm:col-span-3">
                       <button
                         type="submit"
-                        className="w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
+                        className="home-btn-shine w-full bg-[#3B25B0] hover:bg-[#2F1F99] text-white font-bold text-xs py-2.5 px-3 rounded-xl flex items-center justify-center gap-1 shadow-md hover:shadow-indigo-300/50 transition-all duration-200 transform active:scale-95"
                       >
                         <span>{t("getQuote")}</span>
                         <ChevronRight className="w-3.5 h-3.5 rtl:rotate-180" />
@@ -358,9 +366,9 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
             </div>
 
             {/* Feature Badges Bar */}
-            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 border border-slate-100 shadow-soft grid grid-cols-2 md:grid-cols-4 gap-2.5">
+            <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-3 border border-slate-100 shadow-soft grid grid-cols-2 md:grid-cols-4 gap-2.5" data-gsap="stagger">
 
-              <div className="flex items-center gap-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5" data-gsap-item>
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <Clock className="w-4 h-4 text-[#3B25B0]" />
                 </div>
@@ -370,7 +378,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5" data-gsap-item>
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <ShieldCheck className="w-4 h-4 text-[#3B25B0]" />
                 </div>
@@ -380,7 +388,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5" data-gsap-item>
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <Users className="w-4 h-4 text-[#3B25B0]" />
                 </div>
@@ -390,7 +398,7 @@ export default function Hero({ onOpenQuoteModal }: HeroProps) {
                 </div>
               </div>
 
-              <div className="flex items-center gap-2.5 p-0.5">
+              <div className="flex items-center gap-2.5 p-0.5" data-gsap-item>
                 <div className="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center shrink-0">
                   <Headphones className="w-4 h-4 text-[#3B25B0]" />
                 </div>

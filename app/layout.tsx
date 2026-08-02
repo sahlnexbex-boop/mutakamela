@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Sans } from "next/font/google";
+import { AnalyticsTracker } from "@/components/analytics-tracker";
 import "./globals.css";
 
 const instrumentSans = Instrument_Sans({
@@ -30,6 +31,7 @@ export default function RootLayout({
     <html lang="en" className={`${instrumentSans.variable} scroll-smooth antialiased`}>
       <body className="font-sans min-h-screen bg-[#F8F9FE] text-slate-900 overflow-x-hidden">
         {children}
+        <AnalyticsTracker />
       </body>
     </html>
   );

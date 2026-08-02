@@ -4,11 +4,14 @@ import Image from "next/image";
 import { Car, Plane, HeartHandshake, FileCheck, Building2, ChevronRight } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import type { SectionDisplayCopy } from "@/lib/home/utils";
+
 interface ProductsSectionProps {
   onOpenQuoteModal?: (productTitle: string) => void;
+  copy?: SectionDisplayCopy;
 }
 
-export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionProps) {
+export default function ProductsSection({ onOpenQuoteModal, copy }: ProductsSectionProps) {
   const { t } = useTranslation();
 
   const products = [
@@ -59,15 +62,15 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
           <div className="lg:col-span-3 space-y-6 pt-2" data-gsap="fade-up">
             <div>
               <div className="text-xs md:text-md font-extrabold uppercase tracking-wider text-[#3B25B0] mb-2">
-                {t("ourInsuranceProducts")}
+                {copy?.title || t("ourInsuranceProducts")}
               </div>
 
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 tracking-tight leading-[1.2]">
-                {t("ourInsuranceProducts")}
+                {copy?.title || t("ourInsuranceProducts")}
               </h2>
 
               <p className="text-slate-600 text-sm sm:text-sm mt-3 font-normal leading-relaxed">
-                {t("tailoredForNeeds")}
+                {copy?.subtitle || t("tailoredForNeeds")}
               </p>
             </div>
 
@@ -91,6 +94,7 @@ export default function ProductsSection({ onOpenQuoteModal }: ProductsSectionPro
                   <div
                     key={product.id}
                     data-gsap-item
+                    data-gsap-hover
                     className="group bg-white rounded-3xl border border-slate-100/90 shadow-soft hover:shadow-soft-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between overflow-hidden relative min-h-[220px] sm:min-h-0"
                   >
                     {/* Card Content Info - Layered in FRONT on Z-axis (z-10) */}

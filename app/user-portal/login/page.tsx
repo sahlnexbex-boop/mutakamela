@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../../../lib/auth-context";
-import I18nProvider from "../../../components/i18n-provider";
+import { useCustomerAuth } from "@/lib/customer-auth-context";
+import I18nProvider from "@/components/i18n-provider";
 import { useTranslation } from "react-i18next";
 import { ShieldCheck, Lock, CheckCircle2, Globe, ArrowLeft } from "lucide-react";
 
@@ -19,7 +19,7 @@ export default function UserPortalLoginPage() {
 
 function LoginContent() {
   const router = useRouter();
-  const { login } = useAuth();
+  const { login } = useCustomerAuth();
   const { i18n } = useTranslation();
 
   // Current language state ("en" | "ar")
@@ -129,7 +129,7 @@ function LoginContent() {
     if (step === "nafath_verified") {
       const redirectTimer = setTimeout(() => {
         login(nationalId || email || "1029384756");
-        router.push("/user-portal/protected/dashboard");
+        router.push("/user-portal/dashboard");
       }, 2500);
       return () => clearTimeout(redirectTimer);
     }
@@ -155,13 +155,13 @@ function LoginContent() {
   return (
     <div
       dir={currentLang === "ar" ? "rtl" : "ltr"}
-      className="min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[#1E0E62] lg:bg-[#F8F9FE] text-slate-900 font-sans selection:bg-[#3B25B0] selection:text-white"
+      className="min-h-screen lg:h-screen lg:max-h-screen lg:overflow-hidden bg-[#1b1173] lg:bg-[#F8F9FE] text-slate-900 font-sans selection:bg-[#3B25B0] selection:text-white"
     >
       {/* Main Grid Wrapper */}
-      <div className="min-h-screen lg:h-full grid grid-cols-1 lg:grid-cols-12 relative z-10 bg-gradient-to-br from-[#1E0E62] via-[#261286] to-[#3B25B0] lg:bg-none">
+      <div className="min-h-screen lg:h-full grid grid-cols-1 lg:grid-cols-12 relative z-10 bg-gradient-to-r from-[#1b1173] to-[#3328a5] lg:bg-none">
 
         {/* Left Column - Deep Blue Gradient Branding Banner (Desktop Only lg:flex) */}
-        <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 bg-gradient-to-br from-[#20107A] via-[#2A179E] to-[#3B25B0] text-white p-5 lg:p-5 xl:p-12 flex-col justify-between relative overflow-hidden min-h-80 lg:min-h-0 lg:h-full">
+        <div className="hidden lg:flex lg:col-span-5 xl:col-span-5 bg-gradient-to-r from-[#1b1173] to-[#3328a5] text-white p-5 lg:p-5 xl:p-12 flex-col justify-between relative overflow-hidden min-h-80 lg:min-h-0 lg:h-full">
           {/* Subtle Background Glows */}
           <div className="absolute top-0 left-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl pointer-events-none" />

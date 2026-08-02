@@ -55,7 +55,7 @@ export default function BuyInsuranceRoutePage() {
       {/* 1. TOP HEADER & 4-STEP STEPPER ON THE SAME ROW (Middle/Center Aligned) */}
       <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6 mb-8">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-semibold text-[#1C2541]">{t("getAQuoteTitle")}</h1>
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-[#1C2541]">{t("getAQuoteTitle")}</h1>
           <p className="text-xs sm:text-sm text-[#8C94A6] font-normal mt-0.5">{t("selectProductToBegin")}</p>
         </div>
 
@@ -66,10 +66,10 @@ export default function BuyInsuranceRoutePage() {
 
           {/* Step 1 */}
           <div className="flex flex-col items-center gap-1 z-10 bg-[#F8F9FE] px-2">
-            <div className="w-8 h-8 rounded-full bg-[#2563EB] text-white font-semibold text-xs flex items-center justify-center shadow-md">
+            <div className="w-8 h-8 rounded-full bg-[#1a1071] text-white font-bold text-xs flex items-center justify-center shadow-md">
               1
             </div>
-            <span className="text-[11px] font-semibold text-[#1C2541] whitespace-nowrap">{t("selectProduct")}</span>
+            <span className="text-[11px] font-bold text-[#1a1071] whitespace-nowrap">{t("selectProduct")}</span>
           </div>
 
           {/* Step 2 */}
@@ -101,23 +101,23 @@ export default function BuyInsuranceRoutePage() {
       {/* 2. MAIN LAYOUT: Left Cards Column + Right Form Column */}
       <div className="flex flex-col lg:flex-row items-start gap-8">
 
-        {/* Left Side: Product Selector Cards (Horizontal Carousel on Mobile, Vertical Stack on Desktop) */}
+        {/* Left Side: Product Selector Cards (Active border color set to #1a1071) */}
         <div className="w-full lg:w-[340px] flex flex-row lg:flex-col gap-3 overflow-x-auto scrollbar-none snap-x py-1 shrink-0">
 
           {/* Card 1: Motor Insurance */}
           <div
             onClick={() => setSelectedProduct("motor")}
             className={`rounded-2xl p-3 sm:p-5 transition-all duration-200 cursor-pointer relative overflow-hidden flex items-center justify-between min-w-[210px] sm:min-w-0 lg:w-full min-h-[75px] sm:min-h-[105px] shrink-0 snap-start border ${selectedProduct === "motor"
-                ? "bg-white border-2 border-[#2563EB] shadow-md"
+                ? "bg-white border-2 border-[#1a1071] shadow-md"
                 : "bg-white border-slate-100 shadow-2xs hover:shadow-xs"
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("motorInsuranceProductTitle")}</h3>
+              <h3 className="font-bold text-xs sm:text-base text-[#1C2541] truncate">{t("motorInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
                 {t("motorInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromMotorPrice")}</p>
+              <p className="text-[11px] sm:text-xs font-bold text-[#16A34A] pt-0.5">{t("fromMotorPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_01.png" alt="Motor Insurance" fill className="object-contain" />
@@ -128,16 +128,16 @@ export default function BuyInsuranceRoutePage() {
           <div
             onClick={() => setSelectedProduct("travel")}
             className={`rounded-2xl p-3 sm:p-5 transition-all duration-200 cursor-pointer relative overflow-hidden flex items-center justify-between min-w-[210px] sm:min-w-0 lg:w-full min-h-[75px] sm:min-h-[105px] shrink-0 snap-start border ${selectedProduct === "travel"
-                ? "bg-white border-2 border-[#2563EB] shadow-md"
+                ? "bg-white border-2 border-[#1a1071] shadow-md"
                 : "bg-white border-slate-100 shadow-2xs hover:shadow-xs"
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("travelInsuranceProductTitle")}</h3>
+              <h3 className="font-bold text-xs sm:text-base text-[#1C2541] truncate">{t("travelInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
                 {t("travelInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromTravelPrice")}</p>
+              <p className="text-[11px] sm:text-xs font-bold text-[#16A34A] pt-0.5">{t("fromTravelPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_02.png" alt="Travel Insurance" fill className="object-contain" />
@@ -148,16 +148,16 @@ export default function BuyInsuranceRoutePage() {
           <div
             onClick={() => setSelectedProduct("visa")}
             className={`rounded-2xl p-3 sm:p-5 transition-all duration-200 cursor-pointer relative overflow-hidden flex items-center justify-between min-w-[210px] sm:min-w-0 lg:w-full min-h-[75px] sm:min-h-[105px] shrink-0 snap-start border ${selectedProduct === "visa"
-                ? "bg-white border-2 border-[#2563EB] shadow-md"
+                ? "bg-white border-2 border-[#1a1071] shadow-md"
                 : "bg-white border-slate-100 shadow-2xs hover:shadow-xs"
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("visitVisaInsuranceProductTitle")}</h3>
+              <h3 className="font-bold text-xs sm:text-base text-[#1C2541] truncate">{t("visitVisaInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
                 {t("visitVisaInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromVisaPrice")}</p>
+              <p className="text-[11px] sm:text-xs font-bold text-[#16A34A] pt-0.5">{t("fromVisaPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_04.png" alt="Visit Visa Insurance" fill className="object-contain rounded-md" />
@@ -168,16 +168,16 @@ export default function BuyInsuranceRoutePage() {
           <div
             onClick={() => setSelectedProduct("life")}
             className={`rounded-2xl p-3 sm:p-5 transition-all duration-200 cursor-pointer relative overflow-hidden flex items-center justify-between min-w-[210px] sm:min-w-0 lg:w-full min-h-[75px] sm:min-h-[105px] shrink-0 snap-start border ${selectedProduct === "life"
-                ? "bg-white border-2 border-[#2563EB] shadow-md"
+                ? "bg-white border-2 border-[#1a1071] shadow-md"
                 : "bg-white border-slate-100 shadow-2xs hover:shadow-xs"
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("lifeInsuranceProductTitle")}</h3>
+              <h3 className="font-bold text-xs sm:text-base text-[#1C2541] truncate">{t("lifeInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
                 {t("lifeInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromLifePrice")}</p>
+              <p className="text-[11px] sm:text-xs font-bold text-[#16A34A] pt-0.5">{t("fromLifePrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_03.png" alt="Life Insurance" fill className="object-contain rounded-md" />
@@ -188,16 +188,16 @@ export default function BuyInsuranceRoutePage() {
           <div
             onClick={() => setSelectedProduct("general")}
             className={`rounded-2xl p-3 sm:p-5 transition-all duration-200 cursor-pointer relative overflow-hidden flex items-center justify-between min-w-[210px] sm:min-w-0 lg:w-full min-h-[75px] sm:min-h-[105px] shrink-0 snap-start border ${selectedProduct === "general"
-                ? "bg-white border-2 border-[#2563EB] shadow-md"
+                ? "bg-white border-2 border-[#1a1071] shadow-md"
                 : "bg-white border-slate-100 shadow-2xs hover:shadow-xs"
               }`}
           >
             <div className="space-y-0.5 sm:space-y-1 max-w-[62%]">
-              <h3 className="font-semibold text-xs sm:text-base text-[#1C2541] truncate">{t("generalInsuranceProductTitle")}</h3>
+              <h3 className="font-bold text-xs sm:text-base text-[#1C2541] truncate">{t("generalInsuranceProductTitle")}</h3>
               <p className="hidden sm:block text-xs text-slate-500 leading-snug font-normal">
                 {t("generalInsuranceProductDesc")}
               </p>
-              <p className="text-[11px] sm:text-xs font-semibold text-[#16A34A] pt-0.5">{t("fromGeneralPrice")}</p>
+              <p className="text-[11px] sm:text-xs font-bold text-[#16A34A] pt-0.5">{t("fromGeneralPrice")}</p>
             </div>
             <div className="w-16 h-12 sm:w-24 sm:h-16 relative shrink-0">
               <Image src="/images/products_05.png" alt="General Insurance" fill className="object-contain" />
@@ -212,12 +212,12 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 1: MOTOR INSURANCE */}
           {selectedProduct === "motor" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{t("motorVehicleDetailsHeader")}</h2>
+              <h2 className="text-lg font-bold text-[#1C2541]">{t("motorVehicleDetailsHeader")}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 {/* Vehicle Make */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{t("vehicleMakeLabel")}</label>
+                  <label className="text-xs font-bold text-slate-700">{t("vehicleMakeLabel")}</label>
                   <ShadcnSelect
                     value={vehicleMake}
                     onChange={setVehicleMake}
@@ -227,7 +227,7 @@ export default function BuyInsuranceRoutePage() {
 
                 {/* Vehicle Model */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{t("vehicleModelLabel")}</label>
+                  <label className="text-xs font-bold text-slate-700">{t("vehicleModelLabel")}</label>
                   <ShadcnSelect
                     value={vehicleModel}
                     onChange={setVehicleModel}
@@ -237,7 +237,7 @@ export default function BuyInsuranceRoutePage() {
 
                 {/* Year of Manufacture */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{t("yearOfManufactureLabel")}</label>
+                  <label className="text-xs font-bold text-slate-700">{t("yearOfManufactureLabel")}</label>
                   <ShadcnSelect
                     value={manufactureYear}
                     onChange={setManufactureYear}
@@ -247,31 +247,31 @@ export default function BuyInsuranceRoutePage() {
 
                 {/* Plate Number */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{t("plateNumberLabel")}</label>
+                  <label className="text-xs font-bold text-slate-700">{t("plateNumberLabel")}</label>
                   <input
                     type="text"
                     value={plateNumber}
                     onChange={(e) => setPlateNumber(e.target.value)}
                     placeholder={isAr ? "مثال: 1234 أ ب ج" : "e.g 1234 ABC"}
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 {/* Chassis Number (VIN) */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{t("chassisNumberVinLabel")}</label>
+                  <label className="text-xs font-bold text-slate-700">{t("chassisNumberVinLabel")}</label>
                   <input
                     type="text"
                     value={vinNumber}
                     onChange={(e) => setVinNumber(e.target.value)}
                     placeholder={isAr ? "رقم الهيكل من 17 حرفاً" : "17 Character VIN"}
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 {/* City of Registration */}
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{t("cityOfRegistrationLabel")}</label>
+                  <label className="text-xs font-bold text-slate-700">{t("cityOfRegistrationLabel")}</label>
                   <ShadcnSelect
                     value={registrationCity}
                     onChange={setRegistrationCity}
@@ -280,51 +280,66 @@ export default function BuyInsuranceRoutePage() {
                 </div>
               </div>
 
-              {/* Select Coverage Type Cards */}
+              {/* COVERAGE TYPE SELECTOR BOXES (MATCHING SPECIFIC BORDER/TEXT/BG COLOR PER REQUEST 3) */}
               <div className="space-y-2 pt-2 border-t border-slate-100">
-                <label className="text-xs font-semibold text-slate-700 block">{t("selectCoverageTypeLabel")}</label>
+                <label className="text-xs font-bold text-slate-700 block">{t("selectCoverageTypeLabel")}</label>
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                  {/* Box 1: Comprehensive (#D78A09 border & text, 5% background color) */}
                   <div
                     onClick={() => setCoverageType("comprehensive")}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer space-y-1 ${coverageType === "comprehensive"
-                        ? "border-2 border-slate-800 bg-white shadow-xs"
-                        : "border-slate-200 bg-white hover:bg-slate-50"
+                    className={`p-3.5 rounded-xl transition-all cursor-pointer space-y-1 ${coverageType === "comprehensive"
+                        ? "border-2 border-[#D78A09] bg-[#D78A09]/5 shadow-xs"
+                        : "border border-slate-200 bg-white hover:bg-slate-50"
                       }`}
                   >
-                    <div className="font-semibold text-xs text-[#1C2541]">{t("comprehensiveCoverage")}</div>
-                    <div className="text-[11px] text-slate-500">{isAr ? "من 1,200 ر.س/سنوياً" : "From SAR 1,200/yr"}</div>
+                    <div className={`font-bold text-xs ${coverageType === "comprehensive" ? "text-[#D78A09]" : "text-[#1C2541]"}`}>
+                      {t("comprehensiveCoverage")}
+                    </div>
+                    <div className={`text-[11px] ${coverageType === "comprehensive" ? "text-[#D78A09]/80 font-semibold" : "text-slate-500"}`}>
+                      {isAr ? "من 1,200 ر.س/سنوياً" : "From SAR 1,200/yr"}
+                    </div>
                   </div>
 
+                  {/* Box 2: Third-party (#16A34A border & text, 5% background color) */}
                   <div
                     onClick={() => setCoverageType("third-party")}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer space-y-1 ${coverageType === "third-party"
-                        ? "border-2 border-slate-800 bg-white shadow-xs"
-                        : "border-slate-200 bg-white hover:bg-slate-50"
+                    className={`p-3.5 rounded-xl transition-all cursor-pointer space-y-1 ${coverageType === "third-party"
+                        ? "border-2 border-[#16A34A] bg-[#16A34A]/5 shadow-xs"
+                        : "border border-slate-200 bg-white hover:bg-slate-50"
                       }`}
                   >
-                    <div className="font-semibold text-xs text-[#1C2541]">{t("thirdPartyCoverage")}</div>
-                    <div className="text-[11px] text-slate-500">{isAr ? "من 600 ر.س/سنوياً" : "From SAR 600/yr"}</div>
+                    <div className={`font-bold text-xs ${coverageType === "third-party" ? "text-[#16A34A]" : "text-[#1C2541]"}`}>
+                      {t("thirdPartyCoverage")}
+                    </div>
+                    <div className={`text-[11px] ${coverageType === "third-party" ? "text-[#16A34A]/80 font-semibold" : "text-slate-500"}`}>
+                      {isAr ? "من 600 ر.س/سنوياً" : "From SAR 600/yr"}
+                    </div>
                   </div>
 
+                  {/* Box 3: Collision only (#EA580C border & text, 5% background color) */}
                   <div
                     onClick={() => setCoverageType("collision")}
-                    className={`p-3.5 rounded-xl border transition-all cursor-pointer space-y-1 ${coverageType === "collision"
-                        ? "border-2 border-slate-800 bg-white shadow-xs"
-                        : "border-slate-200 bg-white hover:bg-slate-50"
+                    className={`p-3.5 rounded-xl transition-all cursor-pointer space-y-1 ${coverageType === "collision"
+                        ? "border-2 border-[#EA580C] bg-[#EA580C]/5 shadow-xs"
+                        : "border border-slate-200 bg-white hover:bg-slate-50"
                       }`}
                   >
-                    <div className="font-semibold text-xs text-[#1C2541]">{t("collisionOnlyCoverage")}</div>
-                    <div className="text-[11px] text-slate-500">{isAr ? "من 900 ر.س/سنوياً" : "From SAR 900/yr"}</div>
+                    <div className={`font-bold text-xs ${coverageType === "collision" ? "text-[#EA580C]" : "text-[#1C2541]"}`}>
+                      {t("collisionOnlyCoverage")}
+                    </div>
+                    <div className={`text-[11px] ${coverageType === "collision" ? "text-[#EA580C]/80 font-semibold" : "text-slate-500"}`}>
+                      {isAr ? "من 900 ر.س/سنوياً" : "From SAR 900/yr"}
+                    </div>
                   </div>
                 </div>
               </div>
 
               {/* Action Buttons */}
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
-                <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
+                <button className="bg-[#1a1071] hover:bg-[#281a95] text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
                   {t("getInstantQuoteBtn")}
                 </button>
-                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
+                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
                   {t("saveContinueLaterBtn")}
                 </button>
               </div>
@@ -334,11 +349,11 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 2: TRAVEL INSURANCE */}
           {selectedProduct === "travel" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "تأمين السفر — تفاصيل الرحلة" : "Travel insurance — trip details"}</h2>
+              <h2 className="text-lg font-bold text-[#1C2541]">{isAr ? "تأمين السفر — تفاصيل الرحلة" : "Travel insurance — trip details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "الوجهة" : "Destination"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "الوجهة" : "Destination"}</label>
                   <ShadcnSelect
                     value={destination}
                     onChange={setDestination}
@@ -347,7 +362,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "نوع الرحلة" : "Trip type"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "نوع الرحلة" : "Trip type"}</label>
                   <ShadcnSelect
                     value={tripType}
                     onChange={setTripType}
@@ -356,29 +371,29 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ المغادرة" : "Departure date"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "تاريخ المغادرة" : "Departure date"}</label>
                   <input
                     type="text"
                     value={departureDate}
                     onChange={(e) => setDepartureDate(e.target.value)}
                     placeholder="DD/MM/YYYY"
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ العودة" : "Return date"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "تاريخ العودة" : "Return date"}</label>
                   <input
                     type="text"
                     value={returnDate}
                     onChange={(e) => setReturnDate(e.target.value)}
                     placeholder="DD/MM/YYYY"
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "عدد المسافرين" : "Travellers"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "عدد المسافرين" : "Travellers"}</label>
                   <ShadcnSelect
                     value={travellers}
                     onChange={setTravellers}
@@ -387,7 +402,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "الجنسية" : "Nationality"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "الجنسية" : "Nationality"}</label>
                   <ShadcnSelect
                     value={travelNationality}
                     onChange={setTravelNationality}
@@ -397,10 +412,10 @@ export default function BuyInsuranceRoutePage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
-                <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
+                <button className="bg-[#1a1071] hover:bg-[#281a95] text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
                   {t("getInstantQuoteBtn")}
                 </button>
-                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
+                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
                   {t("saveContinueLaterBtn")}
                 </button>
               </div>
@@ -410,22 +425,22 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 3: VISIT VISA INSURANCE */}
           {selectedProduct === "visa" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "تأمين تأشيرة الزيارة — تفاصيل الزائر" : "Visit visa insurance — visitor details"}</h2>
+              <h2 className="text-lg font-bold text-[#1C2541]">{isAr ? "تأمين تأشيرة الزيارة — تفاصيل الزائر" : "Visit visa insurance — visitor details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "جنسية الزائر" : "Visitor nationality"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "جنسية الزائر" : "Visitor nationality"}</label>
                   <input
                     type="text"
                     value={visitorNationality}
                     onChange={(e) => setVisitorNationality(e.target.value)}
                     placeholder={isAr ? "مثال: مصري" : "e.g. Egyptian"}
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "نوع التأشيرة" : "Visa type"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "نوع التأشيرة" : "Visa type"}</label>
                   <ShadcnSelect
                     value={visaType}
                     onChange={setVisaType}
@@ -434,18 +449,18 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ الوصول" : "Arrival date"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "تاريخ الوصول" : "Arrival date"}</label>
                   <input
                     type="text"
                     value={arrivalDate}
                     onChange={(e) => setArrivalDate(e.target.value)}
                     placeholder="DD/MM/YYYY"
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "المدة" : "Duration"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "المدة" : "Duration"}</label>
                   <ShadcnSelect
                     value={visaDuration}
                     onChange={setVisaDuration}
@@ -455,10 +470,10 @@ export default function BuyInsuranceRoutePage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
-                <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
+                <button className="bg-[#1a1071] hover:bg-[#281a95] text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
                   {t("getInstantQuoteBtn")}
                 </button>
-                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
+                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
                   {t("saveContinueLaterBtn")}
                 </button>
               </div>
@@ -468,22 +483,22 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 4: LIFE INSURANCE */}
           {selectedProduct === "life" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "تأمين الحياة — البيانات الشخصية" : "Life insurance — personal details"}</h2>
+              <h2 className="text-lg font-bold text-[#1C2541]">{isAr ? "تأمين الحياة — البيانات الشخصية" : "Life insurance — personal details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "تاريخ الميلاد" : "Date of birth"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "تاريخ الميلاد" : "Date of birth"}</label>
                   <input
                     type="text"
                     value={dob}
                     onChange={(e) => setDob(e.target.value)}
                     placeholder="15/05/1990"
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "الجنس" : "Gender"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "الجنس" : "Gender"}</label>
                   <ShadcnSelect
                     value={gender}
                     onChange={setGender}
@@ -492,7 +507,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "مبلغ التغطية (ر.س)" : "Coverage amount (SAR)"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "مبلغ التغطية (ر.س)" : "Coverage amount (SAR)"}</label>
                   <ShadcnSelect
                     value={lifeCoverage}
                     onChange={setLifeCoverage}
@@ -501,7 +516,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "مدة الوثيقة" : "Policy term"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "مدة الوثيقة" : "Policy term"}</label>
                   <ShadcnSelect
                     value={policyTerm}
                     onChange={setPolicyTerm}
@@ -510,7 +525,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "حالة التدخين" : "Smoker status"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "حالة التدخين" : "Smoker status"}</label>
                   <ShadcnSelect
                     value={smokerStatus}
                     onChange={setSmokerStatus}
@@ -519,7 +534,7 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "المهنة" : "Occupation"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "المهنة" : "Occupation"}</label>
                   <ShadcnSelect
                     value={occupation}
                     onChange={setOccupation}
@@ -529,10 +544,10 @@ export default function BuyInsuranceRoutePage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
-                <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
+                <button className="bg-[#1a1071] hover:bg-[#281a95] text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
                   {t("getInstantQuoteBtn")}
                 </button>
-                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
+                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
                   {t("saveContinueLaterBtn")}
                 </button>
               </div>
@@ -542,11 +557,11 @@ export default function BuyInsuranceRoutePage() {
           {/* FORM 5: GENERAL INSURANCE */}
           {selectedProduct === "general" && (
             <div className="space-y-6">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{isAr ? "التأمين العام — تفاصيل العقار" : "General insurance — property details"}</h2>
+              <h2 className="text-lg font-bold text-[#1C2541]">{isAr ? "التأمين العام — تفاصيل العقار" : "General insurance — property details"}</h2>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "فئة التأمين" : "Insurance category"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "فئة التأمين" : "Insurance category"}</label>
                   <ShadcnSelect
                     value={generalCategory}
                     onChange={setGeneralCategory}
@@ -555,29 +570,29 @@ export default function BuyInsuranceRoutePage() {
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "قيمة العقار (ر.س)" : "Property value (SAR)"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "قيمة العقار (ر.س)" : "Property value (SAR)"}</label>
                   <input
                     type="text"
                     value={propertyValue}
                     onChange={(e) => setPropertyValue(e.target.value)}
                     placeholder="500,000"
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "عنوان العقار" : "Property address"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "عنوان العقار" : "Property address"}</label>
                   <input
                     type="text"
                     value={propertyAddress}
                     onChange={(e) => setPropertyAddress(e.target.value)}
                     placeholder={isAr ? "المدينة، الحي، الشارع" : "City, district, street"}
-                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                    className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#1a1071]"
                   />
                 </div>
 
                 <div className="space-y-1.5">
-                  <label className="text-xs font-semibold text-slate-700">{isAr ? "سنة البناء" : "Build year"}</label>
+                  <label className="text-xs font-bold text-slate-700">{isAr ? "سنة البناء" : "Build year"}</label>
                   <ShadcnSelect
                     value={buildYear}
                     onChange={setBuildYear}
@@ -587,10 +602,10 @@ export default function BuyInsuranceRoutePage() {
               </div>
 
               <div className="flex flex-wrap items-center justify-end gap-3 pt-4 border-t border-slate-100">
-                <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-semibold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
+                <button className="bg-[#1a1071] hover:bg-[#281a95] text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
                   {t("getInstantQuoteBtn")}
                 </button>
-                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-semibold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
+                <button className="border border-slate-700 hover:bg-slate-50 text-slate-800 font-bold px-5 py-2.5 rounded-xl text-xs sm:text-sm transition-colors cursor-pointer">
                   {t("saveContinueLaterBtn")}
                 </button>
               </div>
@@ -620,7 +635,7 @@ function ShadcnSelect({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm font-semibold text-slate-800 flex items-center justify-between hover:bg-slate-50/80 transition-colors focus:outline-none focus:ring-1 focus:ring-[#2563EB] cursor-pointer"
+        className="w-full h-11 bg-white border border-slate-200 rounded-xl px-3.5 text-xs sm:text-sm font-semibold text-slate-800 flex items-center justify-between hover:bg-slate-50/80 transition-colors focus:outline-none focus:ring-1 focus:ring-[#1a1071] cursor-pointer"
       >
         <span>{value}</span>
         <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
@@ -637,11 +652,11 @@ function ShadcnSelect({
                   onChange(opt);
                   setOpen(false);
                 }}
-                className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold cursor-pointer transition-colors ${value === opt ? "bg-blue-50 text-[#2563EB]" : "text-slate-700 hover:bg-slate-50"
+                className={`flex items-center justify-between px-3.5 py-2 rounded-xl text-xs sm:text-sm font-semibold cursor-pointer transition-colors ${value === opt ? "bg-indigo-50 text-[#1a1071]" : "text-slate-700 hover:bg-slate-50"
                   }`}
               >
                 <span>{opt}</span>
-                {value === opt && <Check className="w-3.5 h-3.5 text-[#2563EB]" />}
+                {value === opt && <Check className="w-3.5 h-3.5 text-[#1a1071]" />}
               </div>
             ))}
           </div>

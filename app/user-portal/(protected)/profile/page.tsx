@@ -1,26 +1,25 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
-import { useAuth } from "../../../../lib/auth-context";
+import { useCustomerAuth } from "@/lib/customer-auth-context";
 import { useTranslation } from "react-i18next";
 import {
-  UserCheck,
   Lock,
   Key,
   Bell,
   MessageSquare,
   Mail,
   ShieldCheck,
-  Pencil
+  Pencil,
+  CheckCircle2
 } from "lucide-react";
 
 export default function ProfileAndKYCRoutePage() {
-  const { user } = useAuth();
+  const { user } = useCustomerAuth();
   const { t, i18n } = useTranslation();
   const isAr = i18n.language === "ar";
 
-  const [otpToggle, setOtpToggle] = useState(true);
+  const [otpToggle, setOtpToggle] = useState(false);
   const [pushToggle, setPushToggle] = useState(true);
   const [smsToggle, setSmsToggle] = useState(false);
   const [whatsappToggle, setWhatsappToggle] = useState(false);
@@ -28,102 +27,105 @@ export default function ProfileAndKYCRoutePage() {
 
   return (
     <div className="space-y-6 max-w-6xl">
-      {/* Page Header (Same Top Row on Mobile Screens) */}
+      {/* Page Header */}
       <div className="flex flex-row items-center justify-between gap-2">
         <div>
-          <h1 className="text-xl sm:text-3xl font-semibold text-[#1C2541]">{t("profileHeading")}</h1>
-          <p className="text-[11px] sm:text-sm text-[#8C94A6] font-normal mt-0.5">
+          <h1 className="text-xl sm:text-3xl font-extrabold text-[#1C2541]">{t("profileHeading")}</h1>
+          <p className="text-[11px] sm:text-sm text-slate-500 font-medium mt-0.5">
             {t("manageIdentitySec")}
           </p>
         </div>
-        <button className="border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-3 py-2 sm:px-4 sm:py-2 rounded-xl text-xs sm:text-sm shadow-2xs transition-colors cursor-pointer shrink-0 flex items-center gap-1.5">
-          <Pencil className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-slate-600" />
-          <span className="hidden sm:inline">{t("editProfile")}</span>
+        <button className="border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold px-3.5 py-2 rounded-xl text-xs sm:text-sm shadow-2xs transition-colors cursor-pointer shrink-0 flex items-center gap-1.5">
+          <Pencil className="w-3.5 h-3.5 text-slate-600" />
+          <span>{t("editProfile")}</span>
         </button>
       </div>
 
-      {/* Top 2 Columns: Identity Card + Personal Info Table */}
+      {/* Top 2 Columns: Gradient Identity Card (Left) + Personal Info Table (Right) */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        {/* Identity Card (Left) */}
-        <div className="lg:col-span-5 bg-white rounded-3xl p-6 border border-slate-100 shadow-xs flex flex-col justify-between space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full overflow-hidden relative border border-slate-200 shrink-0 bg-slate-100 shadow-sm">
-              <Image
-                src="/images/user_02.png"
-                alt={user?.name || (isAr ? "أحمد" : "Ahmed")}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="space-y-1">
-              <h2 className="text-lg font-semibold text-[#1C2541]">{user?.name || (isAr ? "أحمد" : "Ahmed")}</h2>
-              <p className="text-xs text-[#8C94A6] font-normal">{isAr ? "الهوية الوطنية: 1098****12" : "National ID: 1098****12"}</p>
+        {/* Identity Card (Left - MATCHING ATTACHED IMAGE 2) */}
+        <div className="lg:col-span-5 rounded-2xl border border-slate-100 shadow-xs flex flex-col justify-between overflow-hidden">
+          {/* Top Gradient Banner Box */}
+          <div className="bg-gradient-to-r from-[#180E5E] via-[#201382] to-[#3429A8] p-6 text-white space-y-4 relative">
+            <div className="flex items-center gap-4">
+              {/* Large Letter Avatar 'A' */}
+              <div className="w-14 h-14 rounded-full bg-white text-[#180E5E] font-extrabold text-2xl flex items-center justify-center shrink-0 shadow-md">
+                A
+              </div>
+              <div className="space-y-1">
+                <h2 className="text-xl font-bold text-white">{user?.name || (isAr ? "أحمد" : "Ahmed")}</h2>
+                <p className="text-xs text-indigo-200 font-normal">{isAr ? "الهوية الوطنية: 1098***12" : "National ID: 1098***12"}</p>
 
-              <div className="flex flex-wrap gap-1.5 pt-1">
-                <span className="bg-sky-50 text-sky-700 border border-sky-200 text-[11px] font-semibold px-2.5 py-0.5 rounded-md">
-                  {t("ekycVerified")}
-                </span>
-                <span className="bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-semibold px-2.5 py-0.5 rounded-md">
-                  {t("nafathConnected")}
-                </span>
+                {/* Verification Badges */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  <span className="bg-white/20 text-white backdrop-blur-xs text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <CheckCircle2 className="w-3 h-3 text-cyan-300" />
+                    <span>{t("ekycVerified")}</span>
+                  </span>
+                  <span className="bg-[#10B981] text-white text-[10px] font-bold px-2 py-0.5 rounded-md flex items-center gap-1">
+                    <span>{t("nafathConnected")}</span>
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="pt-4 border-t border-slate-100 space-y-2 text-xs sm:text-sm">
-            <div className="flex justify-between">
-              <span className="text-[#8C94A6] font-normal">{t("registeredDate")}:</span>
-              <span className="font-semibold text-[#1C2541]">{isAr ? "15 يناير 2024" : "15 Jan 2024"}</span>
+          {/* Bottom Card White Details */}
+          <div className="bg-white p-5 space-y-2 text-xs sm:text-sm text-slate-600 border-t border-slate-100 flex-1 flex flex-col justify-center">
+            <div className="flex justify-between items-center">
+              <span className="text-slate-400 font-normal">{t("registeredDate")}:</span>
+              <span className="font-bold text-[#1C2541]">{isAr ? "15 يناير 2024" : "15 Jan 2024"}</span>
             </div>
-            <div className="flex justify-between">
-              <span className="text-[#8C94A6] font-normal">{t("customerId")}:</span>
-              <span className="font-semibold text-[#1C2541]">MIC-CUST-00418</span>
+            <div className="flex justify-between items-center">
+              <span className="text-slate-400 font-normal">{t("customerId")}:</span>
+              <span className="font-bold text-[#1C2541] font-mono">MIC-CUST-00418</span>
             </div>
           </div>
         </div>
 
-        {/* Personal Information Grid (Right) */}
-        <div className="lg:col-span-7 bg-white rounded-3xl p-6 border border-slate-100 shadow-xs space-y-4">
-          <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">{t("personalInfo")}</h2>
+        {/* Personal Information Table (Right - MATCHING ATTACHED IMAGE 2) */}
+        <div className="lg:col-span-7 bg-white rounded-2xl p-6 border border-slate-100 shadow-xs space-y-4">
+          <h2 className="text-base sm:text-lg font-bold text-[#1C2541]">{t("personalInfo")}</h2>
 
           <div className="divide-y divide-slate-100 text-xs sm:text-sm">
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">{t("fullName")}</span>
-              <span className="font-semibold text-[#1C2541]">{user?.name || (isAr ? "أحمد" : "Ahmed")}</span>
+              <span className="text-slate-400 font-normal">{t("fullName")}</span>
+              <span className="font-bold text-[#1C2541]">{user?.name || (isAr ? "أحمد" : "Ahmed")}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">{t("mobile")}</span>
-              <span className="font-semibold text-[#1C2541]">{isAr ? "9665****1001+" : "+966 5****1001"}</span>
+              <span className="text-slate-400 font-normal">{t("mobile")}</span>
+              <span className="font-bold text-[#1C2541]">{isAr ? "9665-1001+" : "+966 5- 1001"}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">{t("email")}</span>
-              <span className="font-semibold text-[#1C2541]">{user?.email || "ahmed@mutakamela.sa"}</span>
+              <span className="text-slate-400 font-normal">{t("email")}</span>
+              <span className="font-bold text-[#1C2541]">{isAr ? "ahmed@-.com" : "ahmed@-.com"}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">{t("nationality")}</span>
-              <span className="font-semibold text-[#1C2541]">{t("saudiArabia")}</span>
+              <span className="text-slate-400 font-normal">{t("nationality")}</span>
+              <span className="font-bold text-[#1C2541]">{t("saudiArabia")}</span>
             </div>
             <div className="py-3 flex justify-between items-center">
-              <span className="text-[#8C94A6] font-normal">{t("preferredLanguage")}</span>
-              <span className="font-semibold text-[#1C2541]">{isAr ? t("arabicLang") : t("englishLang")}</span>
+              <span className="text-slate-400 font-normal">{t("preferredLanguage")}</span>
+              <span className="font-bold text-[#1C2541]">{isAr ? t("arabicLang") : t("englishLang")}</span>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Security & Authentication Section */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs space-y-4">
-        <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">{t("securityAuthentication")}</h2>
+      {/* Security & Authentication Section (MATCHING ATTACHED IMAGE 2) */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-xs space-y-4">
+        <h2 className="text-base sm:text-lg font-bold text-[#1C2541]">{t("securityAuthentication")}</h2>
 
         <div className="divide-y divide-slate-100 space-y-2">
+          {/* OTP for transactions */}
           <div className="pt-2 pb-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <Lock className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-sm text-[#1C2541]">{t("otpForTransactions")}</h3>
-                <p className="text-xs text-[#8C94A6] font-normal mt-0.5">{t("requiredForAllPayments")}</p>
+                <h3 className="font-bold text-xs sm:text-sm text-[#1C2541]">{t("otpForTransactions")}</h3>
+                <p className="text-xs text-slate-400 font-normal mt-0.5">{t("requiredForAllPayments")}</p>
               </div>
             </div>
 
@@ -141,36 +143,37 @@ export default function ProfileAndKYCRoutePage() {
             </button>
           </div>
 
+          {/* App PIN (6-digit fallback access) */}
           <div className="pt-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-3.5">
               <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <Key className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-semibold text-xs sm:text-sm text-[#1C2541]">{t("appPin")}</h3>
-                <p className="text-xs text-[#8C94A6] font-normal mt-0.5">{t("digitFallbackAccess")}</p>
+                <h3 className="font-bold text-xs sm:text-sm text-[#1C2541]">{t("appPin")}</h3>
+                <p className="text-xs text-slate-400 font-normal mt-0.5">{isAr ? "وصول احتياطي من 6 أرقام" : "6-digit fallback access"}</p>
               </div>
             </div>
 
-            <button className="border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold px-4 py-2 rounded-xl text-xs shadow-2xs transition-colors cursor-pointer">
+            <button className="border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold px-4 py-2 rounded-xl text-xs shadow-2xs transition-colors cursor-pointer">
               {t("changePin")}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Notification Preferences Section */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs space-y-4">
-        <h2 className="text-base sm:text-lg font-semibold text-[#1C2541]">{isAr ? "تفضيلات الإشعارات" : "Notification preferences"}</h2>
+      {/* Notification Preferences Section (MATCHING ATTACHED IMAGE 2) */}
+      <div className="bg-white rounded-2xl p-6 border border-slate-100 shadow-xs space-y-4">
+        <h2 className="text-base sm:text-lg font-bold text-[#1C2541]">{isAr ? "تفضيلات الإشعارات" : "Notification preferences"}</h2>
 
         <div className="divide-y divide-slate-100 space-y-2">
           {/* Push Notifications */}
           <div className="pt-2 pb-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <Bell className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "الإشعارات المنبثقة" : "Push notifications"}</span>
+              <span className="font-bold text-xs sm:text-sm text-[#1C2541]">{isAr ? "الإشعارات المنبثقة" : "Push notifications"}</span>
             </div>
             <button
               onClick={() => setPushToggle(!pushToggle)}
@@ -188,11 +191,11 @@ export default function ProfileAndKYCRoutePage() {
 
           {/* SMS Notifications */}
           <div className="pt-3 pb-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <MessageSquare className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات SMS" : "SMS notifications"}</span>
+              <span className="font-bold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات SMS" : "SMS notifications"}</span>
             </div>
             <button
               onClick={() => setSmsToggle(!smsToggle)}
@@ -210,11 +213,11 @@ export default function ProfileAndKYCRoutePage() {
 
           {/* WhatsApp Notifications */}
           <div className="pt-3 pb-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
-                <MessageSquare className="w-5 h-5 text-emerald-600" />
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
+                <MessageSquare className="w-5 h-5 text-[#25D366]" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات الواتساب" : "WhatsApp notifications"}</span>
+              <span className="font-bold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات الواتساب" : "WhatsApp notifications"}</span>
             </div>
             <button
               onClick={() => setWhatsappToggle(!whatsappToggle)}
@@ -232,11 +235,11 @@ export default function ProfileAndKYCRoutePage() {
 
           {/* Email Notifications */}
           <div className="pt-3 flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
+            <div className="flex items-center gap-3.5">
+              <div className="w-10 h-10 rounded-xl bg-blue-50 text-[#2563EB] flex items-center justify-center shrink-0">
                 <Mail className="w-5 h-5" />
               </div>
-              <span className="font-semibold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات البريد الإلكتروني" : "Email notifications"}</span>
+              <span className="font-bold text-xs sm:text-sm text-[#1C2541]">{isAr ? "إشعارات البريد الإلكتروني" : "Email notifications"}</span>
             </div>
             <button
               onClick={() => setEmailToggle(!emailToggle)}
@@ -254,23 +257,19 @@ export default function ProfileAndKYCRoutePage() {
         </div>
       </div>
 
-      {/* Bottom Nafath Verified Banner (Matching Image 2 Model) */}
-      <div className="bg-[#E2F7E5] border border-[#A7F3D0] rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
+      {/* Bottom Nafath Verified Banner (MATCHING ATTACHED IMAGE 2) */}
+      <div className="bg-[#EAFBF1] border border-emerald-200/70 rounded-2xl p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4 shadow-xs">
         <div className="flex items-center gap-3.5">
-          <div className="w-10 h-10 rounded-2xl bg-emerald-500 text-white flex items-center justify-center shrink-0 shadow-sm">
-            <ShieldCheck className="w-6 h-6" />
+          <div className="w-10 h-10 rounded-full bg-white border border-emerald-300 text-[#10B981] flex items-center justify-center shrink-0 shadow-xs">
+            <ShieldCheck className="w-6 h-6 text-[#10B981]" />
           </div>
           <div>
-            <h3 className="font-semibold text-sm sm:text-base text-emerald-900">Identity fully verified via Nafath</h3>
+            <h3 className="font-bold text-sm sm:text-base text-emerald-900">Identity fully verified via Nafath</h3>
             <p className="text-xs text-emerald-700 font-normal mt-0.5">
               Your eKYC is complete and up to date. No further action needed.
             </p>
           </div>
         </div>
-
-        <span className="text-xs font-semibold text-emerald-800 self-end sm:self-auto whitespace-nowrap">
-          Verified 10 Jun 2026
-        </span>
       </div>
     </div>
   );

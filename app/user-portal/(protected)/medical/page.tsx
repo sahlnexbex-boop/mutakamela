@@ -6,7 +6,7 @@ import {
   ChevronDown,
   Check,
   MapPin,
-  Building,
+  Globe,
   Building2,
   Stethoscope,
   Pill,
@@ -28,7 +28,6 @@ export default function MedicalNetworkRoutePage() {
       rating: 4.8,
       distance: "2.5 km",
       address: isAr ? "الرياض، شارع العليا" : "Riyadh, Olaya Street",
-      image: "/images/products_05.png",
       mapQuery: "Saudi+German+Hospital+Riyadh",
     },
     {
@@ -40,7 +39,6 @@ export default function MedicalNetworkRoutePage() {
       rating: 4.9,
       distance: "4.1 km",
       address: isAr ? "الرياض، المعذر" : "Riyadh, Al Maather",
-      image: "/images/products_05.png",
       mapQuery: "King+Faisal+Specialist+Hospital+Riyadh",
     },
     {
@@ -52,7 +50,6 @@ export default function MedicalNetworkRoutePage() {
       rating: 4.7,
       distance: "6.0 km",
       address: isAr ? "جدة، الحمراء" : "Jeddah, Al Hamra",
-      image: "/images/products_05.png",
       mapQuery: "Al+Noor+Medical+Complex+Jeddah",
     },
     {
@@ -64,7 +61,6 @@ export default function MedicalNetworkRoutePage() {
       rating: 4.6,
       distance: "3.2 km",
       address: isAr ? "الرياض، الملز" : "Riyadh, Al Malaz",
-      image: "/images/products_05.png",
       mapQuery: "Capital+Medical+Center+Riyadh",
     },
     {
@@ -76,7 +72,6 @@ export default function MedicalNetworkRoutePage() {
       rating: 4.8,
       distance: "1.8 km",
       address: isAr ? "الدمام، الكورنيش" : "Dammam, Corniche",
-      image: "/images/products_05.png",
       mapQuery: "Smile+Dental+Center+Dammam",
     },
     {
@@ -88,7 +83,6 @@ export default function MedicalNetworkRoutePage() {
       rating: 4.7,
       distance: "5.4 km",
       address: isAr ? "جدة، الروضة" : "Jeddah, Al Rawdah",
-      image: "/images/products_05.png",
       mapQuery: "Al+Noor+Medical+Complex+Jeddah",
     },
   ];
@@ -98,105 +92,109 @@ export default function MedicalNetworkRoutePage() {
   return (
     <div className="space-y-8">
 
-      {/* 1. TOP BANNER HERO & SEARCH CARD (40% Content & 60% Form Model) */}
-      <div className="bg-gradient-to-br from-[#2e289e] to-[#6F66F4] rounded-3xl p-6 sm:p-8 text-white flex flex-col lg:flex-row items-stretch justify-between gap-8 shadow-xl relative overflow-hidden">
+      {/* 1. TOP HERO & SEARCH PANEL (MATCHING ATTACHED IMAGE 1 EXACTLY) */}
+      <div className="bg-gradient-to-r from-[#180E5E] via-[#1F147C] to-[#2B1F95] rounded-3xl p-6 sm:p-8 text-white flex flex-col lg:flex-row items-stretch justify-between gap-8 shadow-xl relative overflow-hidden">
         
         {/* Left Side Content (40% Width) */}
-        <div className="w-full lg:w-[40%] flex flex-col justify-between space-y-6">
+        <div className="w-full lg:w-[45%] flex flex-col justify-between space-y-6">
           <div className="space-y-4">
             <div>
-              <span className="bg-white/15 backdrop-blur-md text-white text-xs font-normal px-3.5 py-1.5 rounded-full inline-block">
+              <span className="bg-white/10 backdrop-blur-md text-white text-xs font-semibold px-3.5 py-1.5 rounded-full inline-block border border-white/10">
                 {t("mutakamelaNetworkBadge")}
               </span>
             </div>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight text-white leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white leading-tight">
               {t("findHealthcareProvider")}
             </h1>
-            <p className="text-xs sm:text-sm text-white/80 font-normal leading-relaxed">
+            <p className="text-xs sm:text-sm text-indigo-200 font-normal leading-relaxed">
               {t("searchMedicalSub")}
             </p>
           </div>
 
           {/* Bottom Specs Row (Clean Spaced Text) */}
-          <div className="flex items-center gap-6 text-xs font-semibold text-white/90 pt-4">
-            <span>{isAr ? "+1,200 مزود خدمة" : "1,200+ providers"}</span>
+          <div className="flex items-center gap-6 text-xs font-bold text-indigo-100 pt-4">
+            <span>{isAr ? "1,200+ مزود خدمة" : "1,200+ providers"}</span>
             <span>{t("directBillingBadge")}</span>
             <span>{t("support247Badge")}</span>
           </div>
         </div>
 
-        {/* Right Side White Search Card (60% Width Model) */}
-        <div className="w-full lg:w-[60%] bg-white text-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl space-y-4 border border-slate-100 flex flex-col justify-between shrink-0">
+        {/* Right Side Dark Translucent Search Panel Card (MATCHING ATTACHED IMAGE 1) */}
+        <div className="w-full lg:w-[50%] bg-[#3429A8]/40 backdrop-blur-md text-white rounded-3xl p-6 sm:p-8 border border-indigo-400/20 shadow-xl space-y-4 flex flex-col justify-between shrink-0">
           <div className="space-y-4">
             <div>
-              <label className="text-xs font-semibold text-slate-800 block mb-2">{t("searchLabel")}</label>
+              <label className="text-xs font-bold text-white block mb-2">{t("searchLabel")}</label>
               <input
                 type="text"
                 placeholder={t("searchPlaceholder")}
-                className="w-full h-12 bg-white border border-slate-200 rounded-xl px-4 text-xs sm:text-sm text-slate-800 placeholder:text-slate-400 focus:outline-none focus:ring-1 focus:ring-[#2563EB]"
+                className="w-full h-12 bg-[#1c136b]/60 border border-indigo-300/30 rounded-xl px-4 text-xs sm:text-sm text-white placeholder:text-indigo-200/70 focus:outline-none focus:ring-1 focus:ring-white/50"
               />
             </div>
 
-            <ShadcnSelect
-              value={selectedCity}
-              onChange={setSelectedCity}
-              options={isAr ? ["الرياض", "جدة", "الدمام", "الخبر", "مكة المكرمة", "المدينة المنورة"] : ["Riyadh", "Jeddah", "Dammam", "Al Khobar", "Makkah", "Madinah"]}
-            />
+            <div>
+              <ShadcnSelectTranslucent
+                value={selectedCity}
+                onChange={setSelectedCity}
+                options={isAr ? ["الرياض", "جدة", "الدمام", "الخبر", "مكة المكرمة", "المدينة المنورة"] : ["Riyadh", "Jeddah", "Dammam", "Al Khobar", "Makkah", "Madinah"]}
+              />
+            </div>
           </div>
 
-          {/* Search Button (Right-Aligned in Image 1 Model) */}
+          {/* Search Button (Right-Aligned Solid Blue Button) */}
           <div className="flex justify-end pt-2">
-            <button className="bg-[#1E65FF] hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
+            <button className="bg-[#2563EB] hover:bg-blue-600 text-white font-bold px-6 py-2.5 rounded-xl text-xs sm:text-sm shadow-md transition-colors cursor-pointer">
               {t("searchProvidersBtn")}
             </button>
           </div>
         </div>
       </div>
 
-      {/* 2. FEATURED HEALTHCARE PROVIDERS */}
+      {/* 2. FEATURED HEALTHCARE PROVIDERS (MATCHING ATTACHED IMAGE 1) */}
       <div className="space-y-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1C2541]">{t("featuredProvidersHeader")}</h2>
+        <h2 className="text-lg sm:text-xl font-bold text-[#1C2541]">{t("featuredProvidersHeader")}</h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {featuredProviders.map((provider) => (
             <div
               key={provider.id}
               onClick={() => setActiveProvider(provider)}
-              className={`bg-white rounded-3xl p-5 border shadow-xs hover:shadow-md transition-all duration-200 space-y-4 cursor-pointer group ${
+              className={`bg-white rounded-3xl p-5 border shadow-xs hover:shadow-md transition-all duration-200 space-y-4 cursor-pointer group flex flex-col justify-between ${
                 activeProvider.id === provider.id ? "border-[#2563EB] ring-2 ring-blue-500/20" : "border-slate-100"
               }`}
             >
-              <div className="space-y-1.5">
-                <h3 className="font-semibold text-base text-[#1C2541] tracking-tight group-hover:text-[#2563EB] transition-colors">
-                  {provider.name}
-                </h3>
-                <p className="text-xs text-[#8C94A6] font-normal">{provider.city}</p>
+              <div className="space-y-2">
                 <div>
-                  <span className="bg-[#F0FDF4] text-[#16A34A] border border-[#DCFCE7] text-[11px] font-semibold px-2.5 py-0.5 rounded-md inline-block">
-                    {provider.badge}
-                  </span>
+                  <h3 className="font-bold text-base text-[#1C2541] tracking-tight group-hover:text-[#2563EB] transition-colors">
+                    {provider.name}
+                  </h3>
+                  <p className="text-xs text-[#D97706] font-semibold mt-0.5">{provider.city}</p>
+                  <div className="mt-1.5">
+                    <span className="bg-[#DDF5E6] text-[#16A34A] text-[11px] font-bold px-2.5 py-0.5 rounded-md inline-block">
+                      {provider.badge}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Specialty Tag Pills */}
+                <div className="flex flex-wrap gap-1.5 pt-1">
+                  {provider.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="bg-slate-100 text-slate-600 text-[11px] font-medium px-2 py-0.5 rounded-md"
+                    >
+                      {tag}
+                    </span>
+                  ))}
                 </div>
               </div>
 
-              {/* Specialty Tag Pills */}
-              <div className="flex flex-wrap gap-1.5">
-                {provider.tags.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="bg-slate-100 text-slate-600 text-[11px] font-semibold px-2.5 py-1 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              {/* Action Buttons */}
-              <div className="grid grid-cols-2 gap-2 pt-2 border-t border-slate-100">
-                <button className="w-full border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
+              {/* Action Buttons (MATCHING ATTACHED IMAGE 1 - Right button is SOLID BLUE) */}
+              <div className="grid grid-cols-2 gap-2.5 pt-3 border-t border-slate-100">
+                <button className="w-full border border-slate-200 bg-white hover:bg-slate-50 text-slate-700 font-bold py-2 rounded-xl text-xs text-center transition-colors cursor-pointer">
                   {t("viewDetails")}
                 </button>
-                <button className="w-full border border-slate-300 hover:bg-slate-50 text-slate-700 font-semibold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 transition-colors cursor-pointer">
-                  <MapPin className="w-3.5 h-3.5 text-slate-500" />
+                <button className="w-full bg-[#2563EB] hover:bg-blue-600 text-white font-bold py-2 rounded-xl text-xs flex items-center justify-center gap-1.5 shadow-xs transition-colors cursor-pointer">
+                  <MapPin className="w-3.5 h-3.5" />
                   <span>{t("directionsBtn")}</span>
                 </button>
               </div>
@@ -207,7 +205,7 @@ export default function MedicalNetworkRoutePage() {
 
       {/* 3. CLEAN GOOGLE MAPS */}
       <div className="space-y-4">
-        <h2 className="text-lg sm:text-xl font-semibold text-[#1C2541]">{isAr ? "خريطة الشبكة الطبية" : "Network map"}</h2>
+        <h2 className="text-lg sm:text-xl font-bold text-[#1C2541]">{isAr ? "خريطة الشبكة الطبية" : "Network map"}</h2>
 
         <div className="relative rounded-3xl overflow-hidden border border-slate-200 shadow-md h-[480px] sm:h-[540px] bg-slate-100">
           <iframe
@@ -220,46 +218,41 @@ export default function MedicalNetworkRoutePage() {
         </div>
       </div>
 
-      {/* 4. BOTTOM NETWORK STATS BAR */}
-      <div className="bg-white rounded-3xl p-6 border border-slate-100 shadow-xs grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
+      {/* 4. BOTTOM NETWORK STATS BAR (EXACT MATCH FOR ATTACHED IMAGE 2 - ALL GOLD ICONS) */}
+      <div className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-100 shadow-xs grid grid-cols-2 sm:grid-cols-5 gap-6 text-center">
+        {/* Metric 1 */}
         <div className="space-y-1">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center mx-auto">
-            <Building2 className="w-5 h-5" />
-          </div>
-          <div className="text-xl sm:text-2xl font-semibold text-[#1C2541]">+1,200</div>
-          <p className="text-xs text-slate-500 font-normal">{isAr ? "مزود خدمة في الشبكة" : "Network Providers"}</p>
+          <Globe className="w-6 h-6 sm:w-7 sm:h-7 text-[#D97706] mx-auto stroke-[2.2]" />
+          <div className="text-xl sm:text-2xl font-extrabold text-[#1C2541] mt-2">1,200+</div>
+          <p className="text-xs text-slate-400 font-medium">{isAr ? "مزود خدمة في الشبكة" : "Network Providers"}</p>
         </div>
 
+        {/* Metric 2 */}
         <div className="space-y-1">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center mx-auto">
-            <Building className="w-5 h-5" />
-          </div>
-          <div className="text-xl sm:text-2xl font-semibold text-[#1C2541]">+250</div>
-          <p className="text-xs text-slate-500 font-normal">{isAr ? "مستشفى" : "Hospitals"}</p>
+          <Building2 className="w-6 h-6 sm:w-7 sm:h-7 text-[#D97706] mx-auto stroke-[2.2]" />
+          <div className="text-xl sm:text-2xl font-extrabold text-[#1C2541] mt-2">250+</div>
+          <p className="text-xs text-slate-400 font-medium">{isAr ? "مستشفى" : "Hospitals"}</p>
         </div>
 
+        {/* Metric 3 */}
         <div className="space-y-1">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center mx-auto">
-            <Stethoscope className="w-5 h-5" />
-          </div>
-          <div className="text-xl sm:text-2xl font-semibold text-[#1C2541]">+700</div>
-          <p className="text-xs text-slate-500 font-normal">{isAr ? "عيادة ومجمع طبي" : "Clinics"}</p>
+          <Stethoscope className="w-6 h-6 sm:w-7 sm:h-7 text-[#D97706] mx-auto stroke-[2.2]" />
+          <div className="text-xl sm:text-2xl font-extrabold text-[#1C2541] mt-2">700+</div>
+          <p className="text-xs text-slate-400 font-medium">{isAr ? "عيادة ومجمع طبي" : "Clinics"}</p>
         </div>
 
+        {/* Metric 4 */}
         <div className="space-y-1">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center mx-auto">
-            <Pill className="w-5 h-5" />
-          </div>
-          <div className="text-xl sm:text-2xl font-semibold text-[#1C2541]">150+</div>
-          <p className="text-xs text-slate-500 font-normal">Pharmacies</p>
+          <Pill className="w-6 h-6 sm:w-7 sm:h-7 text-[#D97706] mx-auto stroke-[2.2]" />
+          <div className="text-xl sm:text-2xl font-extrabold text-[#1C2541] mt-2">150+</div>
+          <p className="text-xs text-slate-400 font-medium">Pharmacies</p>
         </div>
 
+        {/* Metric 5 */}
         <div className="space-y-1 col-span-2 sm:col-span-1">
-          <div className="w-10 h-10 rounded-2xl bg-blue-50 text-[#2563EB] flex items-center justify-center mx-auto">
-            <Headphones className="w-5 h-5" />
-          </div>
-          <div className="text-xl sm:text-2xl font-semibold text-[#1C2541]">24/7</div>
-          <p className="text-xs text-slate-500 font-normal">Support Available</p>
+          <Headphones className="w-6 h-6 sm:w-7 sm:h-7 text-[#D97706] mx-auto stroke-[2.2]" />
+          <div className="text-xl sm:text-2xl font-extrabold text-[#1C2541] mt-2">24/7</div>
+          <p className="text-xs text-slate-400 font-medium">Support Available</p>
         </div>
       </div>
 
@@ -267,8 +260,8 @@ export default function MedicalNetworkRoutePage() {
   );
 }
 
-{/* CUSTOM SHADCN-STYLE SELECT DROPDOWN COMPONENT */}
-function ShadcnSelect({
+{/* TRANSLUCENT SHADCN-STYLE SELECT DROPDOWN FOR HERO SEARCH PANEL */}
+function ShadcnSelectTranslucent({
   value,
   onChange,
   options,
@@ -284,16 +277,16 @@ function ShadcnSelect({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full h-12 bg-white border border-slate-200 rounded-xl px-4 text-xs sm:text-sm font-semibold text-slate-800 flex items-center justify-between hover:bg-slate-50/80 transition-colors focus:outline-none focus:ring-1 focus:ring-[#2563EB] cursor-pointer"
+        className="w-full h-12 bg-[#1c136b]/60 border border-indigo-300/30 rounded-xl px-4 text-xs sm:text-sm font-semibold text-white flex items-center justify-between hover:bg-[#1c136b]/80 transition-colors focus:outline-none focus:ring-1 focus:ring-white/50 cursor-pointer"
       >
         <span>{value}</span>
-        <ChevronDown className={`w-4 h-4 text-slate-500 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+        <ChevronDown className={`w-4 h-4 text-indigo-200 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
       </button>
 
       {open && (
         <>
           <div className="fixed inset-0 z-30" onClick={() => setOpen(false)} />
-          <div className="absolute top-full left-0 right-0 mt-1.5 bg-white border border-slate-100 rounded-2xl shadow-xl p-1 z-40 animate-in fade-in zoom-in-95 duration-150 max-h-56 overflow-y-auto">
+          <div className="absolute top-full left-0 right-0 mt-1.5 bg-[#180E5E] border border-indigo-400/30 rounded-2xl shadow-2xl p-1 z-40 animate-in fade-in zoom-in-95 duration-150 max-h-56 overflow-y-auto">
             {options.map((opt) => (
               <div
                 key={opt}
@@ -302,11 +295,11 @@ function ShadcnSelect({
                   setOpen(false);
                 }}
                 className={`flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold cursor-pointer transition-colors ${
-                  value === opt ? "bg-blue-50 text-[#2563EB]" : "text-slate-700 hover:bg-slate-50"
+                  value === opt ? "bg-[#2563EB] text-white" : "text-indigo-100 hover:bg-white/10"
                 }`}
               >
                 <span>{opt}</span>
-                {value === opt && <Check className="w-3.5 h-3.5 text-[#2563EB]" />}
+                {value === opt && <Check className="w-3.5 h-3.5 text-white" />}
               </div>
             ))}
           </div>

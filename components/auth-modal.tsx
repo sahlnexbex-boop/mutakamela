@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import { X, Lock, Phone, User, ArrowRight, Shield } from "lucide-react";
 import { useTranslation } from "react-i18next";
+import { useCustomerAuth } from "@/lib/customer-auth-context";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -11,6 +13,8 @@ interface AuthModalProps {
 
 export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
   const { t } = useTranslation();
+  const router = useRouter();
+  const { login } = useCustomerAuth();
   const [mode, setMode] = useState<"login" | "register">("login");
   const [mobile, setMobile] = useState("");
   const [password, setPassword] = useState("");
@@ -19,8 +23,9 @@ export default function AuthModal({ isOpen, onClose }: AuthModalProps) {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    alert(`Successfully logged in with mobile: +966 ${mobile}`);
+    login(mobile || "ahmed@mutakamela.sa");
     onClose();
+    router.push("/user-portal/dashboard");
   };
 
   return (

@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { useTranslation } from "react-i18next";
+import type { SectionDisplayCopy } from "@/lib/home/utils";
 
-export default function HowItWorks() {
+export default function HowItWorks({ copy }: { copy?: SectionDisplayCopy }) {
   const { t } = useTranslation();
 
   const steps = [
@@ -40,10 +41,10 @@ export default function HowItWorks() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16" data-gsap="fade-up">
           <div className="text-xs font-extrabold uppercase tracking-widest text-[#3B25B0] mb-2">
-            {t("simpleProcess")}
+            {copy?.badge || t("simpleProcess")}
           </div>
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
-            {t("howItWorksHeading")}
+            {copy?.title || t("howItWorksHeading")}
           </h2>
         </div>
 
@@ -58,6 +59,7 @@ export default function HowItWorks() {
               <div
                 key={item.step}
                 data-gsap-item
+                data-gsap-hover
                 className="flex flex-col items-center text-center space-y-4 group"
               >
 

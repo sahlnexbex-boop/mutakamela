@@ -4,11 +4,14 @@ import { useState } from "react";
 import { RefreshCw, FileSearch, CreditCard, Stethoscope, ChevronRight, Bot, X } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
+import type { SectionDisplayCopy } from "@/lib/home/utils";
+
 interface QuickActionsProps {
   onSelectAction?: (action: string) => void;
+  copy?: SectionDisplayCopy;
 }
 
-export default function QuickActions({ onSelectAction }: QuickActionsProps) {
+export default function QuickActions({ onSelectAction, copy }: QuickActionsProps) {
   const { t } = useTranslation();
   const [showAiChat, setShowAiChat] = useState(false);
 
@@ -47,7 +50,7 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
         <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-soft-lg border border-slate-100" data-gsap="fade-up">
 
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-6">
-            {t("whatWouldYouLikeToDo")}
+            {copy?.title || t("whatWouldYouLikeToDo")}
           </h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" data-gsap="stagger">
@@ -57,6 +60,7 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
                 <button
                   key={action.id}
                   data-gsap-item
+                  data-gsap-hover
                   onClick={() => onSelectAction?.(action.id)}
                   className="group flex items-center justify-between p-4 rounded-2xl border border-slate-100 hover:border-indigo-200 bg-slate-50/50 hover:bg-indigo-50/40 transition-all duration-300 text-left rtl:text-right hover:shadow-md"
                 >
@@ -92,7 +96,7 @@ export default function QuickActions({ onSelectAction }: QuickActionsProps) {
           href="https://wa.me/966118213000"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white flex items-center justify-center shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-110"
+          className="w-12 h-12 sm:w-13 sm:h-13 rounded-full bg-gradient-to-br from-emerald-400 to-emerald-600 hover:from-emerald-500 hover:to-emerald-700 text-white flex items-center justify-center shadow-lg hover:shadow-emerald-500/40 transition-all duration-300 transform hover:scale-110 home-float-soft"
           title="Chat on WhatsApp"
         >
           <svg className="w-6 h-6 sm:w-7 sm:h-7 fill-white" viewBox="0 0 24 24">
